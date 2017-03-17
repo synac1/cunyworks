@@ -6,11 +6,10 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
@@ -26,7 +25,7 @@ public class TeacherBean {
 	private int teacherId;
 	@Column
 	private String title;
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private String email;
 	@Column(name = "FIRST_NAME")
 	private String firstName;
@@ -37,13 +36,14 @@ public class TeacherBean {
 	@Column
 	private String address;
 	@Temporal(TemporalType.DATE)
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private Date birthday;
 	@Column
 	@Temporal(TemporalType.DATE)
 	private Date created;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@Column
+	@ManyToOne
 	private Set<CourseBean> courses = new HashSet<>();
 
 	public TeacherBean() {
