@@ -1,8 +1,11 @@
 package com.status418.cunyworks.dao.test;
 
+import org.hibernate.SessionFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.status418.cunyworks.hibernate.HibernateUtil;
 
 public class CourseDAOTest {
 
@@ -18,7 +21,11 @@ public class CourseDAOTest {
 
 	@Test
 	public void test() {
-		System.out.println("Placeholder");
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		sf.openSession();
+		sf.close();
+		
+	
 	}
 
 }
