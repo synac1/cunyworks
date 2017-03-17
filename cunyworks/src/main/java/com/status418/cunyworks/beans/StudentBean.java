@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
@@ -22,22 +23,26 @@ public class StudentBean {
 	@SequenceGenerator(name = "studentIdSeq", sequenceName = "STUDENT_ID_SEQ", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "studentIdSeq", strategy = GenerationType.SEQUENCE)
 	private int studentId;
-	@Column(nullable = false)
+	@Column(name = "EMAIL", nullable = false)
 	private String email;
+	@Column(name = "PASSWORD", nullable = false)
+	private String password;
 	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstName;
 	@Column(name = "LAST_NAME", nullable = false)
 	private String lastName;
-	@Column
+	@Column(name = "PHONE")
 	private int phone;
-	@Column
+	@Column(name = "ADDRESS")
 	private String address;
-	@Column(nullable = false)
+	@Column(name = "BIRTHDAY", nullable = false)
+	@Temporal(TemporalType.DATE)
 	private Date birthday;
-	@Column
+	@Column(name = "CREATED")
 	@Temporal(TemporalType.DATE)
 	private Date created;
 	@ManyToMany
+
 	private Set<CourseBean> courses = new HashSet<>();
 
 	public StudentBean() {

@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -27,21 +28,22 @@ public class CourseBean {
 	@SequenceGenerator(name = "courseIdSeq", sequenceName = "COURSE_ID_SEQ", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "courseIdSeq", strategy = GenerationType.SEQUENCE)
 	private int courseId;
+	
 	@ManyToOne
 	private TeacherBean teacher;
-	@Column(name = "ENROLLMENT_CAPACITY")
+	@Column(name = "ENROLLMENT_CAPACITY", nullable = false)
 	private int enrollmentCapacity;
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private String name;
-	@Column
+	@Column(nullable = false)
 	private String subject;
 	@Column
 	private String room;
-	@Column(name = "SCHEDULE_TIME")
+	@Column(name = "SCHEDULE_TIME", nullable = false)
 	private Time scheduleTime;
-	@Column(name = "START_DATE")
+	@Column(name = "START_DATE", nullable = false)
 	private Date startDate;
-	@Column(name = "END_DATE")
+	@Column(name = "END_DATE", nullable = false)
 	private Date endDate;
 	@Column
 	private Blob syllabus;
