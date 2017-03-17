@@ -12,12 +12,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
 @Entity
 public class TeacherBean {
-	
+
 	@Id
 	@Column
-	@SequenceGenerator(name = "teacherIdSeq", sequenceName = "TEACHER_ID_SEQ", allocationSize=1, initialValue=1)
+	@SequenceGenerator(name = "teacherIdSeq", sequenceName = "TEACHER_ID_SEQ", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "teacherIdSeq", strategy = GenerationType.SEQUENCE)
 	private int teacherId;
 	@Column
@@ -36,6 +37,7 @@ public class TeacherBean {
 	private Date birthday;
 	@Column
 	private Date created;
+
 	@OneToMany(fetch=FetchType.EAGER)
 	private Set<CourseBean> courses = new HashSet<>();
 
