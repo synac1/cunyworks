@@ -11,37 +11,47 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 @Entity
 public class TeacherBean {
-	
+
 	@Id
-	@Column
-	@SequenceGenerator(name = "teacherIdSeq", sequenceName = "TEACHER_ID_SEQ", allocationSize=1, initialValue=1)
+	@Column(name = "TEACHER_ID")
+	@SequenceGenerator(name = "teacherIdSeq", sequenceName = "TEACHER_ID_SEQ", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "teacherIdSeq", strategy = GenerationType.SEQUENCE)
 	private int teacherId;
 	@Column
 	private String title;
-	@Column
+	@Column(nullable=false)
 	private String email;
-	@Column
+	@Column(name = "FIRST_NAME")
 	private String firstName;
-	@Column
+	@Column(name = "LAST_NAME")
 	private String lastName;
 	@Column
 	private int phone;
 	@Column
 	private String address;
-	@Column
+	@Temporal(TemporalType.DATE)
+	@Column(nullable=false)
 	private Date birthday;
 	@Column
+	@Temporal(TemporalType.DATE)
 	private Date created;
-	@OneToMany(fetch=FetchType.EAGER)
+
+	@OneToMany(fetch = FetchType.EAGER)
 	private Set<CourseBean> courses = new HashSet<>();
 
 	public TeacherBean() {
 
-		// TODO Auto-generated constructor stub
 	}
 
+	@PrePersist
+	protected void onCreate() {
+		created = new Date();
+	}
 }

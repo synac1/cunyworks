@@ -13,38 +13,43 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class CourseBean {
 	@Id
-	@Column
+	@Column(name = "COURSE_ID")
 	@SequenceGenerator(name = "courseIdSeq", sequenceName = "COURSE_ID_SEQ", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "courseIdSeq", strategy = GenerationType.SEQUENCE)
 	private int courseId;
-	@Column
+	@ManyToOne
 	private TeacherBean teacher;
-	@Column
+	@Column(name = "ENROLLMENT_CAPACITY")
 	private int enrollmentCapacity;
-	@Column
+	@Column(nullable=false)
 	private String name;
 	@Column
 	private String subject;
 	@Column
 	private String room;
-	@Column
+	@Column(name = "SCHEDULE_TIME")
 	private Time scheduleTime;
-	@Column
+	@Column(name = "START_DATE")
 	private Date startDate;
-	@Column
+	@Column(name = "END_DATE")
 	private Date endDate;
 	@Column
 	private Blob syllabus;
-
+	@Column
+	@Temporal(TemporalType.DATE)
+	private Date created;
 	@OneToMany(fetch = FetchType.EAGER)
 	private Set<TextBookBean> textbooks = new HashSet<>();
-
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "courses")
 	private Set<StudentBean> students = new HashSet<>();
 
@@ -52,4 +57,8 @@ public class CourseBean {
 
 	}
 
+	@PrePersist
+	protected void onCreate() {
+		created = new Date();
+	}
 }

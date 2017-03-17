@@ -10,35 +10,43 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class StudentBean {
 	@Id
-	@Column
+	@Column(name = "STUDENT_ID")
 	@SequenceGenerator(name = "studentIdSeq", sequenceName = "STUDENT_ID_SEQ", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "studentIdSeq", strategy = GenerationType.SEQUENCE)
 	private int studentId;
-	@Column
+	@Column(nullable = false)
 	private String email;
-	@Column
+	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstName;
-	@Column
+	@Column(name = "LAST_NAME", nullable = false)
 	private String lastName;
 	@Column
 	private int phone;
 	@Column
 	private String address;
-	@Column
+	@Column(nullable = false)
 	private Date birthday;
 	@Column
+	@Temporal(TemporalType.DATE)
 	private Date created;
-
 	@ManyToMany
 	private Set<CourseBean> courses = new HashSet<>();
 
 	public StudentBean() {
 
+	}
+
+	@PrePersist
+	protected void onCreate() {
+		created = new Date();
 	}
 
 }

@@ -15,13 +15,13 @@ import javax.persistence.SequenceGenerator;
 @Entity
 public class TextBookBean {
 	@Id
-	@Column
+	@Column(name="TEXT_BOOK_ID")
 	@SequenceGenerator(name = "textBookIdSeq", sequenceName = "TEXTBOOK_ID_SEQ", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "textBookIdSeq", strategy = GenerationType.SEQUENCE)
 	private int textBookId;
 	@Column
-	private int isbn;
-	@Column
+	private int ISBN;
+	@Column(name="TEXT_BOOK_NAME")
 	private String textBookName;
 
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "textBooks")
