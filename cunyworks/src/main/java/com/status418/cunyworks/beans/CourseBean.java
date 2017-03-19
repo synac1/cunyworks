@@ -30,8 +30,7 @@ public class CourseBean {
 	@SequenceGenerator(name = "courseIdSeq", sequenceName = "COURSE_ID_SEQ", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "courseIdSeq", strategy = GenerationType.SEQUENCE)
 	private int courseId;
-
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private TeacherBean teacher;
 	@Column(name = "ENROLLMENT_CAPACITY", nullable = false)
 	private int enrollmentCapacity;
@@ -60,9 +59,126 @@ public class CourseBean {
 	public CourseBean() {
 
 	}
-
+	
 	@PrePersist
 	protected void onCreate() {
 		created = new Date();
 	}
+
+	public int getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(int courseId) {
+		this.courseId = courseId;
+	}
+
+	public TeacherBean getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(TeacherBean teacher) {
+		this.teacher = teacher;
+	}
+
+	public int getEnrollmentCapacity() {
+		return enrollmentCapacity;
+	}
+
+	public void setEnrollmentCapacity(int enrollmentCapacity) {
+		this.enrollmentCapacity = enrollmentCapacity;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public SubjectBean getSubject() {
+		return subject;
+	}
+
+	public void setSubject(SubjectBean subject) {
+		this.subject = subject;
+	}
+
+	public String getRoom() {
+		return room;
+	}
+
+	public void setRoom(String room) {
+		this.room = room;
+	}
+
+	public Time getScheduleTime() {
+		return scheduleTime;
+	}
+
+	public void setScheduleTime(Time scheduleTime) {
+		this.scheduleTime = scheduleTime;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Blob getSyllabus() {
+		return syllabus;
+	}
+
+	public void setSyllabus(Blob syllabus) {
+		this.syllabus = syllabus;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public Set<TextBookBean> getTextbooks() {
+		return textbooks;
+	}
+
+	public void setTextbooks(Set<TextBookBean> textbooks) {
+		this.textbooks = textbooks;
+	}
+
+	public Set<StudentBean> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<StudentBean> students) {
+		this.students = students;
+	}
+
+	@Override
+	public String toString() {
+		return "CourseBean [courseId=" + courseId + ", teacher=" + teacher + ", enrollmentCapacity="
+				+ enrollmentCapacity + ", name=" + name + ", subject=" + subject + ", room=" + room + ", scheduleTime="
+				+ scheduleTime + ", startDate=" + startDate + ", endDate=" + endDate + ", syllabus=" + syllabus
+				+ ", created=" + created + ", textbooks=" + textbooks + ", students=" + students + "]";
+	}
+	
+	
+	
+	
+	
 }

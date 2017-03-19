@@ -15,21 +15,65 @@ import javax.persistence.SequenceGenerator;
 @Entity
 public class TextBookBean {
 	@Id
-	@Column(name="TEXT_BOOK_ID")
+	@Column(name = "TEXT_BOOK_ID")
 	@SequenceGenerator(name = "textBookIdSeq", sequenceName = "TEXTBOOK_ID_SEQ", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "textBookIdSeq", strategy = GenerationType.SEQUENCE)
 	private int textBookId;
 	@Column
 	private int ISBN;
-	@Column(name="TEXT_BOOK_NAME")
+	@Column(name = "TEXT_BOOK_NAME")
 	private String textBookName;
-
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "textBooks")
 	private Set<SubjectBean> subjects = new HashSet<>();
 
 	public TextBookBean() {
+
+	}
+
+	public TextBookBean(int textBookId, int iSBN, String textBookName, Set<SubjectBean> subjects) {
 		super();
-		// TODO Auto-generated constructor stub
+		this.textBookId = textBookId;
+		ISBN = iSBN;
+		this.textBookName = textBookName;
+		this.subjects = subjects;
+	}
+
+	public int getTextBookId() {
+		return textBookId;
+	}
+
+	public void setTextBookId(int textBookId) {
+		this.textBookId = textBookId;
+	}
+
+	public int getISBN() {
+		return ISBN;
+	}
+
+	public void setISBN(int iSBN) {
+		ISBN = iSBN;
+	}
+
+	public String getTextBookName() {
+		return textBookName;
+	}
+
+	public void setTextBookName(String textBookName) {
+		this.textBookName = textBookName;
+	}
+
+	public Set<SubjectBean> getSubjects() {
+		return subjects;
+	}
+
+	public void setSubjects(Set<SubjectBean> subjects) {
+		this.subjects = subjects;
+	}
+
+	@Override
+	public String toString() {
+		return "TextBookBean [textBookId=" + textBookId + ", ISBN=" + ISBN + ", textBookName=" + textBookName
+				+ ", subjects=" + subjects + "]";
 	}
 
 }

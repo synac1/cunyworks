@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,9 +44,7 @@ public class TeacherBean {
 	private Date created;
 	@Column(name = "PASSWORD", nullable = false)
 	private String password;
-
-	
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	private Set<CourseBean> courses = new HashSet<>();
 
 	public TeacherBean() {
@@ -56,4 +55,96 @@ public class TeacherBean {
 	protected void onCreate() {
 		created = new Date();
 	}
+
+	public int getTeacherId() {
+		return teacherId;
+	}
+
+	public void setTeacherId(int teacherId) {
+		this.teacherId = teacherId;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public int getPhone() {
+		return phone;
+	}
+
+	public void setPhone(int phone) {
+		this.phone = phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public Set<CourseBean> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<CourseBean> courses) {
+		this.courses = courses;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	@Override
+	public String toString() {
+		return "TeacherBean [teacherId=" + teacherId + ", title=" + title + ", email=" + email + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", phone=" + phone + ", address=" + address + ", birthday="
+				+ birthday + ", created=" + created + ", courses=" + courses + "]";
+	}
+
 }
