@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -24,7 +24,9 @@ public class SubjectBean {
 	
 	@ManyToMany
 	private Set<TextBookBean> textBooks = new HashSet<>();
-
+	@OneToMany
+	private Set<CourseBean> courses = new HashSet<>();
+	
 	public SubjectBean() {
 
 	}

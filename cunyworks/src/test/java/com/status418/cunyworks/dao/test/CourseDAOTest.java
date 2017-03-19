@@ -22,10 +22,6 @@ public class CourseDAOTest {
 	@Test
 	public void test() {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
-		sf.openSession();
-		sf.close();
-		
-	
 	}
 
 }
