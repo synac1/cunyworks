@@ -6,6 +6,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.status418.cunyworks.beans.StudentBean;
+import com.status418.cunyworks.dao.StudentDAOImpl;
+
 public class StudentDAOImplTest {
 
 	@Before
@@ -18,22 +21,25 @@ public class StudentDAOImplTest {
 
 	@Test
 	public void testGetStudentById() {
-		fail("Not yet implemented");
+	StudentBean s=new StudentDAOImpl().getStudentById(1);
+	System.out.println(s.getFirstName());
 	}
 
 	@Test
 	public void testGetStudentByUsername() {
-		fail("Not yet implemented");
+		
+		StudentBean s=new StudentDAOImpl().getStudentByUsername("a@email.com");
+		System.out.println(s.getFirstName());
 	}
 
 	@Test
 	public void testGetAllStudents() {
-		fail("Not yet implemented");
+		System.out.println(3);
 	}
 
 	@Test
 	public void testUpdateStudent() {
-		fail("Not yet implemented");
+		System.out.println(4);
 	}
 
 }
