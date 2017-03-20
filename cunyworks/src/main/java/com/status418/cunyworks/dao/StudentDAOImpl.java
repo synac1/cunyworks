@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.status418.cunyworks.beans.StudentBean;
@@ -28,28 +27,24 @@ public class StudentDAOImpl implements StudentDAO {
 	@Override
 	public StudentBean getStudentByUsername(String username) {
 		StudentBean student = (StudentBean) session.createCriteria(StudentBean.class)
-													.add(Restrictions.eq("email", username))
-													.uniqueResult();
+												.add(Restrictions.eq("email", username))
+												.uniqueResult();
 		return student;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public Set<StudentBean> getAllStudents() {
-		// TODO Auto-generated method stub
 		Set<StudentBean> tempSet = new HashSet<>();
 		List<StudentBean> tempList = new ArrayList<>();
 		tempList = (ArrayList<StudentBean>) session.createCriteria(StudentBean.class).list();
 		tempSet.addAll(tempList);
-
 		return tempSet;
 	}
 
 	@Override
 	public void updateStudent(StudentBean student) {
-		Transaction tx = session.beginTransaction();
 		session.saveOrUpdate(student);
-		tx.commit();
 	}
 
 }
