@@ -3,6 +3,7 @@ package com.status418.cunyworks.beans;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,7 +24,7 @@ public class TextBookBean {
 	private int ISBN;
 	@Column(name = "TEXT_BOOK_NAME")
 	private String textBookName;
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "textBooks")
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "textBooks", cascade = CascadeType.ALL)
 	private Set<SubjectBean> subjects = new HashSet<>();
 
 	public TextBookBean() {

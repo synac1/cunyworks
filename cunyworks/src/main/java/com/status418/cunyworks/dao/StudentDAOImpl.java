@@ -6,35 +6,34 @@ import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import com.status418.cunyworks.beans.StudentBean;
-import com.status418.cunyworks.hibernate.HibernateUtil;
 
 public class StudentDAOImpl implements StudentDAO {
-	private SessionFactory sf = HibernateUtil.getSessionFactory();
+	
 	private Session session;
 
-	public StudentDAOImpl() {
-		session = sf.openSession();
+	public StudentDAOImpl(Session session) {
+		this.session = session;
 	}
 
 	@Override
 	public StudentBean getStudentById(int id) {
-		// TODO Auto-generated method stub
-
 		StudentBean student = (StudentBean) session.load(StudentBean.class, id);
 		return student;
 	}
 
 	@Override
 	public StudentBean getStudentByUsername(String username) {
-		// TODO Auto-generated method stub
-		StudentBean student = (StudentBean) session.load(StudentBean.class, username);
+		StudentBean student = (StudentBean) session.createCriteria(StudentBean.class)
+													.add(Restrictions.eq("email", username))
+													.uniqueResult();
 		return student;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Set<StudentBean> getAllStudents() {
 		// TODO Auto-generated method stub
@@ -51,7 +50,6 @@ public class StudentDAOImpl implements StudentDAO {
 		Transaction tx = session.beginTransaction();
 		session.saveOrUpdate(student);
 		tx.commit();
-
 	}
 
 }

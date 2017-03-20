@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,7 +35,7 @@ public class StudentBean {
 	@Column(name = "EMAIL", nullable = false)
 	private String email;
 	@Column(name = "PASSWORD", nullable = false)
-	private String password;
+	private String password ="temp";
 	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstName;
 	@Column(name = "LAST_NAME", nullable = false)
@@ -49,7 +50,7 @@ public class StudentBean {
 	@Column(name = "CREATED")
 	@Temporal(TemporalType.DATE)
 	private Date created;
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<CourseBean> courses = new HashSet<>();
 
 	public StudentBean() {
@@ -58,6 +59,7 @@ public class StudentBean {
 
 	@PrePersist
 	protected void onCreate() {
+		System.out.println("PrePersit create date");
 		created = new Date();
 	}
 
@@ -137,6 +139,10 @@ public class StudentBean {
 		return password;
 	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	@Override
 	public String toString() {
 		return "StudentBean [studentId=" + studentId + ", email=" + email + ", firstName=" + firstName + ", lastName="
