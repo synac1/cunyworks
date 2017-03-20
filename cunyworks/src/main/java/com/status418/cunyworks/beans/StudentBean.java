@@ -11,24 +11,31 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class TeacherBean {
-
+@Table(name="StudentBean")
+@NamedQueries({ @NamedQuery(name="getStudentById", query= "from com.status418.cunyworks.beans.StudentBean where id = :param"),
+				@NamedQuery(name="getStudentByUsername", query= "from com.status418.cunyworks.beans.StudentBean where username = :param"),
+				//@NamedQuery(name="getAllStudents", query= "from com.status418.hibernate.StudentBean")
+				})
+public class StudentBean {
 	@Id
-	@Column(name = "TEACHER_ID")
-	@SequenceGenerator(name = "teacherIdSeq", sequenceName = "TEACHER_ID_SEQ", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(generator = "teacherIdSeq", strategy = GenerationType.SEQUENCE)
-	private int teacherId;
-	@Column(name = "TITLE", nullable = false)
-	private String title;
+	@Column(name = "STUDENT_ID")
+	@SequenceGenerator(name = "studentIdSeq", sequenceName = "STUDENT_ID_SEQ", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "studentIdSeq", strategy = GenerationType.SEQUENCE)
+	private int studentId;
 	@Column(name = "EMAIL", nullable = false)
 	private String email;
+	@Column(name = "PASSWORD", nullable = false)
+	private String password ="temp";
 	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstName;
 	@Column(name = "LAST_NAME", nullable = false)
@@ -37,40 +44,31 @@ public class TeacherBean {
 	private int phone;
 	@Column(name = "ADDRESS")
 	private String address;
-	@Temporal(TemporalType.DATE)
 	@Column(name = "BIRTHDAY", nullable = false)
+	@Temporal(TemporalType.DATE)
 	private Date birthday;
 	@Column(name = "CREATED")
 	@Temporal(TemporalType.DATE)
 	private Date created;
-	@Column(name = "PASSWORD", nullable = false)
-	private String password;
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<CourseBean> courses = new HashSet<>();
 
-	public TeacherBean() {
+	public StudentBean() {
 
 	}
 
 	@PrePersist
 	protected void onCreate() {
+		System.out.println("PrePersit create date");
 		created = new Date();
 	}
 
-	public int getTeacherId() {
-		return teacherId;
+	public int getStudentId() {
+		return studentId;
 	}
 
-	public void setTeacherId(int teacherId) {
-		this.teacherId = teacherId;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
 	}
 
 	public String getEmail() {
@@ -144,12 +142,12 @@ public class TeacherBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "TeacherBean [teacherId=" + teacherId + ", title=" + title + ", email=" + email + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", phone=" + phone + ", address=" + address + ", birthday="
-				+ birthday + ", created=" + created + ", courses=" + courses + "]";
+		return "StudentBean [studentId=" + studentId + ", email=" + email + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", phone=" + phone + ", address=" + address + ", birthday=" + birthday + ", created="
+				+ created + ", courses=" + courses + "]";
 	}
 
 }

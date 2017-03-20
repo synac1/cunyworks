@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,7 +31,7 @@ public class CourseBean {
 	@SequenceGenerator(name = "courseIdSeq", sequenceName = "COURSE_ID_SEQ", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "courseIdSeq", strategy = GenerationType.SEQUENCE)
 	private int courseId;
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private TeacherBean teacher;
 	@Column(name = "ENROLLMENT_CAPACITY", nullable = false)
 	private int enrollmentCapacity;
@@ -51,9 +52,9 @@ public class CourseBean {
 	@Column
 	@Temporal(TemporalType.DATE)
 	private Date created;
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<TextBookBean> textbooks = new HashSet<>();
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "courses")
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "courses", cascade = CascadeType.ALL)
 	private Set<StudentBean> students = new HashSet<>();
 
 	public CourseBean() {

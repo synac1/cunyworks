@@ -8,6 +8,6 @@ public interface TeacherDAO {
 
 	public TeacherBean getTeacherByUsername(String username);
 
-	public void updateTeacher(TeacherBean teacher);
+	public void saveOrUpdateTeacher(TeacherBean teacher);
 
 }
