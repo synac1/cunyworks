@@ -10,10 +10,10 @@ public interface SubjectDAO {
 
 	public Set<SubjectBean> getAllSubjects();
 
-	public Set<TextBookBean> getAllTextBooksBySubject(String subjectname);
+	public Set<TextBookBean> getAllTextBooksBySubject(SubjectBean subject);
 
 	public void saveOrUpdate(SubjectBean subject);
 
-	public Set<CourseBean> getAllCoursesBySubject(String subjectname);
+	public Set<CourseBean> getAllCoursesBySubject(SubjectBean subject);
 
 }

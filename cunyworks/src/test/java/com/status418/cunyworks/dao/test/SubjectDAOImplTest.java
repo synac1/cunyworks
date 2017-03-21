@@ -15,7 +15,7 @@ import com.status418.cunyworks.hibernate.HibernateUtil;
 public class SubjectDAOImplTest {
 	private SessionFactory sf = HibernateUtil.getSessionFactory();
 
-	private Session session;
+	private Session session = sf.openSession();
 
 	@Before
 	public void setUp() throws Exception {
@@ -28,7 +28,7 @@ public class SubjectDAOImplTest {
 	@Test
 	public void testGetAllSubjects() {
 		
-		SubjectDAOImpl sb = new SubjectDAOImpl();
+		SubjectDAOImpl sb = new SubjectDAOImpl(session);
 		
 	System.out.println(sb.getAllSubjects().size());
 	}
@@ -38,14 +38,14 @@ public class SubjectDAOImplTest {
 		
 		SubjectBean	sb = new SubjectBean();
 		sb.setSubjectId(1);
-		sb.setSubjectName("english");
+		sb.setSubjectName("ENGLISH");
 		
-		System.out.println(new SubjectDAOImpl().getAllTextBooksBySubject("MATH"));
+		System.out.println(new SubjectDAOImpl(session).getAllTextBooksBySubject(sb));
 	}
 
 	@Test
 	public void testSaveOrUpdate() {
-		new SubjectDAOImpl().saveOrUpdate(new SubjectBean());
+		new SubjectDAOImpl(session).saveOrUpdate(new SubjectBean());
 	}
 
 
@@ -53,11 +53,11 @@ public class SubjectDAOImplTest {
 		SubjectBean	sb = new SubjectBean();
 		sb.setSubjectId(1);
 		sb.setSubjectName("english");
-		System.out.println(new SubjectDAOImpl().getAllCoursesBySubject("english"));
+		System.out.println(new SubjectDAOImpl(session).getAllCoursesBySubject(sb));
 	}
 	
 	public void testTextBookInsert(){
-		session = sf.openSession();
+	
 		Transaction tx = session.beginTransaction();
 
 		TextBookBean book = new TextBookBean();
@@ -80,7 +80,7 @@ public class SubjectDAOImplTest {
 	
 	
 	public void testSubjectInsert(){
-		session =sf.openSession();
+
 		Transaction tx = session.beginTransaction();
 
 		SubjectBean sub = new SubjectBean();
@@ -89,7 +89,7 @@ public class SubjectDAOImplTest {
 		sub.setSubjectName("LATIN");
 		//sub.setCourses(null);
 		//sub.setTextBooks(null);
-		new SubjectDAOImpl().saveOrUpdate(sub);
+		new SubjectDAOImpl(session).saveOrUpdate(sub);
 
 		tx.commit();
 		
