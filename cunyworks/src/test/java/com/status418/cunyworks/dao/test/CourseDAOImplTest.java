@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+
 import com.status418.cunyworks.beans.CourseBean;
 import com.status418.cunyworks.beans.StudentBean;
 import com.status418.cunyworks.dao.CourseDAOImpl;
@@ -17,6 +18,7 @@ import com.status418.cunyworks.hibernate.HibernateUtil;
 public class CourseDAOImplTest {
 	private Session session;
 	CourseBean course = new CourseBean();
+
 
 	@Before
 	public void setUp() throws Exception {
@@ -30,6 +32,7 @@ public class CourseDAOImplTest {
 
 	@Test
 	public void testGeAllCourses() {
+
 		CourseDAOImpl dao = new CourseDAOImpl(session);
 
 		Set<CourseBean> allCourses = dao.geAllCourses();
@@ -38,6 +41,8 @@ public class CourseDAOImplTest {
 		if (allCourses == null){
 			//fail("Didn't work");
 		}
+
+
 	}
 
 	@Test
@@ -53,7 +58,7 @@ public class CourseDAOImplTest {
 
 	@Test
 	public void testSaveOrUpdate() {
-		/*
+/*
 		 * required values for database are courseid startdate enddate
 		 * enrollment capcity name scheduletime
 		 * 
@@ -75,9 +80,12 @@ public class CourseDAOImplTest {
 
 	@Test
 	public void testDeleteCourse() {
+
 		CourseDAOImpl dao = new CourseDAOImpl(session);
 		dao.deleteCourse(course);
 		//fail("Not yet implemented");
+
+
 	}
 
 }
