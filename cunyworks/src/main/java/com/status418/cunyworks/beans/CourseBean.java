@@ -31,7 +31,7 @@ public class CourseBean {
 	@SequenceGenerator(name = "courseIdSeq", sequenceName = "COURSE_ID_SEQ", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "courseIdSeq", strategy = GenerationType.SEQUENCE)
 	private int courseId;
-	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private TeacherBean teacher;
 	@Column(name = "ENROLLMENT_CAPACITY", nullable = false)
 	private int enrollmentCapacity;
@@ -60,7 +60,7 @@ public class CourseBean {
 	public CourseBean() {
 
 	}
-	
+
 	@PrePersist
 	protected void onCreate() {
 		created = new Date();
@@ -177,9 +177,5 @@ public class CourseBean {
 				+ scheduleTime + ", startDate=" + startDate + ", endDate=" + endDate + ", syllabus=" + syllabus
 				+ ", created=" + created + ", textbooks=" + textbooks + ", students=" + students + "]";
 	}
-	
-	
-	
-	
-	
+
 }
