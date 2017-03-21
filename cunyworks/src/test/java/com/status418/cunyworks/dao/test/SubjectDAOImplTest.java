@@ -40,7 +40,7 @@ public class SubjectDAOImplTest {
 		sb.setSubjectId(1);
 		sb.setSubjectName("ENGLISH");
 		
-		System.out.println(new SubjectDAOImpl(session).getAllTextBooksBySubject(sb));
+		System.out.println(new SubjectDAOImpl(session).getAllTextBooksBySubject("MATH"));
 	}
 
 	@Test
@@ -53,7 +53,7 @@ public class SubjectDAOImplTest {
 		SubjectBean	sb = new SubjectBean();
 		sb.setSubjectId(1);
 		sb.setSubjectName("english");
-		System.out.println(new SubjectDAOImpl(session).getAllCoursesBySubject(sb));
+		System.out.println(new SubjectDAOImpl(session).getAllCoursesBySubject("english"));
 	}
 	
 	public void testTextBookInsert(){

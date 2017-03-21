@@ -16,11 +16,12 @@ import com.status418.cunyworks.hibernate.HibernateUtil;
 
 public class SubjectDAOImpl implements SubjectDAO {
 
-	private Session session;
+	private SessionFactory sf = HibernateUtil.getSessionFactory();
+	private Session session =  sf.openSession();
 
 	public SubjectDAOImpl(Session session) {
 
-		this.session= session;
+		this.session = session;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -33,14 +34,13 @@ public class SubjectDAOImpl implements SubjectDAO {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public Set<TextBookBean> getAllTextBooksBySubject(SubjectBean subject) {
+	public Set<TextBookBean> getAllTextBooksBySubject(String subject) {
 
-//		
-//		SubjectBean subjectObj = (SubjectBean) session.createCriteria(SubjectBean.class)
-//				.add(Restrictions.eq("subjectName",subject)).uniqueResult();
-		Set<TextBookBean>result = subject.getTextBooks();
+		
+		SubjectBean subjectObj = (SubjectBean) session.createCriteria(SubjectBean.class)
+				.add(Restrictions.eq("subjectName",subject)).uniqueResult();
+		Set<TextBookBean>result = subjectObj.getTextBooks();
 		
 		
 		return result;
@@ -53,14 +53,14 @@ public class SubjectDAOImpl implements SubjectDAO {
 		tx.commit();
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
-	public Set<CourseBean> getAllCoursesBySubject(SubjectBean subjectObj) {
-		
+	public Set<CourseBean> getAllCoursesBySubject(String subject) {
+		SubjectBean subjectObj = (SubjectBean) session.createCriteria(SubjectBean.class)
+				.add(Restrictions.eq("subjectName",subject)).uniqueResult();
 		Set<CourseBean>result = subjectObj.getCourses();
-		
-		
 		return result;
+
 	}
 
 }
