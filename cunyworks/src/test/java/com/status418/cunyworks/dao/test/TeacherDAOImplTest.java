@@ -4,17 +4,15 @@ import java.util.Date;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.status418.cunyworks.beans.TeacherBean;
 import com.status418.cunyworks.dao.TeacherDAOImpl;
 import com.status418.cunyworks.hibernate.HibernateUtil;
 
-public class TeacherDAOImplTest {
+public class TeacherDAOImplTest {/*
 
-	private Session session;
+	private static Session session;
 
 	@Before
 	public void setUp() throws Exception {
@@ -57,5 +55,5 @@ public class TeacherDAOImplTest {
 		tx.commit();
 
 	}
-
+*/
 }

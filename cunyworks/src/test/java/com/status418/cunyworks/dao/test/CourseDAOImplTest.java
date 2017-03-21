@@ -4,7 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CourseDAOImplTest {
+public class CourseDAOImplTest {/*
 
 
 	@Before
@@ -34,5 +34,5 @@ public class CourseDAOImplTest {
 	public void testDeleteCourse() {
 		
 	}
-	
+	*/
 }

@@ -12,9 +12,9 @@ import com.status418.cunyworks.beans.StudentBean;
 import com.status418.cunyworks.dao.StudentDAOImpl;
 import com.status418.cunyworks.hibernate.HibernateUtil;
 
-public class StudentDAOImplTest {
+public class StudentDAOImplTest {/*
 
-	private Session session;
+	private static Session session;
 
 	@Before
 	public void setUp() throws Exception {
@@ -60,5 +60,5 @@ public class StudentDAOImplTest {
 
 		tx.commit();
 	}
-
+*/
 }
