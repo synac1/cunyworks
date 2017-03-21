@@ -25,8 +25,7 @@ public class TeacherDAOImplTest {
 	public void tearDown() throws Exception {
 		session.close();
 	}
-	
-	/*
+
 	@Test
 	public void testGetTeacherById() {
 		TeacherBean t = new TeacherDAOImpl(session).getTeacherById(1);
@@ -38,7 +37,7 @@ public class TeacherDAOImplTest {
 		TeacherBean t = new TeacherDAOImpl(session).getTeacherByUsername("teacher@school.com");
 		System.out.println(t);
 	}
-*/
+
 	@Test
 	public void testInsertTeacher() {
 		Transaction tx = session.beginTransaction();

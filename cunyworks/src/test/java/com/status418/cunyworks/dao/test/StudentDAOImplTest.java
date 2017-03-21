@@ -12,7 +12,7 @@ import com.status418.cunyworks.beans.StudentBean;
 import com.status418.cunyworks.dao.StudentDAOImpl;
 import com.status418.cunyworks.hibernate.HibernateUtil;
 
-public class StudentDAOImplTest {/*
+public class StudentDAOImplTest {
 
 	private static Session session;
 
@@ -59,6 +59,6 @@ public class StudentDAOImplTest {/*
 		new StudentDAOImpl(session).updateStudent(s1);
 
 		tx.commit();
+
 	}
-*/
 }

@@ -12,7 +12,7 @@ import com.status418.cunyworks.beans.TextBookBean;
 import com.status418.cunyworks.dao.SubjectDAOImpl;
 import com.status418.cunyworks.hibernate.HibernateUtil;
 
-public class SubjectDAOImplTest {/*
+public class SubjectDAOImplTest {
 	private SessionFactory sf = HibernateUtil.getSessionFactory();
 
 	private Session session = sf.openSession();
@@ -85,5 +85,5 @@ public class SubjectDAOImplTest {/*
 		tx.commit();
 
 	}
-*/
+
 }
