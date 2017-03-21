@@ -33,6 +33,12 @@ public class SubjectBean {
 
 	}
 
+	public SubjectBean(int subjectId, String subjectName) {
+		super();
+		this.subjectId = subjectId;
+		this.subjectName = subjectName;
+	}
+
 	public SubjectBean(int subjectId, String subjectName, Set<TextBookBean> textBooks, Set<CourseBean> courses) {
 		super();
 		this.subjectId = subjectId;
