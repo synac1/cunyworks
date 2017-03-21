@@ -24,7 +24,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@NamedQueries({ @NamedQuery(name = "getByCourseId", query = "from CourseBean where courseId = :courseId") })
+@NamedQueries({ @NamedQuery(name = "getByCourseId", query = "from CourseBean where courseId = :courseId") })	
 public class CourseBean {
 	@Id
 	@Column(name = "COURSE_ID")
