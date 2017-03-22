@@ -10,22 +10,23 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
-@Entity
+@Entity(name = "SUBJECTS")
 public class SubjectBean {
 	@Id
 	@Column(name = "SUBJECT_ID")
 	@SequenceGenerator(name = "subjectIdSeq", sequenceName = "SUBJECT_ID_SEQ", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "subjectIdSeq", strategy = GenerationType.SEQUENCE)
 	private int subjectId;
-	@Column(name = "SUBJECT_NAME")
-	private String subjectName;
-
+	@Column(name = "SUBJECT_NAME", nullable = false, unique = true)
+	private String name;
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Set<TextBookBean> textBooks = new HashSet<>();
+	@JoinTable(name = "SUBJECTS_TEXTBOOKS")
+	private Set<TextbookBean> textbooks = new HashSet<>();
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<CourseBean> courses = new HashSet<>();
 
@@ -33,11 +34,11 @@ public class SubjectBean {
 
 	}
 
-	public SubjectBean(int subjectId, String subjectName, Set<TextBookBean> textBooks, Set<CourseBean> courses) {
+	public SubjectBean(int subjectId, String name, Set<TextbookBean> textbooks, Set<CourseBean> courses) {
 		super();
 		this.subjectId = subjectId;
-		this.subjectName = subjectName;
-		this.textBooks = textBooks;
+		this.name = name;
+		this.textbooks = textbooks;
 		this.courses = courses;
 	}
 
@@ -49,20 +50,20 @@ public class SubjectBean {
 		this.subjectId = subjectId;
 	}
 
-	public String getSubjectName() {
-		return subjectName;
+	public String getName() {
+		return name;
 	}
 
-	public void setSubjectName(String subjectName) {
-		this.subjectName = subjectName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Set<TextBookBean> getTextBooks() {
-		return textBooks;
+	public Set<TextbookBean> getTextbooks() {
+		return textbooks;
 	}
 
-	public void setTextBooks(Set<TextBookBean> textBooks) {
-		this.textBooks = textBooks;
+	public void setTextbooks(Set<TextbookBean> textbooks) {
+		this.textbooks = textbooks;
 	}
 
 	public Set<CourseBean> getCourses() {
@@ -75,8 +76,8 @@ public class SubjectBean {
 
 	@Override
 	public String toString() {
-		return "SubjectBean [subjectId=" + subjectId + ", subjectName=" + subjectName + ", textBooks=" + textBooks
-				+ ", courses=" + courses + "]";
+		return "SubjectBean [subjectId=" + subjectId + ", name=" + name + ", textbooks=" + textbooks + ", courses="
+				+ courses + "]";
 	}
 
 }

@@ -48,7 +48,7 @@ public class TeacherDAOImplTest {
 		t.setEmail("teacher@college.com");
 		t.setFirstName("Teacher Romeo");
 		t.setLastName("Teacher Juliet");
-		t.setPhone(123456789);
+		t.setPhone("123456789");
 		t.setTitle("Profe-ssory");
 		t.setPassword("temp3");
 
