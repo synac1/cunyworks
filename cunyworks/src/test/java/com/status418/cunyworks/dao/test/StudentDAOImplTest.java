@@ -14,7 +14,7 @@ import com.status418.cunyworks.hibernate.HibernateUtil;
 
 public class StudentDAOImplTest {
 
-	private Session session;
+	private static Session session;
 
 	@Before
 	public void setUp() throws Exception {
@@ -59,6 +59,7 @@ public class StudentDAOImplTest {
 		new StudentDAOImpl(session).updateStudent(s1);
 
 		tx.commit();
-	}
 
+		
+	}
 }

@@ -14,7 +14,7 @@ import com.status418.cunyworks.hibernate.HibernateUtil;
 
 public class TeacherDAOImplTest {
 
-	private Session session;
+	private static Session session;
 
 	@Before
 	public void setUp() throws Exception {
