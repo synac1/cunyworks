@@ -13,21 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity(name = "STUDENTS")
-@Table(name = "StudentBean")
-@NamedQueries({
-		@NamedQuery(name = "getStudentById", query = "from com.status418.cunyworks.beans.StudentBean where id = :param"),
-		@NamedQuery(name = "getStudentByUsername", query = "from com.status418.cunyworks.beans.StudentBean where username = :param"),
-		// @NamedQuery(name="getAllStudents", query= "from com.status418.hibernate.StudentBean")
-})
 public class StudentBean {
 	@Id
 	@Column(name = "STUDENT_ID")

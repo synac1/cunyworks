@@ -229,14 +229,11 @@ public class GenerateDataTest {
 		c5.getTextbooks().addAll(Arrays.asList(tb5, tb1, tb2));
 
 		// Subjects have textbooks
-		sub1.getTextbooks().add(tb1);
-		sub2.getTextbooks().add(tb2);
-		sub3.getTextbooks().add(tb3);
-		sub4.getTextbooks().add(tb4);
-		sub5.getTextbooks().add(tb5);
-
-		
-		tb1.getSubjects().addAll(Arrays.asList(sub2, sub3, sub4, sub5));
+		sub1.getTextbooks().addAll(Arrays.asList(tb1, tb2, tb3));
+		sub2.getTextbooks().addAll(Arrays.asList(tb2, tb3, tb4));
+		sub3.getTextbooks().addAll(Arrays.asList(tb3, tb4, tb5));
+		sub4.getTextbooks().addAll(Arrays.asList(tb4, tb5, tb1));
+		sub5.getTextbooks().addAll(Arrays.asList(tb5, tb1, tb2));
 		
 		
 		SessionFactory sF = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
