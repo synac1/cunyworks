@@ -17,7 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
+@Entity(name = "TEACHERS")
 public class TeacherBean {
 
 	@Id
@@ -25,25 +25,25 @@ public class TeacherBean {
 	@SequenceGenerator(name = "teacherIdSeq", sequenceName = "TEACHER_ID_SEQ", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "teacherIdSeq", strategy = GenerationType.SEQUENCE)
 	private int teacherId;
-	@Column(name = "TITLE", nullable = false)
+	@Column(name = "TEACHER_TITLE", nullable = false)
 	private String title;
-	@Column(name = "EMAIL", nullable = false)
+	@Column(name = "TEACHER_EMAIL", nullable = false, unique = true)
 	private String email;
-	@Column(name = "FIRST_NAME", nullable = false)
+	@Column(name = "TEACHER_FIRST_NAME", nullable = false)
 	private String firstName;
-	@Column(name = "LAST_NAME", nullable = false)
+	@Column(name = "TEACHER_LAST_NAME", nullable = false)
 	private String lastName;
-	@Column(name = "PHONE")
-	private int phone;
-	@Column(name = "ADDRESS")
+	@Column(name = "TEACHER_PHONE", unique = true)
+	private String phone;
+	@Column(name = "TEACHER_ADDRESS")
 	private String address;
 	@Temporal(TemporalType.DATE)
-	@Column(name = "BIRTHDAY", nullable = false)
+	@Column(name = "TEACHER_BIRTHDAY", nullable = false)
 	private Date birthday;
-	@Column(name = "CREATED")
+	@Column(name = "TEACHER_CREATED")
 	@Temporal(TemporalType.DATE)
 	private Date created;
-	@Column(name = "PASSWORD", nullable = false)
+	@Column(name = "TEACHER_PASSWORD", nullable = false)
 	private String password;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<CourseBean> courses = new HashSet<>();
@@ -97,11 +97,11 @@ public class TeacherBean {
 		this.lastName = lastName;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
@@ -129,14 +129,6 @@ public class TeacherBean {
 		this.created = created;
 	}
 
-	public Set<CourseBean> getCourses() {
-		return courses;
-	}
-
-	public void setCourses(Set<CourseBean> courses) {
-		this.courses = courses;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -145,11 +137,19 @@ public class TeacherBean {
 		this.password = password;
 	}
 
+	public Set<CourseBean> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<CourseBean> courses) {
+		this.courses = courses;
+	}
+
 	@Override
 	public String toString() {
 		return "TeacherBean [teacherId=" + teacherId + ", title=" + title + ", email=" + email + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", phone=" + phone + ", address=" + address + ", birthday="
-				+ birthday + ", created=" + created + ", courses=" + courses + "]";
+				+ birthday + ", created=" + created + ", password=" + password + ", courses=" + courses + "]";
 	}
 
 }

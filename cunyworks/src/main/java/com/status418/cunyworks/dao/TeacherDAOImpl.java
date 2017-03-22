@@ -28,7 +28,7 @@ public class TeacherDAOImpl implements TeacherDAO {
 	@Override
 	public void saveOrUpdateTeacher(TeacherBean teacher) {
 		session.saveOrUpdate(teacher);
-		
+
 	}
 
 }

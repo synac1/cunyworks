@@ -4,7 +4,7 @@ import java.util.Set;
 
 import com.status418.cunyworks.beans.CourseBean;
 import com.status418.cunyworks.beans.StudentBean;
-import com.status418.cunyworks.beans.TextBookBean;
+import com.status418.cunyworks.beans.TextbookBean;
 
 public interface CourseDAO {
 
@@ -13,8 +13,8 @@ public interface CourseDAO {
 	public Set<StudentBean> getAllStudentsByCourse(CourseBean course);
 
 	public void saveOrUpdate(CourseBean course);
-	
+
 	public void deleteCourse(CourseBean course);
-	
-	public Set<TextBookBean> getTextBooksByCourse(CourseBean course);
+
+	public Set<TextbookBean> getTextBooksByCourse(CourseBean course);
 }

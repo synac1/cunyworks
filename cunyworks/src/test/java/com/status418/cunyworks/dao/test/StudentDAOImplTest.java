@@ -46,18 +46,15 @@ public class StudentDAOImplTest {
 	@Test
 	public void testUpdateStudent() {
 		Transaction tx = session.beginTransaction();
-
 		StudentBean s1 = new StudentBean();
 		s1.setAddress("abdefc");
 		s1.setBirthday(new Date());
-		s1.setEmail("b@email.com");
+		s1.setEmail("a@email.com");
 		s1.setFirstName("Alpha");
 		s1.setLastName("Omega");
-		s1.setPhone(1234567989);
+		s1.setPhone("1234567989");
 		s1.setPassword("temp");
-
 		new StudentDAOImpl(session).updateStudent(s1);
-
 		tx.commit();
 
 		

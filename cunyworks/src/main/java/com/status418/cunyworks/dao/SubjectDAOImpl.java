@@ -11,16 +11,13 @@ import org.hibernate.criterion.Restrictions;
 
 import com.status418.cunyworks.beans.CourseBean;
 import com.status418.cunyworks.beans.SubjectBean;
-import com.status418.cunyworks.beans.TextBookBean;
-import com.status418.cunyworks.hibernate.HibernateUtil;
+import com.status418.cunyworks.beans.TextbookBean;
 
 public class SubjectDAOImpl implements SubjectDAO {
 
-	private SessionFactory sf = HibernateUtil.getSessionFactory();
-	private Session session =  sf.openSession();
+	private Session session;
 
 	public SubjectDAOImpl(Session session) {
-
 		this.session = session;
 	}
 
@@ -31,34 +28,27 @@ public class SubjectDAOImpl implements SubjectDAO {
 		ArrayList<SubjectBean> allSubject = (ArrayList<SubjectBean>) session.createCriteria(SubjectBean.class).list();
 		result.addAll(allSubject);
 		return result;
-
 	}
 
 	@Override
-	public Set<TextBookBean> getAllTextBooksBySubject(String subject) {
-
-		
+	public Set<TextbookBean> getAllTextBooksBySubject(String subject) {
 		SubjectBean subjectObj = (SubjectBean) session.createCriteria(SubjectBean.class)
-				.add(Restrictions.eq("subjectName",subject)).uniqueResult();
-		Set<TextBookBean>result = subjectObj.getTextBooks();
-		
-		
+				.add(Restrictions.eq("name", subject)).uniqueResult();
+		Set<TextbookBean> result = subjectObj.getTextbooks();
 		return result;
 	}
 
 	@Override
 	public void saveOrUpdate(SubjectBean subject) {
-		Transaction tx = session.beginTransaction();
 		session.saveOrUpdate(subject);
-		tx.commit();
 	}
 
 	
 	@Override
-	public Set<CourseBean> getAllCoursesBySubject(String subject) {
+	public Set<CourseBean> getAllCoursesBySubject(String subjectName) {
 		SubjectBean subjectObj = (SubjectBean) session.createCriteria(SubjectBean.class)
-				.add(Restrictions.eq("subjectName",subject)).uniqueResult();
-		Set<CourseBean>result = subjectObj.getCourses();
+				.add(Restrictions.eq("name", subjectName)).uniqueResult();
+		Set<CourseBean> result = subjectObj.getCourses();
 		return result;
 
 	}

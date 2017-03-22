@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.status418.cunyworks.beans.SubjectBean;
-import com.status418.cunyworks.beans.TextBookBean;
+import com.status418.cunyworks.beans.TextbookBean;
 import com.status418.cunyworks.dao.SubjectDAOImpl;
 import com.status418.cunyworks.hibernate.HibernateUtil;
 
@@ -35,7 +35,7 @@ public class SubjectDAOImplTest {
 	public void testGetAllTextBooksBySubject() {
 		SubjectBean sb = new SubjectBean();
 		sb.setSubjectId(1);
-		sb.setSubjectName("ENGLISH");
+		sb.setName("ENGLISH");
 		System.out.println(new SubjectDAOImpl(session).getAllTextBooksBySubject("MATH"));
 	}
 
@@ -47,26 +47,25 @@ public class SubjectDAOImplTest {
 	public void testGetAllCoursesBySubject() {
 		SubjectBean sb = new SubjectBean();
 		sb.setSubjectId(1);
-		sb.setSubjectName("english");
+		sb.setName("english");
 		System.out.println(new SubjectDAOImpl(session).getAllCoursesBySubject("english"));
 	}
 
 	public void testTextBookInsert() {
 		Transaction tx = session.beginTransaction();
-		TextBookBean book = new TextBookBean();
-		book.setISBN(14);
-		book.setTextBookId(3);
-		book.setTextBookName("INTRO TO MATH");
+		TextbookBean book = new TextbookBean();
+		book.setISBN("14");
+		book.setTextbookId(3);
+		book.setName("INTRO TO MATH");
 		session.save(book);
 		tx.commit();
 	}
 
-	@Test
 	public void testSubjectInsert() {
 		Transaction tx = session.beginTransaction();
 		SubjectBean sub = new SubjectBean();
 		sub.setSubjectId(3);
-		sub.setSubjectName("LATIN");
+		sub.setName("LATIN");
 		new SubjectDAOImpl(session).saveOrUpdate(sub);
 		tx.commit();
 	}

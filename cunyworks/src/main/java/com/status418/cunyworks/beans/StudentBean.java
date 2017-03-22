@@ -11,46 +11,40 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
-@Table(name="StudentBean")
-@NamedQueries({ @NamedQuery(name="getStudentById", query= "from com.status418.cunyworks.beans.StudentBean where id = :param"),
-				@NamedQuery(name="getStudentByUsername", query= "from com.status418.cunyworks.beans.StudentBean where username = :param"),
-				//@NamedQuery(name="getAllStudents", query= "from com.status418.hibernate.StudentBean")
-				})
+@Entity(name = "STUDENTS")
 public class StudentBean {
 	@Id
 	@Column(name = "STUDENT_ID")
 	@SequenceGenerator(name = "studentIdSeq", sequenceName = "STUDENT_ID_SEQ", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "studentIdSeq", strategy = GenerationType.SEQUENCE)
 	private int studentId;
-	@Column(name = "EMAIL", nullable = false)
+	@Column(name = "STUDENT_EMAIL", nullable = false, unique = true)
 	private String email;
-	@Column(name = "PASSWORD", nullable = false)
-	private String password ="temp";
-	@Column(name = "FIRST_NAME", nullable = false)
+	@Column(name = "STUDENT_PASSWORD", nullable = false)
+	private String password = "temp";
+	@Column(name = "STUDENT_FIRST_NAME", nullable = false)
 	private String firstName;
-	@Column(name = "LAST_NAME", nullable = false)
+	@Column(name = "STUDENT_LAST_NAME", nullable = false)
 	private String lastName;
-	@Column(name = "PHONE")
-	private int phone;
-	@Column(name = "ADDRESS")
+	@Column(name = "STUDENT_PHONE", unique = true)
+	private String phone;
+	@Column(name = "STUDENT_ADDRESS")
 	private String address;
-	@Column(name = "BIRTHDAY", nullable = false)
+	@Column(name = "STUDENT_BIRTHDAY", nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date birthday;
-	@Column(name = "CREATED")
+	@Column(name = "STUDENT_CREATED")
 	@Temporal(TemporalType.DATE)
 	private Date created;
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "STUDENTS_COURSES")
 	private Set<CourseBean> courses = new HashSet<>();
 
 	public StudentBean() {
@@ -79,6 +73,14 @@ public class StudentBean {
 		this.email = email;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -95,11 +97,11 @@ public class StudentBean {
 		this.lastName = lastName;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
@@ -135,19 +137,11 @@ public class StudentBean {
 		this.courses = courses;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
 	@Override
 	public String toString() {
-		return "StudentBean [studentId=" + studentId + ", email=" + email + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", phone=" + phone + ", address=" + address + ", birthday=" + birthday + ", created="
-				+ created + ", courses=" + courses + "]";
+		return "StudentBean [studentId=" + studentId + ", email=" + email + ", password=" + password + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", phone=" + phone + ", address=" + address + ", birthday="
+				+ birthday + ", created=" + created + ", courses=" + courses + "]";
 	}
 
 }

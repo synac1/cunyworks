@@ -15,45 +15,42 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
-@NamedQueries({ @NamedQuery(name = "getByCourseId", query = "from CourseBean where courseId = :courseId") })	
+@Entity(name = "COURSES")
 public class CourseBean {
 	@Id
 	@Column(name = "COURSE_ID")
 	@SequenceGenerator(name = "courseIdSeq", sequenceName = "COURSE_ID_SEQ", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "courseIdSeq", strategy = GenerationType.SEQUENCE)
 	private int courseId;
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private TeacherBean teacher;
-	@Column(name = "ENROLLMENT_CAPACITY", nullable = false)
+	@Column(name = "COURSE_ENROLLMENT_CAPACITY", nullable = false)
 	private int enrollmentCapacity;
-	@Column(nullable = false)
+	@Column(name = "COURSE_NAME", nullable = false)
 	private String name;
-	@ManyToOne
-	private SubjectBean subject;
-	@Column
+	@Column(name = "COURSE_ROOM")
 	private String room;
-	@Column(name = "SCHEDULE_TIME", nullable = false)
+	@Column(name = "COURSE_SCHEDULE_TIME", nullable = false)
 	private Time scheduleTime;
-	@Column(name = "START_DATE", nullable = false)
+	@Column(name = "COURSE_START_DATE", nullable = false)
 	private Date startDate;
-	@Column(name = "END_DATE", nullable = false)
+	@Column(name = "COURSE_END_DATE", nullable = false)
 	private Date endDate;
-	@Column
+	@Column(name = "COURSE_SYLLABUS")
 	private Blob syllabus;
-	@Column
+	@Column(name = "COURSE_CREATED")
 	@Temporal(TemporalType.DATE)
 	private Date created;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private SubjectBean subject;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private TeacherBean teacher;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<TextBookBean> textbooks = new HashSet<>();
+	private Set<TextbookBean> textbooks = new HashSet<>();
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "courses", cascade = CascadeType.ALL)
 	private Set<StudentBean> students = new HashSet<>();
 
@@ -66,20 +63,31 @@ public class CourseBean {
 		created = new Date();
 	}
 
+	public CourseBean(int courseId, int enrollmentCapacity, String name, String room, Time scheduleTime, Date startDate,
+			Date endDate, Blob syllabus, Date created, SubjectBean subject, TeacherBean teacher,
+			Set<TextbookBean> textbooks, Set<StudentBean> students) {
+		super();
+		this.courseId = courseId;
+		this.enrollmentCapacity = enrollmentCapacity;
+		this.name = name;
+		this.room = room;
+		this.scheduleTime = scheduleTime;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.syllabus = syllabus;
+		this.created = created;
+		this.subject = subject;
+		this.teacher = teacher;
+		this.textbooks = textbooks;
+		this.students = students;
+	}
+
 	public int getCourseId() {
 		return courseId;
 	}
 
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
-	}
-
-	public TeacherBean getTeacher() {
-		return teacher;
-	}
-
-	public void setTeacher(TeacherBean teacher) {
-		this.teacher = teacher;
 	}
 
 	public int getEnrollmentCapacity() {
@@ -96,14 +104,6 @@ public class CourseBean {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public SubjectBean getSubject() {
-		return subject;
-	}
-
-	public void setSubject(SubjectBean subject) {
-		this.subject = subject;
 	}
 
 	public String getRoom() {
@@ -154,11 +154,27 @@ public class CourseBean {
 		this.created = created;
 	}
 
-	public Set<TextBookBean> getTextbooks() {
+	public SubjectBean getSubject() {
+		return subject;
+	}
+
+	public void setSubject(SubjectBean subject) {
+		this.subject = subject;
+	}
+
+	public TeacherBean getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(TeacherBean teacher) {
+		this.teacher = teacher;
+	}
+
+	public Set<TextbookBean> getTextbooks() {
 		return textbooks;
 	}
 
-	public void setTextbooks(Set<TextBookBean> textbooks) {
+	public void setTextbooks(Set<TextbookBean> textbooks) {
 		this.textbooks = textbooks;
 	}
 
@@ -172,10 +188,10 @@ public class CourseBean {
 
 	@Override
 	public String toString() {
-		return "CourseBean [courseId=" + courseId + ", teacher=" + teacher + ", enrollmentCapacity="
-				+ enrollmentCapacity + ", name=" + name + ", subject=" + subject + ", room=" + room + ", scheduleTime="
-				+ scheduleTime + ", startDate=" + startDate + ", endDate=" + endDate + ", syllabus=" + syllabus
-				+ ", created=" + created + ", textbooks=" + textbooks + ", students=" + students + "]";
+		return "CourseBean [courseId=" + courseId + ", enrollmentCapacity=" + enrollmentCapacity + ", name=" + name
+				+ ", room=" + room + ", scheduleTime=" + scheduleTime + ", startDate=" + startDate + ", endDate="
+				+ endDate + ", syllabus=" + syllabus + ", created=" + created + ", subject=" + subject + ", teacher="
+				+ teacher + ", textbooks=" + textbooks + ", students=" + students + "]";
 	}
 
 }
