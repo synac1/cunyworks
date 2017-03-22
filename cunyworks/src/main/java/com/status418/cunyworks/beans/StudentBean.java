@@ -11,7 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
@@ -43,8 +42,7 @@ public class StudentBean {
 	@Column(name = "STUDENT_CREATED")
 	@Temporal(TemporalType.DATE)
 	private Date created;
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "STUDENTS_COURSES")
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy="students", cascade = CascadeType.ALL)
 	private Set<CourseBean> courses = new HashSet<>();
 
 	public StudentBean() {

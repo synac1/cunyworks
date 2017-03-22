@@ -10,8 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
@@ -24,9 +22,6 @@ public class SubjectBean {
 	private int subjectId;
 	@Column(name = "SUBJECT_NAME", nullable = false, unique = true)
 	private String name;
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "SUBJECTS_TEXTBOOKS")
-	private Set<TextbookBean> textbooks = new HashSet<>();
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<CourseBean> courses = new HashSet<>();
 
@@ -34,11 +29,10 @@ public class SubjectBean {
 
 	}
 
-	public SubjectBean(int subjectId, String name, Set<TextbookBean> textbooks, Set<CourseBean> courses) {
+	public SubjectBean(int subjectId, String name, Set<CourseBean> courses) {
 		super();
 		this.subjectId = subjectId;
 		this.name = name;
-		this.textbooks = textbooks;
 		this.courses = courses;
 	}
 
@@ -58,14 +52,6 @@ public class SubjectBean {
 		this.name = name;
 	}
 
-	public Set<TextbookBean> getTextbooks() {
-		return textbooks;
-	}
-
-	public void setTextbooks(Set<TextbookBean> textbooks) {
-		this.textbooks = textbooks;
-	}
-
 	public Set<CourseBean> getCourses() {
 		return courses;
 	}
@@ -76,8 +62,7 @@ public class SubjectBean {
 
 	@Override
 	public String toString() {
-		return "SubjectBean [subjectId=" + subjectId + ", name=" + name + ", textbooks=" + textbooks + ", courses="
-				+ courses + "]";
+		return "SubjectBean [subjectId=" + subjectId + ", name=" + name + ", courses=" + courses + "]";
 	}
 
 }

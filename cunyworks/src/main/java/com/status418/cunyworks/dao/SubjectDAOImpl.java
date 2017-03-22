@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.status418.cunyworks.beans.CourseBean;
@@ -34,7 +32,10 @@ public class SubjectDAOImpl implements SubjectDAO {
 	public Set<TextbookBean> getAllTextBooksBySubject(String subject) {
 		SubjectBean subjectObj = (SubjectBean) session.createCriteria(SubjectBean.class)
 				.add(Restrictions.eq("name", subject)).uniqueResult();
-		Set<TextbookBean> result = subjectObj.getTextbooks();
+		Set<TextbookBean> result = new HashSet<>();
+		for(CourseBean cB: subjectObj.getCourses()){
+			result.addAll(cB.getTextbooks());
+		}
 		return result;
 	}
 

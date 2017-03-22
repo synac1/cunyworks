@@ -46,19 +46,19 @@ public class GenerateDataTest {
 		tb1.setName("Book 1");
 
 		TextbookBean tb2 = new TextbookBean();
-		tb2.setISBN("12345678910");
+		tb2.setISBN("1234448910");
 		tb2.setName("Book 2");
 
 		TextbookBean tb3 = new TextbookBean();
-		tb3.setISBN("12345678910");
+		tb3.setISBN("12335878910");
 		tb3.setName("Book 3");
 
 		TextbookBean tb4 = new TextbookBean();
-		tb4.setISBN("12345678910");
+		tb4.setISBN("97845345");
 		tb4.setName("Book 4");
 
 		TextbookBean tb5 = new TextbookBean();
-		tb5.setISBN("12345678910");
+		tb5.setISBN("1238453");
 		tb5.setName("Book 5");
 
 		StudentBean s1 = new StudentBean();
@@ -205,36 +205,35 @@ public class GenerateDataTest {
 		c5.setEnrollmentCapacity(25);
 		c5.setRoom("A5");
 		c5.setScheduleTime(new Time(System.currentTimeMillis()));
+	
 
-		// Courses have Subject, Teacher, Students, Textbooks
-		c1.setSubject(sub1);
-		c2.setSubject(sub2);
-		c3.setSubject(sub3);
-		c4.setSubject(sub4);
-		c5.setSubject(sub5);
-		c1.setTeacher(t1);
-		c2.setTeacher(t2);
-		c3.setTeacher(t3);
-		c4.setTeacher(t4);
-		c5.setTeacher(t5);
+		// Courses have students
 		c1.getStudents().addAll(Arrays.asList(s1, s2, s3));
 		c2.getStudents().addAll(Arrays.asList(s2, s3, s4));
 		c3.getStudents().addAll(Arrays.asList(s3, s4, s5));
 		c4.getStudents().addAll(Arrays.asList(s4, s5, s1));
 		c5.getStudents().addAll(Arrays.asList(s5, s1, s2));
+		
+		// Courses have textbooks
 		c1.getTextbooks().addAll(Arrays.asList(tb1, tb2, tb3));
 		c2.getTextbooks().addAll(Arrays.asList(tb2, tb3, tb4));
 		c3.getTextbooks().addAll(Arrays.asList(tb3, tb4, tb5));
 		c4.getTextbooks().addAll(Arrays.asList(tb4, tb5, tb1));
 		c5.getTextbooks().addAll(Arrays.asList(tb5, tb1, tb2));
-
-		// Subjects have textbooks
-		sub1.getTextbooks().addAll(Arrays.asList(tb1, tb2, tb3));
-		sub2.getTextbooks().addAll(Arrays.asList(tb2, tb3, tb4));
-		sub3.getTextbooks().addAll(Arrays.asList(tb3, tb4, tb5));
-		sub4.getTextbooks().addAll(Arrays.asList(tb4, tb5, tb1));
-		sub5.getTextbooks().addAll(Arrays.asList(tb5, tb1, tb2));
 		
+		// subjects have courses
+		sub1.getCourses().add(c1);
+		sub2.getCourses().add(c2);
+		sub3.getCourses().add(c3);
+		sub4.getCourses().add(c4);
+		sub5.getCourses().add(c5);
+		
+		// teachers have courses
+		t1.getCourses().add(c1);
+		t2.getCourses().add(c2);
+		t3.getCourses().add(c3);
+		t4.getCourses().add(c4);
+		t5.getCourses().add(c5);
 		
 		SessionFactory sF = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		Session session = sF.openSession();
@@ -252,10 +251,24 @@ public class GenerateDataTest {
 		session.saveOrUpdate(sub4);
 		session.saveOrUpdate(sub5);
 
-		
-		
-		
-		
+		session.saveOrUpdate(s1);
+		session.saveOrUpdate(s2);
+		session.saveOrUpdate(s3);
+		session.saveOrUpdate(s4);
+		session.saveOrUpdate(s5);
+
+		session.saveOrUpdate(t1);
+		session.saveOrUpdate(t2);
+		session.saveOrUpdate(t3);
+		session.saveOrUpdate(t4);
+		session.saveOrUpdate(t5);
+
+		session.saveOrUpdate(c1);
+		session.saveOrUpdate(c2);
+		session.saveOrUpdate(c3);
+		session.saveOrUpdate(c4);
+		session.saveOrUpdate(c5);
+
 		tx.commit();
 		session.flush();
 		session.close();

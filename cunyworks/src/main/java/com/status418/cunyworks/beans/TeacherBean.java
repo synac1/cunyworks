@@ -45,7 +45,7 @@ public class TeacherBean {
 	private Date created;
 	@Column(name = "TEACHER_PASSWORD", nullable = false)
 	private String password;
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<CourseBean> courses = new HashSet<>();
 
 	public TeacherBean() {

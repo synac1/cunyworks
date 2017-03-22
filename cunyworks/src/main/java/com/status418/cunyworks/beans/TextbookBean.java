@@ -20,23 +20,23 @@ public class TextbookBean {
 	@SequenceGenerator(name = "textbookIdSeq", sequenceName = "TEXTBOOK_ID_SEQ", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "textbookIdSeq", strategy = GenerationType.SEQUENCE)
 	private int textbookId;
-	@Column(name = "TEXTBOOK_ISBN")
+	@Column(name = "TEXTBOOK_ISBN", unique = true)
 	private String ISBN;
 	@Column(name = "TEXTBOOK_NAME")
 	private String name;
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "textbooks", cascade = CascadeType.ALL)
-	private Set<SubjectBean> subjects = new HashSet<>();
+	private Set<CourseBean> courses = new HashSet<>();
 
 	public TextbookBean() {
 
 	}
 
-	public TextbookBean(int textbookId, String iSBN, String name, Set<SubjectBean> subjects) {
+	public TextbookBean(int textbookId, String iSBN, String name, Set<CourseBean> courses) {
 		super();
 		this.textbookId = textbookId;
 		ISBN = iSBN;
 		this.name = name;
-		this.subjects = subjects;
+		this.courses = courses;
 	}
 
 	public int getTextbookId() {
@@ -63,17 +63,17 @@ public class TextbookBean {
 		this.name = name;
 	}
 
-	public Set<SubjectBean> getSubjects() {
-		return subjects;
+	public Set<CourseBean> getCourses() {
+		return courses;
 	}
 
-	public void setSubjects(Set<SubjectBean> subjects) {
-		this.subjects = subjects;
+	public void setCourses(Set<CourseBean> courses) {
+		this.courses = courses;
 	}
 
 	@Override
 	public String toString() {
-		return "TextbookBean [textbookId=" + textbookId + ", ISBN=" + ISBN + ", name=" + name + ", subjects=" + subjects
+		return "TextbookBean [textbookId=" + textbookId + ", ISBN=" + ISBN + ", name=" + name + ", courses=" + courses
 				+ "]";
 	}
 
