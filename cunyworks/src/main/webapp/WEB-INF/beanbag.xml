@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
 	<!-- Context, Beans, MVC -->
-	<context:component-scan base-package="com.revature.controllers"></context:component-scan>
+	<context:component-scan base-package="com.status418.cunyworks.controllers"></context:component-scan>
 
 	<!-- Request Mapping instead of XML -->
 	<mvc:annotation-driven />
