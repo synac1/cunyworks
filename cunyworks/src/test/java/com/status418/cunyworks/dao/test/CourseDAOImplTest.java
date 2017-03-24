@@ -14,7 +14,7 @@ public class CourseDAOImplTest {
 	@Test
 	public void testGeAllCourses() {
 		CourseDAOImpl dao = new CourseDAOImpl();
-		Set<CourseBean> allCourses = dao.geAll();
+		Set<CourseBean> allCourses = dao.getAll();
 		System.out.println(allCourses);
 	}
 
