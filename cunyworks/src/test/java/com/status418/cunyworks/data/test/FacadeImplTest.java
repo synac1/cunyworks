@@ -20,7 +20,7 @@ public class FacadeImplTest {
 
 	@Test
 	public void testFacadeImpl() {
-		System.out.println(new FacadeImpl().getAll().size());
+
 	}
 
 	@Test
@@ -50,7 +50,7 @@ public class FacadeImplTest {
 
 	@Test
 	public void testGetById() {
-		System.out.println(new FacadeImpl().getById(1).getCourses().size());
+
 	}
 
 	@Test
