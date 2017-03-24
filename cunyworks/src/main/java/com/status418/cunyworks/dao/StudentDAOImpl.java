@@ -3,43 +3,50 @@ package com.status418.cunyworks.dao;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.status418.cunyworks.beans.StudentBean;
 
 public class StudentDAOImpl implements StudentDAO {
 
-	private Session session;
+	private SessionFactory sessionFactory;
 
-	public StudentDAOImpl(Session session) {
-		this.session = session;
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 
+	@Transactional
 	@Override
-	public StudentBean getStudentById(int id) {
-		StudentBean student = (StudentBean) session.load(StudentBean.class, id);
+	public StudentBean getById(int id) {
+		StudentBean student = (StudentBean) sessionFactory.getCurrentSession().load(StudentBean.class, id);
 		return student;
 	}
 
+	@Transactional
 	@Override
-	public StudentBean getStudentByUsername(String username) {
-		StudentBean student = (StudentBean) session.createCriteria(StudentBean.class)
+	public StudentBean getByUsername(String username) {
+		StudentBean student = (StudentBean) sessionFactory.getCurrentSession().createCriteria(StudentBean.class)
 				.add(Restrictions.eq("email", username)).uniqueResult();
 		return student;
 	}
 
 	@SuppressWarnings("unchecked")
+	@Transactional
 	@Override
-	public Set<StudentBean> getAllStudents() {
+	public Set<StudentBean> getAll() {
 		Set<StudentBean> tempSet = new HashSet<>();
-		tempSet.addAll(session.createCriteria(StudentBean.class).list());
+		tempSet.addAll(sessionFactory.getCurrentSession().createCriteria(StudentBean.class).list());
 		return tempSet;
 	}
 
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
 	@Override
-	public void updateStudent(StudentBean student) {
-		session.saveOrUpdate(student);
+	public void saveOrUpdate(StudentBean student) {
+		sessionFactory.getCurrentSession().saveOrUpdate(student);
 	}
 
 }

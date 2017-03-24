@@ -4,10 +4,10 @@ import com.status418.cunyworks.beans.TeacherBean;
 
 public interface TeacherDAO {
 
-	public TeacherBean getTeacherById(int id);
+	public TeacherBean getById(int id);
 
-	public TeacherBean getTeacherByUsername(String username);
+	public TeacherBean getByUsername(String username);
 
-	public void saveOrUpdateTeacher(TeacherBean teacher);
+	public void saveOrUpdate(TeacherBean teacher);
 
 }

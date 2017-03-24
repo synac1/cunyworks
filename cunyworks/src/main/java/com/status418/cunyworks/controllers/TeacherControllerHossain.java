@@ -5,17 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(value = "teacher")
-public class TeacherController {
+public class TeacherControllerHossain {
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

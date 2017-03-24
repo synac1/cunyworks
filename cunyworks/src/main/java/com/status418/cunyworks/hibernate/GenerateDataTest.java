@@ -6,16 +6,18 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.status418.cunyworks.beans.CourseBean;
 import com.status418.cunyworks.beans.StudentBean;
 import com.status418.cunyworks.beans.SubjectBean;
 import com.status418.cunyworks.beans.TeacherBean;
 import com.status418.cunyworks.beans.TextbookBean;
+import com.status418.cunyworks.dao.CourseDAO;
+import com.status418.cunyworks.dao.StudentDAO;
+import com.status418.cunyworks.dao.SubjectDAO;
+import com.status418.cunyworks.dao.TeacherDAO;
 
 public class GenerateDataTest {
 
@@ -205,7 +207,6 @@ public class GenerateDataTest {
 		c5.setEnrollmentCapacity(25);
 		c5.setRoom("A5");
 		c5.setScheduleTime(new Time(System.currentTimeMillis()));
-	
 
 		// Courses have students
 		c1.getStudents().addAll(Arrays.asList(s1, s2, s3));
@@ -213,66 +214,55 @@ public class GenerateDataTest {
 		c3.getStudents().addAll(Arrays.asList(s3, s4, s5));
 		c4.getStudents().addAll(Arrays.asList(s4, s5, s1));
 		c5.getStudents().addAll(Arrays.asList(s5, s1, s2));
-		
+
 		// Courses have textbooks
 		c1.getTextbooks().addAll(Arrays.asList(tb1, tb2, tb3));
 		c2.getTextbooks().addAll(Arrays.asList(tb2, tb3, tb4));
 		c3.getTextbooks().addAll(Arrays.asList(tb3, tb4, tb5));
 		c4.getTextbooks().addAll(Arrays.asList(tb4, tb5, tb1));
 		c5.getTextbooks().addAll(Arrays.asList(tb5, tb1, tb2));
-		
+
 		// subjects have courses
 		sub1.getCourses().add(c1);
 		sub2.getCourses().add(c2);
 		sub3.getCourses().add(c3);
 		sub4.getCourses().add(c4);
 		sub5.getCourses().add(c5);
-		
+
 		// teachers have courses
 		t1.getCourses().add(c1);
 		t2.getCourses().add(c2);
 		t3.getCourses().add(c3);
 		t4.getCourses().add(c4);
 		t5.getCourses().add(c5);
-		
-		SessionFactory sF = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-		Session session = sF.openSession();
-		Transaction tx = session.beginTransaction();
 
-		session.saveOrUpdate(tb1);
-		session.saveOrUpdate(tb2);
-		session.saveOrUpdate(tb3);
-		session.saveOrUpdate(tb4);
-		session.saveOrUpdate(tb5);
+		ApplicationContext context = new ClassPathXmlApplicationContext("dao-beans.xml");
 
-		session.saveOrUpdate(sub1);
-		session.saveOrUpdate(sub2);
-		session.saveOrUpdate(sub3);
-		session.saveOrUpdate(sub4);
-		session.saveOrUpdate(sub5);
+		context.getBean(CourseDAO.class).saveOrUpdate(c1);
+		context.getBean(CourseDAO.class).saveOrUpdate(c2);
+		context.getBean(CourseDAO.class).saveOrUpdate(c3);
+		context.getBean(CourseDAO.class).saveOrUpdate(c4);
+		context.getBean(CourseDAO.class).saveOrUpdate(c5);
 
-		session.saveOrUpdate(s1);
-		session.saveOrUpdate(s2);
-		session.saveOrUpdate(s3);
-		session.saveOrUpdate(s4);
-		session.saveOrUpdate(s5);
+		context.getBean(SubjectDAO.class).saveOrUpdate(sub1);
+		context.getBean(SubjectDAO.class).saveOrUpdate(sub2);
+		context.getBean(SubjectDAO.class).saveOrUpdate(sub3);
+		context.getBean(SubjectDAO.class).saveOrUpdate(sub4);
+		context.getBean(SubjectDAO.class).saveOrUpdate(sub5);
 
-		session.saveOrUpdate(t1);
-		session.saveOrUpdate(t2);
-		session.saveOrUpdate(t3);
-		session.saveOrUpdate(t4);
-		session.saveOrUpdate(t5);
+		context.getBean(StudentDAO.class).saveOrUpdate(s1);
+		context.getBean(StudentDAO.class).saveOrUpdate(s2);
+		context.getBean(StudentDAO.class).saveOrUpdate(s3);
+		context.getBean(StudentDAO.class).saveOrUpdate(s4);
+		context.getBean(StudentDAO.class).saveOrUpdate(s5);
 
-		session.saveOrUpdate(c1);
-		session.saveOrUpdate(c2);
-		session.saveOrUpdate(c3);
-		session.saveOrUpdate(c4);
-		session.saveOrUpdate(c5);
+		context.getBean(TeacherDAO.class).saveOrUpdate(t1);
+		context.getBean(TeacherDAO.class).saveOrUpdate(t2);
+		context.getBean(TeacherDAO.class).saveOrUpdate(t3);
+		context.getBean(TeacherDAO.class).saveOrUpdate(t4);
+		context.getBean(TeacherDAO.class).saveOrUpdate(t5);
 
-		tx.commit();
-		session.flush();
-		session.close();
-		sF.close();
+
 
 	}
 
