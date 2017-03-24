@@ -1,17 +1,11 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html class="ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en">
-<!--<![endif]-->
+<html>
 <head>
 <meta charset="utf-8">
 <title>HarrisonHighSchool</title>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 <link rel="stylesheet" media="all" href="http://localhost:9999/cunyworks/assets/css/style.css">
-<!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
 	<div class="col-md-6">
@@ -34,20 +28,15 @@
 		</table>
 	</div>
 
-
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script>
-		window.jQuery
-				|| document
-						.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")
-	</script>
+	<script src="http://localhost:9999/cunyworks/assets/js/jquery-1.11.1.min.js"></script>
 	<script src="http://localhost:9999/cunyworks/assets/js/plugins.js"></script>
 	<script src="http://localhost:9999/cunyworks/assets/js/main.js"></script>
+	<script src="http://localhost:9999/cunyworks/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 <script type="text/javascript">
-	$document
-			.ready(function() {
-				refresh();
+	$(document).ready(
+			function() {
+
 				function TeacherBean(teacherId, title, email, firstName,
 						lastName, phone, address, birthday, created) {
 					this.teacherId = teacherId;
@@ -60,6 +49,7 @@
 					this.birthday = birthday;
 					this.created = created;
 				}
+
 				function CourseBean(name, room, scheduleTime, startDate,
 						endDate, syllabus, created, subject, teacher,
 						enrollementCapacity) {
@@ -77,27 +67,22 @@
 				}
 
 				function refresh() {
-					$
-							.ajax(
-									"student",
-									{
-
-										method : "GET",
-										headers : {
-											"Accept" : "application/json"
-										},
-										success : function(response) {
-											console.log(response);
-											tablewipe();
-											tableload(response);
-										}
-									});
+					$.ajax("courses", {
+						method : "GET",
+						headers : {
+							"Accept" : "application/json"
+						},
+						success : function(response) {
+							console.log(response);
+							tablewipe();
+							tableload(response);
+						}
+					});
 				}
 				function tablewipe() {
 					$(".table tbody").empty();
 				}
 				function tableload(response) {
-
 					$.each(response, function(index, temp) {
 						$(".table tbody").append("<tr>");
 						$(".table tbody").append("<td>" + temp.name + "</td>");
@@ -122,6 +107,7 @@
 					})
 				}
 
+				refresh();
 			});
 </script>
 
