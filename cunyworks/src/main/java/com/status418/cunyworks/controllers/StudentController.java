@@ -11,12 +11,13 @@ public class StudentController {
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String HomePage(){
 		return"index.html";
+		//TODO: Seans
 		
 	}
 	
 	@RequestMapping(value="/enroll", method=RequestMethod.POST)
 	public void EnrollPage(){
-		
+		//TODO: YANILDAS
 	}
 	
 	@RequestMapping(value="/drop", method=RequestMethod.POST)
