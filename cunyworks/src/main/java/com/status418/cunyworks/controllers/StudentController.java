@@ -17,6 +17,7 @@ public class StudentController {
 	@RequestMapping(value="/enroll", method=RequestMethod.POST)
 	public void EnrollPage(){
 		
+	
 	}
 	
 	@RequestMapping(value="/drop", method=RequestMethod.POST)
