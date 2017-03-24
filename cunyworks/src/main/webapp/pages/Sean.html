@@ -1,52 +1,42 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html class="ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en">
-<!--<![endif]-->
+<html>
 <head>
 <meta charset="utf-8">
 <title>HarrisonHighSchool</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 <link rel="stylesheet" media="all" href="http://localhost:9999/cunyworks/assets/css/style.css">
-<!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
 	<div class="col-md-6">
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>title</th>
-					<th>teacherId</th>
-					<th>title</th>
-					<th>email</th>
-					<th>firstName</th>
-					<th>lastName</th>
-					<th>phone</th>
-					<th>address</th>
-					<th>birthday</th>
-					<th>created</th>
+					<th>title  </th> 
+					<th>teacherId  </th>
+					<th>title </th>
+					<th>email </th>
+					<th>firstName </th>
+					<th>lastName </th>
+					<th>phone </th>
+					<th>address </th>
+					<th>birthday </th>
+					<th>created </th>
 				</tr>
 			</thead>
 			<tbody></tbody>
 		</table>
 	</div>
 
-
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script>
-		window.jQuery
-				|| document
-						.write("<script src='js/jquery-1.11.1.min.js'>\x3C/script>")
-	</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<!-- <script src="http://localhost:9999/cunyworks/assets/js/jquery-1.11.1.min.js"></script>  -->
 	<script src="http://localhost:9999/cunyworks/assets/js/plugins.js"></script>
 	<script src="http://localhost:9999/cunyworks/assets/js/main.js"></script>
+	<script src="http://localhost:9999/cunyworks/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 <script type="text/javascript">
-	$document
-			.ready(function() {
+	$(document).ready(function() {
 				refresh();
 				function TeacherBean(teacherId, title, email, firstName,
 						lastName, phone, address, birthday, created) {
@@ -78,12 +68,9 @@
 
 				function refresh() {
 					$
-							.ajax(
-									"student",
-									{
-
-										method : "GET",
-										headers : {
+							.ajax("courses",{
+									method : "GET",
+									headers : {
 											"Accept" : "application/json"
 										},
 										success : function(response) {
@@ -102,22 +89,14 @@
 						$(".table tbody").append("<tr>");
 						$(".table tbody").append("<td>" + temp.name + "</td>");
 						$(".table tbody").append("<td>" + temp.room + "</td>");
-						$(".table tbody").append(
-								"<td>" + temp.scheduledTime + "</td>");
-						$(".table tbody").append(
-								"<td>" + temp.startDate + "</td>");
-						$(".table tbody").append(
-								"<td>" + temp.endDate + "</td>");
-						$(".table tbody").append(
-								"<td>" + temp.syllabus + "</td>");
-						$(".table tbody").append(
-								"<td>" + temp.created + "</td>");
-						$(".table tbody").append(
-								"<td>" + temp.subject + "</td>");
-						$(".table tbody").append(
-								"<td>" + temp.teacher.lastname + "</td>");
-						$(".table tbody").append(
-								"<td>" + temp.enrollmentCapacity + "</td>");
+						$(".table tbody").append("<td>" + temp.scheduledTime + "</td>");
+						$(".table tbody").append("<td>" + temp.startDate + "</td>");
+						$(".table tbody").append("<td>" + temp.endDate + "</td>");
+						$(".table tbody").append("<td>" + temp.syllabus + "</td>");
+						$(".table tbody").append("<td>" + temp.created + "</td>");
+						$(".table tbody").append("<td>" + temp.subject + "</td>");
+						$(".table tbody").append("<td>" + temp.teacher.lastname + "</td>");
+						$(".table tbody").append("<td>" + temp.enrollmentCapacity + "</td>");
 						$(".table tbody").append("</tr>");
 					})
 				}
