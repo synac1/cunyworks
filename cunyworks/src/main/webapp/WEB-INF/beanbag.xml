@@ -13,6 +13,7 @@
 	<mvc:annotation-driven />
 	<!-- Mapping for Static Resources Html, CSS, JS etc. -->
 	<mvc:resources location="/pages/" mapping="/pages/**" />
+	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/pages/" />

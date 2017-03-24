@@ -6,12 +6,12 @@ import com.status418.cunyworks.beans.StudentBean;
 
 public interface StudentDAO {
 
-	public StudentBean getStudentById(int id);
+	public StudentBean getById(int id);
 
-	public StudentBean getStudentByUsername(String username);
+	public StudentBean getByUsername(String username);
 
-	public Set<StudentBean> getAllStudents();
+	public Set<StudentBean> getAll();
 
-	public void updateStudent(StudentBean student); // Check if this works for removing course
+	public void saveOrUpdate(StudentBean student); // Check if this works for removing course
 
 }

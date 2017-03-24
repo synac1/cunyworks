@@ -8,13 +8,13 @@ import com.status418.cunyworks.beans.TextbookBean;
 
 public interface CourseDAO {
 
-	public Set<CourseBean> geAllCourses();
+	public Set<CourseBean> geAll();
 
 	public Set<StudentBean> getAllStudentsByCourse(CourseBean course);
 
 	public void saveOrUpdate(CourseBean course);
 
-	public void deleteCourse(CourseBean course);
+	public void delete(CourseBean course);
 
 	public Set<TextbookBean> getTextBooksByCourse(CourseBean course);
 }

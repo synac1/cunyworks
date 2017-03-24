@@ -3,8 +3,11 @@ package com.status418.cunyworks.dao;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.status418.cunyworks.beans.CourseBean;
 import com.status418.cunyworks.beans.StudentBean;
@@ -12,47 +15,50 @@ import com.status418.cunyworks.beans.TextbookBean;
 
 public class CourseDAOImpl implements CourseDAO {
 
-	private Session session;
+	private SessionFactory sessionFactory;
 
-	public CourseDAOImpl() {
-
-	}
-
-	public CourseDAOImpl(Session session) {
-		this.session = session;
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 
 	@SuppressWarnings("unchecked")
+	@Transactional
 	@Override
-	public Set<CourseBean> geAllCourses() {
+	public Set<CourseBean> geAll() {
 		Set<CourseBean> courses = new HashSet<CourseBean>();
-		courses.addAll(session.createCriteria(CourseBean.class).list());
+		courses.addAll(sessionFactory.getCurrentSession().createCriteria(CourseBean.class).list());
 		return courses;
 	}
-	
+
 	@SuppressWarnings("unchecked")
+	@Transactional
 	@Override
 	public Set<StudentBean> getAllStudentsByCourse(CourseBean course) {
 		Set<StudentBean> students = new HashSet<StudentBean>();
-		students.addAll(session.createCriteria(StudentBean.class).add(Restrictions.eq("course", course)).list());
+		students.addAll(sessionFactory.getCurrentSession().createCriteria(StudentBean.class)
+				.add(Restrictions.eq("course", course)).list());
 		return students;
 	}
 
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
 	@Override
 	public void saveOrUpdate(CourseBean course) {
-		session.saveOrUpdate(course);
+		sessionFactory.getCurrentSession().saveOrUpdate(course);
 	}
 
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
 	@Override
-	public void deleteCourse(CourseBean course) {
-		session.delete(course);
+	public void delete(CourseBean course) {
+		sessionFactory.getCurrentSession().delete(course);
 	}
 
 	@SuppressWarnings("unchecked")
+	@Transactional
 	@Override
 	public Set<TextbookBean> getTextBooksByCourse(CourseBean course) {
 		Set<TextbookBean> textbooks = new HashSet<TextbookBean>();
-		textbooks.addAll(session.createCriteria(TextbookBean.class).add(Restrictions.eq("course", course)).list());
+		textbooks.addAll(sessionFactory.getCurrentSession().createCriteria(TextbookBean.class)
+				.add(Restrictions.eq("course", course)).list());
 		return textbooks;
 	}
 

@@ -14,6 +14,6 @@ public interface SubjectDAO {
 
 	public void saveOrUpdate(SubjectBean subject);
 
-	Set<CourseBean> getAllCoursesBySubject(String subjectName);
+	public Set<CourseBean> getAllCoursesBySubject(String subjectName);
 
 }
