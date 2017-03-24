@@ -8,7 +8,7 @@ import com.status418.cunyworks.beans.TextbookBean;
 
 public interface CourseDAO {
 
-	public Set<CourseBean> geAll();
+	public Set<CourseBean> getAll();
 
 	public Set<StudentBean> getAllStudentsByCourse(CourseBean course);
 

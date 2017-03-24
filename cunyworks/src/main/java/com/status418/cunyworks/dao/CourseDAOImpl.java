@@ -24,7 +24,7 @@ public class CourseDAOImpl implements CourseDAO {
 	@SuppressWarnings("unchecked")
 	@Transactional
 	@Override
-	public Set<CourseBean> geAll() {
+	public Set<CourseBean> getAll() {
 		Set<CourseBean> courses = new HashSet<CourseBean>();
 		courses.addAll(sessionFactory.getCurrentSession().createCriteria(CourseBean.class).list());
 		return courses;
