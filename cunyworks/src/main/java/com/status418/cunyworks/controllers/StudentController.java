@@ -11,7 +11,6 @@ public class StudentController {
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String HomePage(){
 		return"index.html";
-		//TODO: Seans
 		
 	}
 	
