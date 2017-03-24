@@ -71,10 +71,10 @@ public class TextbookBean {
 		this.courses = courses;
 	}
 
-	@Override
-	public String toString() {
-		return "TextbookBean [textbookId=" + textbookId + ", ISBN=" + ISBN + ", name=" + name + ", courses=" + courses
-				+ "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "TextbookBean [textbookId=" + textbookId + ", ISBN=" + ISBN + ", name=" + name + ", courses=" + courses
+//				+ "]";
+//	}
 
 }
