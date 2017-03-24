@@ -50,10 +50,8 @@ public class CourseBean {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private TeacherBean teacher;
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "COURSES_TEXTBOOKS")
 	private Set<TextbookBean> textbooks = new HashSet<>();
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "COURSES_STUDENTS")
 	private Set<StudentBean> students = new HashSet<>();
 
 	public CourseBean() {
