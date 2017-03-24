@@ -50,8 +50,7 @@ public class SubjectDAOImplTest {
 		sb.setName("english");
 		System.out.println(new SubjectDAOImpl(session).getAllCoursesBySubject("english"));
 	}
-
-	public void testTextBookInsert() {
+ 	public void testTextBookInsert() {
 		Transaction tx = session.beginTransaction();
 		TextbookBean book = new TextbookBean();
 		book.setISBN("14");
@@ -60,7 +59,7 @@ public class SubjectDAOImplTest {
 		session.save(book);
 		tx.commit();
 	}
-
+	
 	public void testSubjectInsert() {
 		Transaction tx = session.beginTransaction();
 		SubjectBean sub = new SubjectBean();
