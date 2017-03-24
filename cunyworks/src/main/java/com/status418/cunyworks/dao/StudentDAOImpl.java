@@ -22,7 +22,7 @@ public class StudentDAOImpl implements StudentDAO {
 	@Transactional
 	@Override
 	public StudentBean getById(int id) {
-		StudentBean student = (StudentBean) sessionFactory.getCurrentSession().load(StudentBean.class, id);
+		StudentBean student = (StudentBean) sessionFactory.getCurrentSession().get(StudentBean.class, id);
 		return student;
 	}
 

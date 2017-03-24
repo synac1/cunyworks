@@ -1,49 +1,36 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html class="ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>HarrisonHighSchool</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-	<link rel="stylesheet" media="all" href="../WEB-INF/css/style.css">
-	<!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-	<link rel="stylesheet" media="all" href="../WEB-INF/bootstrap/css/bootstrap.min.css">
+<meta charset="utf-8">
+<title>Cuny#Works</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<link rel="stylesheet" media="all" href="http://localhost:9999/cunyworks/assets/bootstrap/css/bootstrap.min.css"
+	type="text/css">
+<link rel="stylesheet" media="all" href="http://localhost:9999/cunyworks/assets/css/style.css" type="text/css">
+
+<style type="text/css">
+#subjects {
 	
-	
+}
+</style>
 </head>
 <body>
 
-<div id="landingContainer" class="container">
-	<div class="col-lg-12 col-md-8 col-sml-6 col-xs-4">
-		<table id="reimbTable" class="display table table-responsive table-striped table-hover">
-		<!-- id="rTable" class="" -->
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Course</th>
-					<th>Amount</th>
-					<th>Room</th>
-					<th>Teacher</th>
-					<th>Subject</th>
-					<th>ScheduleTime</th>
-				</tr>
-			</thead>
-			<tbody>
 
-			</tbody>
-		</table>
+	<button id="addStep1">Add New Course</button>
+	<div class="container">
+		<div class="subCont">
+			<select id="subjects" name="user" size="3">
+				<option>English</option>
+				<option>Math</option>
+				<option>Placeholder</option>
+				<option>Think of Something Yourself</option>
+			</select>
+		</div>
 	</div>
-</div>
 
 
-
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script>window.jQuery || document.write("<script src='../WEB-INF/js/jquery-1.11.1.min.js'>\x3C/script>")</script>
-	<script src="../WEB-INF/js/plugins.js"></script>
-	<script src="../WEB-INF/js/main.js"></script>
-	<script src="../WEB-INF/bootstrap/js/bootstrap.min.js"></script>
-	<script src="../WEB-INF/js/teacher.js"></script>
+	<script src="http://localhost:9999/cunyworks/assets/js/jquery-1.11.1.min.js"></script>
+	<script src="http://localhost:9999/cunyworks/assets/js/teacher.js"></script>
 </body>
 </html>
