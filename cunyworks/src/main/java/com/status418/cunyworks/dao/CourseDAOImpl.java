@@ -55,5 +55,7 @@ public class CourseDAOImpl implements CourseDAO {
 		textbooks.addAll(session.createCriteria(TextbookBean.class).add(Restrictions.eq("course", course)).list());
 		return textbooks;
 	}
+	
+	
 
 }
