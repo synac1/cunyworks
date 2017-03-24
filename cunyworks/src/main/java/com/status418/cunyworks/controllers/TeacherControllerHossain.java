@@ -25,13 +25,12 @@ public class TeacherControllerHossain {
 		return new ResponseEntity<Set<CourseBean>>(allCourses, HttpStatus.OK);
 
 	}
+
 	
 //public ResponseEntity<CourseBean> modify(CourseBean ){
 //	
 //	
 //}
-	
-	
 	
 
 }
