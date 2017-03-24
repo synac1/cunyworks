@@ -27,7 +27,7 @@ public class StudentControllerSean {
 	public ResponseEntity<Set<CourseBean>> getall() {
 
 		ApplicationContext contxt = new ClassPathXmlApplicationContext("/WEB_INF/beanbag.xml");
-		Set<CourseBean> courses = contxt.getBean(StudentDAOImpl.class).getStudentById(1).getCourses();
+		Set<CourseBean> courses = contxt.getBean(StudentDAOImpl.class).getById(1).getCourses();
 		return new ResponseEntity<Set<CourseBean>>(courses, HttpStatus.OK);
 	}
 
