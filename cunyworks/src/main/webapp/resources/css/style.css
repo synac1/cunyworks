@@ -179,14 +179,14 @@ a:hover {
 	position: relative;
 }
 
-#logo {
-	width: 121px;
-	height: 134px;
+#logo-1 {
+	width: 200px;
+	height: 150px;
 	display: block;
 	cursor: pointer;
 	margin: 0 auto -82px;
 	text-indent: -9999em;
-	background: url(../images/logo.png) no-repeat;
+	background: url(../images/logo-cuny.png) no-repeat;
 	position: relative;
 	z-index: 3;
 }

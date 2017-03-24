@@ -31,14 +31,14 @@ public class StudentControllerYanilda {
 
 	@RequestMapping(value = "new", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody // write directly to response body.. no redirection
-	public ResponseEntity<String> enrollclass(@RequestBody StudentBean student, CourseBean course) {
+	public ResponseEntity<String> enrollclass(@RequestBody StudentBean student, @RequestBody CourseBean course) {
 		int courseId=course.getCourseId();
 		Set<CourseBean> courses= student.getCourses();
 		courses.add(course);
 		student.setCourses(courses);
 		
 		ApplicationContext contxt = new ClassPathXmlApplicationContext("/WEB_INF/beanbag.xml");
-		contxt.getBean(StudentDAOImpl.class).updateStudent(student);
+		contxt.getBean(StudentDAOImpl.class).saveOrUpdate(student);
 	
 		return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
 	}
@@ -47,14 +47,14 @@ public class StudentControllerYanilda {
 
 	@RequestMapping(value = "a_drop", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody // write directly to response body.. no redirection
-	public ResponseEntity<String> anotherdrop(@RequestBody StudentBean student, CourseBean course) {
+	public ResponseEntity<String> anotherdrop(@RequestBody StudentBean student, @RequestBody CourseBean course) {
 		int courseId=course.getCourseId();
 		Set<CourseBean> courses= student.getCourses();
 		courses.remove(course);
 		student.setCourses(courses);
 		
 		ApplicationContext contxt = new ClassPathXmlApplicationContext("/WEB_INF/beanbag.xml");
-		contxt.getBean(StudentDAOImpl.class).updateStudent(student);
+		contxt.getBean(StudentDAOImpl.class).saveOrUpdate(student);;
 	
 		return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
 	}
