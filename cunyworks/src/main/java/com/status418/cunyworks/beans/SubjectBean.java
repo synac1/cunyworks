@@ -13,7 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity(name = "SUBJECTS")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="subjectId")
 public class SubjectBean {
 	@Id
 	@Column(name = "SUBJECT_ID")
