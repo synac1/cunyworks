@@ -21,6 +21,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity(name = "COURSES")
@@ -49,12 +50,16 @@ public class CourseBean {
 	@Temporal(TemporalType.DATE)
 	private Date created;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonIgnore  
 	private SubjectBean subject;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonIgnore
 	private TeacherBean teacher;
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Set<TextbookBean> textbooks = new HashSet<>();
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonIgnore 
 	private Set<StudentBean> students = new HashSet<>();
 
 	public CourseBean() {
