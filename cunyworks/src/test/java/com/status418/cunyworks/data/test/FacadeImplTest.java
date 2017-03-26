@@ -1,7 +1,5 @@
 package com.status418.cunyworks.data.test;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,17 +10,17 @@ public class FacadeImplTest {
 
 	@Before
 	public void setUp() throws Exception {
-		
+
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		
+
 	}
 
 	@Test
 	public void testFacadeImpl() {
-		System.out.println(new FacadeImpl().getAll().size());
+
 	}
 
 	@Test
@@ -52,7 +50,7 @@ public class FacadeImplTest {
 
 	@Test
 	public void testGetById() {
-		System.out.println(new FacadeImpl().getById(1).getCourses().size());
+
 	}
 
 	@Test

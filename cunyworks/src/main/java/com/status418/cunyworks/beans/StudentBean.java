@@ -17,7 +17,11 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity(name = "STUDENTS")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="studentId")
 public class StudentBean {
 	@Id
 	@Column(name = "STUDENT_ID")

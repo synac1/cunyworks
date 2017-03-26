@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "student")
 public class StudentController {
 
+	
+	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String HomePage(){
 		return"index.html";

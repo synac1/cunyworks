@@ -13,7 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity(name = "TEXTBOOKS")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="textbookId")
 public class TextbookBean {
 	@Id
 	@Column(name = "TEXTBOOK_ID")

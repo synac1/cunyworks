@@ -68,7 +68,6 @@ public class FacadeImpl implements Facade {
 
 	@Override
 	public Set<StudentBean> getAll() {
-		// TODO Auto-generated method stub
 		return studentDao.getAll();
 	}
 
