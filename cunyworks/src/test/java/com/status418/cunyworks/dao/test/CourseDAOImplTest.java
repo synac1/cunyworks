@@ -4,24 +4,4 @@ import org.junit.Test;
 
 public class CourseDAOImplTest {
 
-	@Test
-	public void testGeAllCourses() {
-
-	}
-
-	@Test
-	public void testGetAllStudentsByCourse() {
-
-	}
-
-	@Test
-	public void testSaveOrUpdate() {
-
-	}
-
-	@Test
-	public void testDeleteCourse() {
-
-	}
-
 }
