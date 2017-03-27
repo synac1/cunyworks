@@ -76,15 +76,22 @@
 						<tr>
 							<th>Course Id</th>
 							<th>Course Name</th>
+							<th>Subject</th>
+							
 							<th>Start Date</th>
 							<th>End Date</th>
+							<th>Room</th>
+							<th>Schedule Time</th>
+							
 							<th>Enrollment Capacity</th>
+							<th></th>
 							
 							
 						</tr>
 					</thead>
 
 					<tbody>
+					<button id="modal" type="button" class="btn btn-link" value="Modify">Modify </button>
 				<!-- 		<tr>
 
 							<td>123</td>
@@ -102,12 +109,12 @@
 
 
 
-
+<!--
 			<aside id="sidebar">
 				<div class="widget sidemenu">
 					<ul>
-						<li><a href="#">Add a new Course<span class="nr">142</span></a></li>
-						<li><a href="#">Publish Homework<span class="nr">63</span></a></li>
+						<li><a href="#">Add a new Course</a></li>
+						<li><a href="#">Publish Homework</a></li>
 
 
 					</ul>
@@ -118,7 +125,7 @@
 		</div>
 		<!-- / container -->
 	</div>
-
+  -->
 
 
 	<footer id="footer">
@@ -174,6 +181,12 @@
       <input class="form-control" id="course" name="course" type="text"/>
      </div>
      <div class="form-group ">
+      <label class="control-label " for="room">
+       Room
+      </label>
+      <input class="form-control" id="room" name="room" type="text"/>
+     </div>
+     <div class="form-group ">
       <label class="control-label " for="subject">
        Subject
       </label>
@@ -193,8 +206,8 @@
      </div>
      <div class="form-group">
       <div>
-       <button class="btn btn-primary " name="submit" type="submit">
-        Submit
+       <button id="update" class="btn btn-primary " name="submit" type="submit">
+        Update
        </button>
       </div>
      </div>
@@ -223,12 +236,52 @@
 <!--  -->
 </body>
 <script type="text/javascript">
+
+// magic.js
+$(document).ready(function() {
+
+    // process the form
+    $('form').submit(function(event) {
+
+        // get the form data
+        // there are many ways to get this data using jQuery (you can use the class or id also)
+        var formData = {
+            'course'      : $('#course').val(),
+            'room'			:$('#room').val(),
+            'subject'    : $('#subject').val(),
+            'startDate'  : $('#date').val(),
+            'endDate'    : $('#date1').val()
+            
+        };
+
+        // process the form
+        $.ajax({
+            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+            url         : 'http://localhost:8090/cunyworks/teacher0/update', // the url where we want to POST
+            data        : formData, // our data object
+			dataType    : 'json',                       
+				encode          : true
+        })
+            // using the done promise callback
+            .done(function(data) {
+
+                // log data to the console so we can see
+                console.log(data); 
+
+                // here we will handle errors and validation messages
+            });
+
+        // stop the form from submitting the normal way and refreshing the page
+        event.preventDefault();
+    });
+
+});
 ///////////////////////////////
 	$(document).ready(function(){
 $(".launch-modal").click(function(){
 $("#myModal").modal({
 remote: "http://localhost:8090/cunyworks/student1/courses"
-});
+}).show();
 }); 
 });
 
@@ -241,41 +294,42 @@ $(document).ready(function(){
 });
 	$(document).ready(function() {
 		refresh();//initally loads
-				function CourseBean(name, room, scheduleTime, startDate,
-						endDate, syllabus, created, subject, teacher,
-						enrollementCapacity) {
+				function CourseBean(name, room,startDate,
+						endDate,subject) {
 
 					this.name = name;
 					this.room = room;
-					this.scheduleTime = scheduleTime;
+					//this.scheduleTime = scheduleTime;
 					this.startDate = startDate;
 					this.endDate = endDate;
-					this.syllabus = syllabus;
-					this.created = created;
+				//	this.syllabus = syllabus;
+					//this.created = created;
 					this.subject = subject;
-					this.teacher = teacher;
-					this.enrollmentCapacity = enrollmentCapacity;
+					//this.teacher = teacher;
+					//this.enrollmentCapacity = enrollmentCapacity;
 				}
 		
-		$("#update").click(function() {
-			$("#add").prop("disabled", true);
-			var courseName = $("#coursename").val();
+		$("#").click(function() {
+			$("#update").prop("disabled", true);
+			var name = $("#course").val();
+			var room = $("#room").val();
+			
 			var subject= $("#subject").val();
-			var startDate = $("#startDate").val();
-			var endDate = $("#endDate").val();
-			var courseBean = new courseBean(courseName, subject, startDate, endDate);
+			var startDate = $("#date").val();
+			var endDate = $("#date1").val();
+			var courseBean = new courseBean(name,room, subject, startDate, endDate);
 			$.ajax("http://localhost:8090/cunyworks/teacher0/update", {
 				method : "POST",
-				data : JSON.stringify(car),
-				headers : {
-					"Content-Type" : "application/json"
-				},
+				data : JSON.stringify(courseBean),
+				
+					ContentType : "application/json",
+				
 				success : function(response) {
 					$(".alert-success").text(response);
 					$(".alert-success").fadeIn();
 					window.setTimeout(function(response) {
 						$(".alert-success").fadeOut();
-						$("#add").prop("disabled", false);
+						$("#update").prop("disabled", false);
 					}, 3000);
 					$("form")[0].reset(); //reset form fields
 					refresh();
@@ -284,7 +338,7 @@ $(document).ready(function(){
 					$(".alert-danger").fadeIn();
 					window.setTimeout(function(response) {
 						$(".alert-danger").fadeOut();
-						$("#add").prop("disabled", false);
+						$("#update").prop("disabled", false);
 					}, 3000);
 				}
 			});
@@ -312,9 +366,17 @@ $(document).ready(function(){
 				$(".table tbody").append("<tr>");
 				$(".table tbody").append("<td>" + temp.courseId + "</td>");
 				$(".table tbody").append("<td>" + temp.name + "</td>");
+				$(".table tbody").append("<td>" + temp.subject.name + "</td>");
+				
 				$(".table tbody").append("<td>" + temp.startDate + "</td>");
 				$(".table tbody").append("<td>" + temp.endDate + "</td>");
+								$(".table tbody").append("<td>" + temp.room + "</td>");
+								$(".table tbody").append("<td>" + temp.scheduleTime + "</td>");
+				
 				$(".table tbody").append("<td>" + temp.enrollmentCapacity + "</td>");
+				$(".table tbody").append("<td>" + '<button id="modal" type="button" class="btn btn-link launch-modal" value="Modify">Modify </button>' + "</td>");
+				
+				
 				
 				$(".table tbody").append("</tr>");
 			});

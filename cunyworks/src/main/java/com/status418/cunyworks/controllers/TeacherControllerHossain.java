@@ -34,14 +34,14 @@ public class TeacherControllerHossain {
 		TeacherBean teacher = new FacadeImpl().getByTeacherId(1);
 	System.out.println(teacher);
 		Set<CourseBean> allCourses = teacher.getCourses();
-
+		//System.out.println(allCourses.iterator().next().getSubject().getName());
 		return new ResponseEntity<Set<CourseBean>>(allCourses, HttpStatus.OK);
 		
 	}
 	@RequestMapping(value="update",method=RequestMethod.POST, consumes= MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<String> update(@RequestBody TeacherBean teacher, @RequestBody CourseBean course){
-		
+	public ResponseEntity<String> update(@RequestBody CourseBean course){
+		TeacherBean teacher = new FacadeImpl().getByTeacherId(1);
 		Set<CourseBean> courses = teacher.getCourses();
 		courses.add(course);
 		teacher.setCourses(courses);
@@ -51,6 +51,15 @@ public class TeacherControllerHossain {
 		
 		return new  ResponseEntity<String>("Success!",HttpStatus.OK);
 		
+		
+	}
+	
+	public ResponseEntity<CourseBean> findByCourseId(int courseId){
+		CourseBean course = null;
+		
+		
+		
+		return null;
 		
 	}
 
