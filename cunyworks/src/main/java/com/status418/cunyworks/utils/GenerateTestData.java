@@ -1,4 +1,4 @@
-package com.status418.cunyworks.hibernate;
+package com.status418.cunyworks.utils;
 
 import java.sql.Time;
 import java.text.ParseException;
@@ -19,7 +19,7 @@ import com.status418.cunyworks.dao.StudentDAO;
 import com.status418.cunyworks.dao.SubjectDAO;
 import com.status418.cunyworks.dao.TeacherDAO;
 
-public class GenerateDataTest {
+public class GenerateTestData {
 
 	public static void main(String[] args) throws ParseException {
 
@@ -222,20 +222,36 @@ public class GenerateDataTest {
 		c4.getTextbooks().addAll(Arrays.asList(tb4, tb5, tb1));
 		c5.getTextbooks().addAll(Arrays.asList(tb5, tb1, tb2));
 
-		// subjects have courses
+		
+		// subjects have courses and reverse
 		sub1.getCourses().add(c1);
 		sub2.getCourses().add(c2);
 		sub3.getCourses().add(c3);
 		sub4.getCourses().add(c4);
 		sub5.getCourses().add(c5);
+		 
+		
+		c1.setSubject(sub1);
+		c2.setSubject(sub2);
+		c3.setSubject(sub3);
+		c4.setSubject(sub4);
+		c5.setSubject(sub5);
 
-		// teachers have courses
+
+		// teachers have courses and vice versa
 		t1.getCourses().add(c1);
 		t2.getCourses().add(c2);
 		t3.getCourses().add(c3);
 		t4.getCourses().add(c4);
 		t5.getCourses().add(c5);
-
+		
+		c1.setTeacher(t1);
+		c2.setTeacher(t2);
+		c3.setTeacher(t3);
+		c4.setTeacher(t4);
+		c5.setTeacher(t5);
+		
+		//////
 		ApplicationContext context = new ClassPathXmlApplicationContext("dao-beans.xml");
 
 		context.getBean(CourseDAO.class).saveOrUpdate(c1);
@@ -262,7 +278,7 @@ public class GenerateDataTest {
 		context.getBean(TeacherDAO.class).saveOrUpdate(t4);
 		context.getBean(TeacherDAO.class).saveOrUpdate(t5);
 
-
+		System.out.println(context.getBean(TeacherDAO.class).getById(1).getCourses().iterator().next().getSubject().getName());
 
 	}
 
