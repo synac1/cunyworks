@@ -16,23 +16,30 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.status418.cunyworks.beans.CourseBean;
 import com.status418.cunyworks.beans.StudentBean;
 import com.status418.cunyworks.dao.StudentDAOImpl;
+import com.status418.cunyworks.data.FacadeImpl;
 
 @Controller
 @RequestMapping(value = "student")
 public class StudentControllerYanilda {
 
-	@RequestMapping(value="/home", method=RequestMethod.GET)
+	@RequestMapping(value="/enroll", method=RequestMethod.GET)
 	public String HomePage1(){
 		return"Yani.html";
 		
 	}
-	
+	@RequestMapping(value = "new_courses", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<Set<CourseBean>> getallCourses() {
+		Set<CourseBean> courses = new FacadeImpl().getAllCourse();
+		System.out.println(courses);
+		return new ResponseEntity<Set<CourseBean>>(courses, HttpStatus.OK);
+	}
 	
 
 	@RequestMapping(value = "new", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody // write directly to response body.. no redirection
 	public ResponseEntity<String> enrollclass(@RequestBody StudentBean student, @RequestBody CourseBean course) {
-		int courseId=course.getCourseId();
+		//int courseId=course.getCourseId();
 		Set<CourseBean> courses= student.getCourses();
 		courses.add(course);
 		student.setCourses(courses);
