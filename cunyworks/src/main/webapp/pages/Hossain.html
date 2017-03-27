@@ -20,8 +20,8 @@
 	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
 <link rel="stylesheet" media="all"
-	href="http://localhost:8090/cunyworks/assets/bootstrap/css/bootstrap.min.css">
-<link href="http://localhost:8090/cunyworks/assets/css/style.css"
+	href="http://localhost:9999/cunyworks/assets/bootstrap/css/bootstrap.min.css">
+<link href="http://localhost:9999/cunyworks/assets/css/style.css"
 	rel="stylesheet">
 
 
@@ -157,11 +157,11 @@
 	<!-- / footer -->
 
 	<script
-		src="http://localhost:8090/cunyworks/assets/js/jquery-1.11.1.min.js"></script>
-	<script src="http://localhost:8090/cunyworks/assets/js/plugins.js"></script>
-	<script src="http://localhost:8090/cunyworks/assets/js/main.js"></script>
+		src="http://localhost:9999/cunyworks/assets/js/jquery-1.11.1.min.js"></script>
+	<script src="http://localhost:9999/cunyworks/assets/js/plugins.js"></script>
+	<script src="http://localhost:9999/cunyworks/assets/js/main.js"></script>
 	<script
-		src="http://localhost:8090/cunyworks/assets/bootstrap/js/bootstrap.min.js"></script>
+		src="http://localhost:9999/cunyworks/assets/bootstrap/js/bootstrap.min.js"></script>
 	
 	
 	
@@ -241,7 +241,7 @@
 $(document).ready(function() {
 
     // process the form
-    $('form').submit(function(event) {
+    $('#').submit(function(event) {
 
         // get the form data
         // there are many ways to get this data using jQuery (you can use the class or id also)
@@ -257,8 +257,8 @@ $(document).ready(function() {
         // process the form
         $.ajax({
             type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-            url         : 'http://localhost:8090/cunyworks/teacher0/update', // the url where we want to POST
-            data        : formData, // our data object
+            url         : 'http://localhost:9999/cunyworks/teacher0/update', // the url where we want to POST
+            data        : JSON.stringify(formData), // our data object
 			dataType    : 'json',                       
 				encode          : true
         })
@@ -280,7 +280,7 @@ $(document).ready(function() {
 	$(document).ready(function(){
 $(".launch-modal").click(function(){
 $("#myModal").modal({
-remote: "http://localhost:8090/cunyworks/student1/courses"
+remote: "http://localhost:9999/cunyworks/student1/courses"
 }).show();
 }); 
 });
@@ -294,8 +294,7 @@ $(document).ready(function(){
 });
 	$(document).ready(function() {
 		refresh();//initally loads
-				function CourseBean(name, room,startDate,
-						endDate,subject) {
+				function CourseBean(name, room,subject,startDate,endDate) {
 
 					this.name = name;
 					this.room = room;
@@ -309,7 +308,7 @@ $(document).ready(function(){
 					//this.enrollmentCapacity = enrollmentCapacity;
 				}
 		
-		$("#").click(function() {
+		$("#update").click(function() {
 			$("#update").prop("disabled", true);
 			var name = $("#course").val();
 			var room = $("#room").val();
@@ -317,12 +316,12 @@ $(document).ready(function(){
 			var subject= $("#subject").val();
 			var startDate = $("#date").val();
 			var endDate = $("#date1").val();
-			var courseBean = new courseBean(name,room, subject, startDate, endDate);
-			$.ajax("http://localhost:8090/cunyworks/teacher0/update", {
+			var courseBean = new CourseBean(name,room, subject, startDate, endDate);
+			$.ajax("http://localhost:9999/cunyworks/teacher0/update", {
 				method : "POST",
 				data : JSON.stringify(courseBean),
 				
-					ContentType : "application/json",
+					contentType : "application/json",
 				
 				success : function(response) {
 					$(".alert-success").text(response);
@@ -345,7 +344,7 @@ $(document).ready(function(){
 			return false; // prevent REFRESH
 		});
 		function refresh() {
-			$.ajax("http://localhost:8090/cunyworks/teacher0/allCourses", {
+			$.ajax("http://localhost:9999/cunyworks/teacher0/allCourses", {
 				method : "GET",
 				headers : {
 					"Accept" : "application/json"
