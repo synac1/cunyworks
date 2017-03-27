@@ -156,14 +156,11 @@ function fetchstuff(){
 	
 	function tableload(response){
 		$.each(response, function(index, temp) {
-			$(".table tbody").append("<tr>")
-			
+			$(".table tbody").append("<tr>");
 			$(".table tbody").append('<th scope="row">' + temp.courseId+'</th>');
 			$(".table tbody").append("<td>" + temp.name+"</td>");
-			
 			$(".table tbody").append("<td>" + temp.enrollmentCapacity+"</td>");
 			$(".table tbody").append("<td>" + temp.room+"</td>");
-			
 			$(".table tbody").append("<td>" + temp.scheduleTime+"</td>");
 			$(".table tbody").append("<td>" + temp.startDate+"</td>");
 			$(".table tbody").append("<td>" + temp.endDate+"</td>");
