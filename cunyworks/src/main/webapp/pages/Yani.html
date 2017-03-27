@@ -79,19 +79,7 @@
       <td><a href="#">Syllabus</a></td>
       <td><a href="#fancy" class="btn blue get-contact">Enroll</a></td>
     </tr>
-    
-      <tr>
-      <th scope="row">2</th>
-      <td>English</td>
-      <td>11</td>
-      <td>2B</td>
-      <td>Wed/Thurs 4-6PM</td>
-      <td>3/24/2017</td>
-      <td>7/24/2017</td>
-      <td><a href="#">Syllabus</a></td>
-      <td><a href="#fancy" class="btn blue get-contact">Enroll</a></td>
-    </tr>
-
+   
   </tbody>
 </table>
 
@@ -142,5 +130,60 @@
 	<script src="http://localhost:9999/cunyworks/assets/js/main.js"></script>
 	<script src="http://localhost:9999/cunyworks/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
+<script type="text/javascript">
+$(document).ready(function(){
+		
+		fetchstuff();
+		
+function fetchstuff(){
+		$.ajax("http://localhost:9999/cunyworks/student/new_courses",
+		{
+			method: "GET",
+			dataType: "json",
+			success: function(response){
+				console.log(response);
+				tablewipe();
+				tableload(response);
+			}
+		});
+	}
+	
+
+
+	function tablewipe(){
+		$(".table tbody").empty();
+	}
+	
+	function tableload(response){
+		$.each(response, function(index, temp) {
+			$(".table tbody").append("<tr>")
+			
+			$(".table tbody").append('<th scope="row">' + temp.courseId+'</th>');
+			$(".table tbody").append("<td>" + temp.name+"</td>");
+			
+			$(".table tbody").append("<td>" + temp.enrollmentCapacity+"</td>");
+			$(".table tbody").append("<td>" + temp.room+"</td>");
+			
+			$(".table tbody").append("<td>" + temp.scheduleTime+"</td>");
+			$(".table tbody").append("<td>" + temp.startDate+"</td>");
+			$(".table tbody").append("<td>" + temp.endDate+"</td>");
+			$(".table tbody").append("<td><a href='#'>" + temp.syllabus+"</a></td>");
+			$(".table tbody").append("<td><a  href='#fancy' class='btn blue get-contact'> Enroll</a></td>");
+			$(".table tbody").append("</tr>"); 	
+	
+		});
+	}
+
+
+
+	
+});
+
+
+
+		
+
+
+</script>
 </html>
 
