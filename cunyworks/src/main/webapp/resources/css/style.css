@@ -779,7 +779,7 @@ h1.single{
 
 .news {
 	overflow: hidden;
-	background: #2c4167;
+	background: #333;
 	padding: 57px 0 70px 0;
 }
 
@@ -994,7 +994,7 @@ a.btn.blue,
 
 #footer {
 	clear: both;
-	background: #2c4167 url(../images/bg_white_arrow.png) no-repeat 50% 0;
+	background:#333 url(../images/bg_white_arrow.png) no-repeat 50% 0;
 	overflow: hidden;
 	padding: 91px 0 0 0;
 	font-size: 14px;
