@@ -239,7 +239,7 @@ a:hover {
 }
 
 .divider {
-	background: #2c4167 url(../images/bg_white_arrow.png) no-repeat 50% 0;
+	background: #333 url(../images/bg_white_arrow.png) no-repeat 50% 0;
 	height: 80px;
 	position: relative;
 	margin-top: 3px;
@@ -247,7 +247,7 @@ a:hover {
 }
 
 .divider:after {
-	background: url(../images/bg_white.png) no-repeat 50% 0;
+	background:  #333 url(../images/bg_white.png) no-repeat 50% 0;
 	height: 30px;
 	position: absolute;
 	content: "";
@@ -401,15 +401,15 @@ h1.single{
 
 #sidebar .sidemenu .current a,
 #sidebar .sidemenu a:hover {
-	border: 1px solid #008bc4;
+	border: 1px solid #000;
 	color: #fff;
-	background: #008bc4;
+	background: #333;
 	text-decoration: none;
 }
 
 #sidebar .sidemenu .current a .nr,
 #sidebar .sidemenu a:hover .nr {
-	background: #2c4167;
+	background: #e7e8ec;
 }
 
 #sidebar .sidemenu a .nr {
