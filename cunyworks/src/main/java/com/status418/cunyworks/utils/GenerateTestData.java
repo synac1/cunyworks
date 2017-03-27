@@ -1,4 +1,4 @@
-package com.status418.cunyworks.hibernate;
+package com.status418.cunyworks.utils;
 
 import java.sql.Time;
 import java.text.ParseException;
@@ -19,7 +19,7 @@ import com.status418.cunyworks.dao.StudentDAO;
 import com.status418.cunyworks.dao.SubjectDAO;
 import com.status418.cunyworks.dao.TeacherDAO;
 
-public class GenerateDataTest {
+public class GenerateTestData {
 
 	public static void main(String[] args) throws ParseException {
 
