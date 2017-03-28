@@ -163,7 +163,7 @@
 	<script
 		src="http://localhost:8090/cunyworks/assets/bootstrap/js/bootstrap.min.js"></script>
 	
-	
+	<div class="container">
 	
 <div id="myModal" class="modal fade" aria-labelledby="myModalLabel" aria-hidden="true" tabindex="-1" role="dialog">
     <div class="modal-dialog">
@@ -173,7 +173,7 @@
                 <h4 class="modal-title">Course Information</h4>
             </div>
             <div class="modal-body" id="myModalBody">
-                <form method="post">
+                <form>
      <div class="form-group ">
       <label class="control-label " for="course">
        Course
@@ -206,7 +206,7 @@
      </div>
      <div class="form-group">
       <div>
-       <button id="update" class="btn btn-primary " name="submit" type="submit">
+       <button id="update" class="btn btn-primary " name="submit">
         Update
        </button>
       </div>
@@ -217,7 +217,7 @@
         </div>
     </div>
 </div>
-	
+	</div>
 	<!--  -->
 
  <div class="bs-example">
@@ -294,9 +294,7 @@ $(document).ready(function(){
 });
 	$(document).ready(function() {
 		refresh();//initally loads
-				function CourseBean(name, room,startDate,
-						endDate,subject) {
-
+				function CourseBean(name, room,startDate,endDate) {
 					this.name = name;
 					this.room = room;
 					//this.scheduleTime = scheduleTime;
@@ -304,7 +302,7 @@ $(document).ready(function(){
 					this.endDate = endDate;
 				//	this.syllabus = syllabus;
 					//this.created = created;
-					this.subject = subject;
+					//this.subject = subject;
 					//this.teacher = teacher;
 					//this.enrollmentCapacity = enrollmentCapacity;
 				}
@@ -314,13 +312,14 @@ $(document).ready(function(){
 			var name = $("#course").val();
 			var room = $("#room").val();
 			
-			var subject= $("#subject").val();
+			//var subject= $("#subject").val();
 			var startDate = $("#date").val();
 			var endDate = $("#date1").val();
-			var courseBean = new courseBean(name,room, subject, startDate, endDate);
-			$.ajax("http://localhost:8090/cunyworks/teacher0/update", {
+			var course = new CourseBean(name,room,startDate, endDate);
+			console.log(course);
+			$.ajax("http://localhost:9999/cunyworks/teacher0/update", {
 				method : "POST",
-				data : JSON.stringify(courseBean),
+				data : JSON.stringify(course),
 				
 					ContentType : "application/json",
 				

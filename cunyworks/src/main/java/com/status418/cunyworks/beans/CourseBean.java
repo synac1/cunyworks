@@ -64,6 +64,16 @@ public class CourseBean {
 	public CourseBean() {
 
 	}
+	
+
+	public CourseBean(String name, String room, Date startDate, Date endDate) {
+		super();
+		this.name = name;
+		this.room = room;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+
 
 	@PrePersist
 	protected void onCreate() {
