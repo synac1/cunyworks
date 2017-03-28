@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity(name = "COURSES")
@@ -41,8 +42,10 @@ public class CourseBean {
 	@Column(name = "COURSE_SCHEDULE_TIME", nullable = false)
 	private Time scheduleTime;
 	@Column(name = "COURSE_START_DATE", nullable = false)
+	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	@Column(name = "COURSE_END_DATE", nullable = false)
+	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	@Column(name = "COURSE_SYLLABUS")
 	private Blob syllabus;
@@ -190,7 +193,7 @@ public class CourseBean {
 	public Set<TextbookBean> getTextbooks() {
 		return textbooks;
 	}
-
+	
 	public void setTextbooks(Set<TextbookBean> textbooks) {
 		this.textbooks = textbooks;
 	}

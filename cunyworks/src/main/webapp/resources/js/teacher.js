@@ -6,9 +6,11 @@ $(document).ready(
 			// Variables / Methods
 			var animationSpeed = 1200;
 			var populated = false;
-			var selectedSubject = "";
+			var allSubjects;
+			var selectedSubject;
 
-			function SubjectBean(name) {
+			function SubjectBean(id, name) {
+				this.subjectId = id;
 				this.name = name;
 			}
 
@@ -21,7 +23,7 @@ $(document).ready(
 				this.startDate = startDate;
 				this.endDate = endDate;
 				this.syllabus = syllabus;
-				this.subject = new SubjectBean(subject);
+				this.subject = subject;
 			}
 
 			function clearEverything() {
@@ -40,7 +42,7 @@ $(document).ready(
 				var courseStart = $("#courseStart").val();
 				var courseEnd = $("#courseEnd").val();
 				var courseSyllabus = null;
-				var subject = $("#subSelect option:selected").val();
+				var subject = allSubjects[$("#subSelect").val()];
 
 				return new CourseBean(courseEC, courseName, courseRoom,
 						courseTime, courseStart, courseEnd, courseSyllabus,
@@ -54,11 +56,12 @@ $(document).ready(
 						"Content-Type" : "application/json"
 					},
 					success : function(response) {
+						allSubjects = response;
 						console.log(response);
 						$.each(response, function(index, value) {
 							$("#subSelect").append($("<option/>", {
-								value : value,
-								text : value
+								value : value.subjectId,
+								text : value.name
 							}));
 						});
 						$("#subDiv").toggle(animationSpeed);
@@ -101,8 +104,7 @@ $(document).ready(
 			$("#courseFormButton").click(function(e) {
 				var course = getCourseBeanFromForm();
 				console.log(course);
-				addNewCourse(course);
-				return false;
+				// addNewCourse(course);
 			})
 
 			/*
