@@ -50,7 +50,6 @@ public class CourseBean {
 	@Temporal(TemporalType.DATE)
 	private Date created;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	
 	private SubjectBean subject;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonIgnore
