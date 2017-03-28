@@ -28,6 +28,7 @@ public class SubjectBean {
 	@Column(name = "SUBJECT_NAME", nullable = false, unique = true)
 	private String name;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore 
 	private Set<CourseBean> courses = new HashSet<>();
 
 	public SubjectBean() {

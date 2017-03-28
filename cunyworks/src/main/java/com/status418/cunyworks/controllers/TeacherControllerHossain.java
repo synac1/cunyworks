@@ -45,7 +45,8 @@ public class TeacherControllerHossain {
 	public ResponseEntity<String> update(@RequestBody CourseBean course){
 		TeacherBean teacher = new FacadeImpl().getByTeacherId(1);
 		Set<CourseBean> courses = teacher.getCourses();
-		
+		System.out.println(course);
+
 		//course.setStartDate(request.getParameter("startDate"));
 		//CourseBean c = (CourseBean) course;
 		courses.add(course);
@@ -53,7 +54,6 @@ public class TeacherControllerHossain {
 		FacadeImpl facade = new FacadeImpl();
 				facade.saveOrUpdate(teacher);
 		
-		System.out.println(course);
 		
 		
 		return new  ResponseEntity<String>("Success!",HttpStatus.OK);

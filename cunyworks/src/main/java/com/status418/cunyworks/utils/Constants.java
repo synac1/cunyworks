@@ -11,6 +11,7 @@ public class Constants {
 	public static final String TEACHER_HOME_URL = "/";
 	public static final String TEACHER_ADD_URL = "add";
 	
+	
 	//----------------------------------------------------------------//
 	
 	// Static Pages

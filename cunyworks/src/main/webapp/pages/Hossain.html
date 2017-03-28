@@ -91,7 +91,7 @@
 					</thead>
 
 					<tbody>
-					<button id="modal" type="button" class="btn btn-link" value="Modify">Modify </button>
+				<!--  	<button id="modal" type="button" class="btn btn-link" value="Modify">Modify </button> -->
 				<!-- 		<tr>
 
 							<td>123</td>
@@ -285,42 +285,43 @@ $(document).ready(function() {
 
 });
 ///////////////////////////////
-	$(document).ready(function(){
-$("#").click(function(){
-$("#myModal").modal({
-remote: "http://localhost:9999/cunyworks/teacher/allCourses"
+//	$(document).ready(function(){
+// $("#").click(function(){
+// $("#myModal").modal({
+// remote: "http://localhost:9999/cunyworks/teacher/allCourses"
 
-}).show();
-}); 
-});
+// }).show();
+// }); 
+// });
 
 
 //////////////////////////////
-$(document).ready(function(){
-	$("#").click(function(){
-		$("#myModal").modal('show');
-	});
-});
+
 	$(document).ready(function() {
+	
 		refresh();//initally loads
 		$("#modal").click(function(){
-		$("#myModal").modal('show');
-	});
-				function CourseBean(name, room,startDate,
-						endDate) {
+				$("#myModal").modal('show');
+				
+				
+	
+		});	
+		
+				function CourseBean(name,room,startDate) {
 					//this.courseId = courseId;
 					this.name = name;
 					this.room = room;
 					//this.scheduleTime = scheduleTime;
 					this.startDate = startDate;
-					this.endDate = endDate;
+					//this.endDate = endDate;
 					//this.syllabus = syllabus;
 					//this.created = created;
 					//this.subject = subject;
 					//this.teacher = teacher;
 					//this.enrollmentCapacity = enrollmentCapacity;
 				}
-		
+				
+			
 		$("#update").click(function() {
 			$("#update").prop("disabled", true);
 			//var courseId = $("#courseId").val();
@@ -331,12 +332,11 @@ $(document).ready(function(){
 			//var subject= $("#subject").val();
 			var startDate = $("#startDate").val();
 			var endDate = $("#endDate").val();
-			var course = new CourseBean(name, room,startDate,
-						endDate);
+			var courseBean = new CourseBean(name,room,startDate);
 			console.log(course);
 			$.ajax("http://localhost:9999/cunyworks/teacher0/update", {
 				method : "POST",
-				data : JSON.stringify(course),
+				data : JSON.stringify(courseBean),
 				
 					contentType : "application/json",
 				
@@ -370,14 +370,21 @@ $(document).ready(function(){
 					console.log(response);
 					tablewipe();
 					tableload(response);
+					loadForm(response);
 				}
 			});
+			
 		}
+			
+		
+		
+		
 		// clear table body
 		function tablewipe() {
 			$(".table tbody").empty();
 		}
 		function tableload(response) {
+		
 			$.each(response, function(index, temp) {
 				$(".table tbody").append("<tr>");
 				$(".table tbody").append("<td>" + temp.courseId + "</td>");
@@ -395,9 +402,29 @@ $(document).ready(function(){
 				
 				
 				$(".table tbody").append("</tr>");
+				
 			});
+			
+			
 		}
+		function loadForm(response){
+				$.each(response,Function(index, temp){
+		$("#name").append(temp.name);
+		$("#room").append(temp.name);
+		$("#startDate").append(temp.name);
+		$("#endDate").append(temp.name);
+		
+		});
+		}	
+		
 	});
+	
+// 	$(document).ready(function(){
+
+// 	$("#modal").click(function(){
+// 		$("#myModal").modal('show');
+// 	});
+// });
 </script>
 
 </html>
