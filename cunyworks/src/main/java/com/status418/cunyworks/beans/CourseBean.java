@@ -50,7 +50,7 @@ public class CourseBean {
 	@Temporal(TemporalType.DATE)
 	private Date created;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonIgnore  
+	
 	private SubjectBean subject;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonIgnore
@@ -65,6 +65,16 @@ public class CourseBean {
 	public CourseBean() {
 
 	}
+	
+
+	public CourseBean(String name, String room, Date startDate, Date endDate) {
+		super();
+		this.name = name;
+		this.room = room;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+
 
 	@PrePersist
 	protected void onCreate() {
