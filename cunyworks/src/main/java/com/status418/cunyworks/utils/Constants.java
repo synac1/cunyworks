@@ -12,6 +12,7 @@ public class Constants {
 	public static final String TEACHER_COURSE_INSERT_URL = "insert";
 	public static final String TEACHER_SUBJECTS_URL = "subjects";
 	
+	
 	//----------------------------------------------------------------//
 	
 	// Static Pages

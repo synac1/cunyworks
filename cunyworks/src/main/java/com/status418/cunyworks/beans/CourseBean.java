@@ -33,13 +33,13 @@ public class CourseBean {
 	@SequenceGenerator(name = "courseIdSeq", sequenceName = "COURSE_ID_SEQ", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(generator = "courseIdSeq", strategy = GenerationType.SEQUENCE)
 	private int courseId;
-	@Column(name = "COURSE_ENROLLMENT_CAPACITY", nullable = false)
+	@Column(name = "COURSE_ENROLLMENT_CAPACITY")
 	private int enrollmentCapacity;
-	@Column(name = "COURSE_NAME", nullable = false)
+	@Column(name = "COURSE_NAME")
 	private String name;
 	@Column(name = "COURSE_ROOM")
 	private String room;
-	@Column(name = "COURSE_SCHEDULE_TIME", nullable = false)
+	@Column(name = "COURSE_SCHEDULE_TIME")
 	private Time scheduleTime;
 	@Column(name = "COURSE_START_DATE", nullable = false)
 	@Temporal(TemporalType.DATE)
@@ -71,6 +71,14 @@ public class CourseBean {
 
 	public CourseBean(String name, String room, Date startDate, Date endDate) {
 		super();
+		this.name = name;
+		this.room = room;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+	public CourseBean(int courseId,String name, String room, Date startDate, Date endDate) {
+		super();
+		this.courseId = courseId;
 		this.name = name;
 		this.room = room;
 		this.startDate = startDate;
