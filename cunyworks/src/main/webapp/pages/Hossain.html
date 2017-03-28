@@ -174,6 +174,12 @@
             </div>
             <div class="modal-body" id="myModalBody">
                 <form>
+                <div class="form-group ">
+      <label class="control-label " for="courseId">
+       CourseId
+      </label>
+      <input class="form-control" id="courseId" name="courseId" type="number"/>
+     </div>
      <div class="form-group ">
       <label class="control-label " for="course">
        Course
@@ -196,13 +202,13 @@
       <label class="control-label " for="date">
        Start Date
       </label>
-      <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+      <input class="form-control" id="startDate" name="startDate" placeholder="MM/DD/YYYY" type="text"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="date1">
        End Date
       </label>
-      <input class="form-control" id="date1" name="date1" placeholder="MM/DD/YYYY" type="text"/>
+      <input class="form-control" id="endDate" name="endDate" placeholder="MM/DD/YYYY" type="text"/>
      </div>
      <div class="form-group">
       <div>
@@ -248,7 +254,7 @@ $(document).ready(function() {
         var formData = {
             'course'      : $('#course').val(),
             'room'			:$('#room').val(),
-            'subject'    : $('#subject').val(),
+           // 'subject'    : $('#subject').val(),
             'startDate'  : $('#date').val(),
             'endDate'    : $('#date1').val()
             
@@ -258,8 +264,10 @@ $(document).ready(function() {
         $.ajax({
             type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
             url         : 'http://localhost:9999/cunyworks/teacher0/update', // the url where we want to POST
+            contentType : 'application/json' ,                 
+            
             data        : JSON.stringify(formData), // our data object
-			dataType    : 'json',                       
+			dataType    : 'json',     
 				encode          : true
         })
             // using the done promise callback
@@ -278,9 +286,10 @@ $(document).ready(function() {
 });
 ///////////////////////////////
 	$(document).ready(function(){
-$(".launch-modal").click(function(){
+$("#").click(function(){
 $("#myModal").modal({
-remote: "http://localhost:9999/cunyworks/student1/courses"
+remote: "http://localhost:9999/cunyworks/teacher/allCourses"
+
 }).show();
 }); 
 });
@@ -288,20 +297,24 @@ remote: "http://localhost:9999/cunyworks/student1/courses"
 
 //////////////////////////////
 $(document).ready(function(){
-	$("#modal").click(function(){
+	$("#").click(function(){
 		$("#myModal").modal('show');
 	});
 });
 	$(document).ready(function() {
 		refresh();//initally loads
-				function CourseBean(name, room,startDate,endDate) {
-
+		$("#modal").click(function(){
+		$("#myModal").modal('show');
+	});
+				function CourseBean(name, room,startDate,
+						endDate) {
+					//this.courseId = courseId;
 					this.name = name;
 					this.room = room;
 					//this.scheduleTime = scheduleTime;
 					this.startDate = startDate;
 					this.endDate = endDate;
-				//	this.syllabus = syllabus;
+					//this.syllabus = syllabus;
 					//this.created = created;
 					//this.subject = subject;
 					//this.teacher = teacher;
@@ -310,13 +323,16 @@ $(document).ready(function(){
 		
 		$("#update").click(function() {
 			$("#update").prop("disabled", true);
+			//var courseId = $("#courseId").val();
+			
 			var name = $("#course").val();
 			var room = $("#room").val();
 			
 			//var subject= $("#subject").val();
-			var startDate = $("#date").val();
-			var endDate = $("#date1").val();
-			var course = new CourseBean(name,room,startDate, endDate);
+			var startDate = $("#startDate").val();
+			var endDate = $("#endDate").val();
+			var course = new CourseBean(name, room,startDate,
+						endDate);
 			console.log(course);
 			$.ajax("http://localhost:9999/cunyworks/teacher0/update", {
 				method : "POST",
