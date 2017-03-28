@@ -2,6 +2,8 @@ package com.status418.cunyworks.controllers;
 
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -43,10 +45,15 @@ public class TeacherControllerHossain {
 	public ResponseEntity<String> update(@RequestBody CourseBean course){
 		TeacherBean teacher = new FacadeImpl().getByTeacherId(1);
 		Set<CourseBean> courses = teacher.getCourses();
+		
+		//course.setStartDate(request.getParameter("startDate"));
+		//CourseBean c = (CourseBean) course;
 		courses.add(course);
 		teacher.setCourses(courses);
 		FacadeImpl facade = new FacadeImpl();
 				facade.saveOrUpdate(teacher);
+		
+		System.out.println(course);
 		
 		
 		return new  ResponseEntity<String>("Success!",HttpStatus.OK);
