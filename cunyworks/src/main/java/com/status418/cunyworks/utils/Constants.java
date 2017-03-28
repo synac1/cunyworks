@@ -9,7 +9,8 @@ public class Constants {
 	
 	// Teacher
 	public static final String TEACHER_HOME_URL = "/";
-	public static final String TEACHER_ADD_URL = "add";
+	public static final String TEACHER_COURSE_INSERT_URL = "insert";
+	public static final String TEACHER_SUBJECTS_URL = "subjects";
 	
 	
 	//----------------------------------------------------------------//

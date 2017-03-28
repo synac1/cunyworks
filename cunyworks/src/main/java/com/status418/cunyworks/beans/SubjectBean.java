@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity(name = "SUBJECTS")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="subjectId")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "subjectId")
 public class SubjectBean {
 	@Id
 	@Column(name = "SUBJECT_ID")
@@ -28,7 +28,9 @@ public class SubjectBean {
 	@Column(name = "SUBJECT_NAME", nullable = false, unique = true)
 	private String name;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonIgnore 
+
+	@JsonIgnore
+
 	private Set<CourseBean> courses = new HashSet<>();
 
 	public SubjectBean() {
