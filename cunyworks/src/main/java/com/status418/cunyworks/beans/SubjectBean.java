@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity(name = "SUBJECTS")
@@ -27,6 +28,7 @@ public class SubjectBean {
 	@Column(name = "SUBJECT_NAME", nullable = false, unique = true)
 	private String name;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore  
 	private Set<CourseBean> courses = new HashSet<>();
 
 	public SubjectBean() {
