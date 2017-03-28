@@ -74,6 +74,14 @@ public class CourseBean {
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
+	public CourseBean(int courseId,String name, String room, Date startDate, Date endDate) {
+		super();
+		this.courseId = courseId;
+		this.name = name;
+		this.room = room;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
 
 
 	@PrePersist
