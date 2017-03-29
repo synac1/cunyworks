@@ -6,15 +6,16 @@ $(document).ready(
 			// Variables / Methods
 			var animationSpeed = 1200;
 			var populated = false;
-			var selectedSubject = "";
+			var allSubjects;
+			var selectedSubject;
 
-			function SubjectBean(name){
+			function SubjectBean(id, name) {
+				this.subjectId = id;
 				this.name = name;
 			}
-			
+
 			function CourseBean(enrollmentCapacity, name, room, scheduleTime,
 					startDate, endDate, syllabus, subject) {
-
 				this.enrollmentCapacity = enrollmentCapacity;
 				this.name = name;
 				this.room = room;
@@ -22,19 +23,32 @@ $(document).ready(
 				this.startDate = startDate;
 				this.endDate = endDate;
 				this.syllabus = syllabus;
-				this.subject = new SubjectBean(subject);
+				this.subject = subject;
 			}
 
 			function clearEverything() {
 				$("#subDiv").hide();
 				$("#courseFormDiv").hide();
-				
+
 				$("#subSelect").html("");
-				$("#courseForm").trigger("reset"); //resets form
+				$("#courseForm").trigger("reset"); // resets form
 			}
 
+			function getCourseBeanFromForm() {
+				var courseName = $("#courseName").val();
+				var courseRoom = $("#courseRoom").val();
+				var courseEC = $("#courseEC").val();
+				var courseTime = $("#courseTime").val();
+				var courseStart = $("#courseStart").val();
+				var courseEnd = $("#courseEnd").val();
+				var courseSyllabus = null;
+				var subject = allSubjects[$("#subSelect").val()];
 
-			
+				return new CourseBean(courseEC, courseName, courseRoom,
+						courseTime, courseStart, courseEnd, courseSyllabus,
+						subject);
+			}
+
 			function populateSubSelect() {
 				$.ajax("http://localhost:9999/cunyworks/teacher/subjects", {
 					method : "GET",
@@ -42,11 +56,12 @@ $(document).ready(
 						"Content-Type" : "application/json"
 					},
 					success : function(response) {
+						allSubjects = response;
 						console.log(response);
 						$.each(response, function(index, value) {
 							$("#subSelect").append($("<option/>", {
-								value : value,
-								text : value
+								value : value.subjectId,
+								text : value.name
 							}));
 						});
 						$("#subDiv").toggle(animationSpeed);
@@ -58,7 +73,24 @@ $(document).ready(
 				})
 			}
 
-			// Program Flow Logic
+			function addNewCourse(course) {
+				$.ajax("http://localhost:9999/cunyworks/teacher/insert", {
+					method : "POST",
+					headers : {
+						"Content-Type" : "application/json"
+					},
+					data : JSON.stringify(course),
+					success : function(response) {
+						console.log(response);
+						clearEverything();
+					},
+					error : function(response) {
+						console.log(response);
+					}
+				})
+			}
+			// ///////////////////////////////////////////////////////////////////////////
+			// Event Handlers
 			$("#addCourseButton").click(function() {
 				if (populated) {
 					populated = false;
@@ -70,18 +102,18 @@ $(document).ready(
 			});
 
 			$("#courseFormButton").click(function(e) {
-				selectedSubject = $("#subSelect option:selected").text();
-				console.log(selectedSubject);
+				var course = getCourseBeanFromForm();
+				console.log(course);
+				// addNewCourse(course);
 			})
-			
 
-
+			/*
+			 * $(document).ready(function(){
+			 * $(".launch-modal").click(function(){ $("#myModal").modal({
+			 * remote: "http://localhost:9999/cunyworks/student1/courses" });
+			 * }); });
+			 * 
+			 * 
+			 */
 
 		});
-/*
- * $(document).ready(function(){ $(".launch-modal").click(function(){
- * $("#myModal").modal({ remote:
- * "http://localhost:9999/cunyworks/student1/courses" }); }); });
- * 
- * 
- */
