@@ -45,4 +45,6 @@ public interface Facade {
 
 	CourseBean getCourseById(int id);
 
+	public void merge(CourseBean course);
+
 }

@@ -13,5 +13,5 @@ public interface StudentDAO {
 	public Set<StudentBean> getAll();
 
 	public void saveOrUpdate(StudentBean student); // Check if this works for removing course
-
+	public void update(StudentBean student);
 }

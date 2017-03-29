@@ -49,4 +49,10 @@ public class StudentDAOImpl implements StudentDAO {
 		sessionFactory.getCurrentSession().saveOrUpdate(student);
 	}
 
+	@Override
+	public void update(StudentBean student) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().update(student);
+	}
+
 }

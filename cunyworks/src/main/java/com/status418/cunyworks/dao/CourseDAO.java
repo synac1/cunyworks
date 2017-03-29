@@ -19,4 +19,6 @@ public interface CourseDAO {
 	public Set<TextbookBean> getTextBooksByCourse(CourseBean course);
 
 	public CourseBean getbyId(int id);
+
+	public void merge(CourseBean course);
 }

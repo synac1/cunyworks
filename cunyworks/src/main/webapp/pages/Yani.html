@@ -67,18 +67,7 @@
     </tr>
   </thead>
   <tbody>
-  	
-    <tr id="math">
-      <th scope="row">1</th>
-      <td>Math</td>
-      <td>10</td>
-      <td>2A</td>
-      <td>Wed/Thurs 4-6PM</td>
-      <td>3/24/2017</td>
-      <td>7/24/2017</td>
-      <td><a href="#">Syllabus</a></td>
-      <td><a href="#fancy" class="btn blue get-contact">Enroll</a></td>
-    </tr>
+
    
   </tbody>
 </table>
@@ -120,7 +109,7 @@
 				</fieldset>
 			</div>
 			<div class="btn-holder">
-				<button class="btn blue" type="submit">Enroll</button>
+				<button  id="add" class="btn blue" type="submit">Enroll</button>
 			</div>
 		</form>
 	</div>
@@ -132,12 +121,88 @@
 </body>
 <script type="text/javascript">
 
-
+	
+				
 $(function(){
-		//Hello
-
 
 		fetchstuff();
+		
+			function StudentBean(studentId, email, password, firstName,
+						lastName, phone, address, birthday, courses) {
+
+					this.studentId = studentId;
+					this.email = email;
+					this.password = password;
+					this.firstName = firstName;
+					this.lastName = lastName;
+					this.phone = phone;
+					this.address = address;
+					this.birthday = birthday;
+					//this.created = created;
+					this.courses = courses;
+				}
+   //function CourseBean(courseId, name, room, scheduleTime, startDate,
+	//					endDate, syllabus, created, subject, teacher,
+		//				enrollementCapacity) {
+          //          this.courseId= courseId;
+			//		this.name = name;
+				//	this.room = room;
+			//		this.scheduleTime = scheduleTime;
+			//		this.startDate = startDate;
+			//		this.endDate = endDate;
+			//		this.syllabus = syllabus;
+			//		this.created = created;
+			//		this.subject = subject;
+			//		this.teacher = teacher;
+			//		this.enrollmentCapacity = enrollmentCapacity;
+				//}
+	function CourseBean( courseId, name, room, startDate, endDate) {
+
+		this.courseId = courseId;
+		this.name = name;
+		this.room = room;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}		
+	
+		$("#add").click(function(){	
+		var courseId   = 1;
+		var name   = "Course 1" ;
+		var room = "A1";
+		//var scheduleTime= $("#make").val();
+		var startDate = "2017-01-17";
+		var endDate = "2017-07-17";
+		//var syllabus   = $("#vin").val();
+		//var created   = $("#vin").val();
+		//var subject =  $("#vin").val();
+		//var teacher   = $("#vin").val();
+		//var enrollmentCapacity =  $("#vin").val();
+		
+		var studentId=1;
+		var email = "1@student.com";
+		var password ="student";
+		var firstName = "S1First";
+		var lastName = "S1Last";
+		var phone = 123456789;
+		var address = "student 1 address";
+		var birthday = "1990-12-31";
+		var courses= "{}" ;
+		var course = new CourseBean(courseId, name,  endDate, startDate);
+		var student  =new StudentBean(studentId, email, password, firstName,
+						lastName, phone, address, birthday, courses);
+						
+		console.log({"student":JSON.stringify(student),"course":JSON.stringify(course)})				
+		$.ajax("http://localhost:9999/cunyworks/student/new", 
+		{
+			method: "POST", 
+			contentType:"application/json",
+			data: JSON.stringify({studentN: studentId, courseN: courseId}),
+			success: function(response){
+			alert(response);}
+		});
+		
+		});
+		
 		
 function fetchstuff(){
 		$.ajax("http://localhost:9999/cunyworks/student/new_courses",

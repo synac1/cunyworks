@@ -45,6 +45,10 @@ public class FacadeImpl implements Facade {
 		courseDao.saveOrUpdate(course);
 	}
 
+    @Override
+	public void merge(CourseBean course) {
+		courseDao.merge(course);
+	}
 	@Override
 	public void delete(CourseBean course) {
 		courseDao.delete(course);
@@ -114,6 +118,11 @@ public class FacadeImpl implements Facade {
 	@Override
 	public CourseBean getCourseById(int id){
 		return courseDao.getbyId(id);
+	}
+
+	public void update(StudentBean student) {
+		// TODO Auto-generated method stub
+		studentDao.update(student);
 	}
 
 }
