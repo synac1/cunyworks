@@ -62,6 +62,14 @@ public class CourseDAOImpl implements CourseDAO {
 		return textbooks;
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Transactional
+	@Override
+	public CourseBean getbyId(int id) {
+		CourseBean course= (CourseBean) sessionFactory.getCurrentSession().get(CourseBean.class, id);
+		return course;
+	}
+	
 	
 
 }

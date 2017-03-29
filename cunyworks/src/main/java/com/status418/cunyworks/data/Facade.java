@@ -43,4 +43,6 @@ public interface Facade {
 
 	public void saveOrUpdate(TeacherBean teacher);
 
+	CourseBean getCourseById(int id);
+
 }

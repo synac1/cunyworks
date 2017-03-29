@@ -110,5 +110,10 @@ public class FacadeImpl implements Facade {
 	public void saveOrUpdate(TeacherBean teacher) {
 		teacherDao.saveOrUpdate(teacher);
 	}
+	
+	@Override
+	public CourseBean getCourseById(int id){
+		return courseDao.getbyId(id);
+	}
 
 }
