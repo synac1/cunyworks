@@ -42,6 +42,21 @@
 	$(document).ready(
 			function() {
 
+				function StudentBean(studentId, email, password, firstName,
+						lastName, phone, address, birthday, created, courses) {
+
+					this.studentId = studentId;
+					this.email = email;
+					this.password = password;
+					this.firstName = firstName;
+					this.lastName = lastName;
+					this.phone = phone;
+					this.address = address;
+					this.birthday = birthday;
+					this.created = created;
+					this.courses = courses;
+				}
+
 				function TeacherBean(teacherId, title, email, firstName,
 						lastName, phone, address, birthday, created) {
 					this.teacherId = teacherId;
