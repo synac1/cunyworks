@@ -55,7 +55,7 @@ public class CourseBean {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private SubjectBean subject;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonIgnore
+	
 	private TeacherBean teacher;
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonIgnore

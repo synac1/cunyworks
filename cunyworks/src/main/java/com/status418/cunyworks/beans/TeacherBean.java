@@ -20,6 +20,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity(name = "TEACHERS")
@@ -50,6 +51,7 @@ public class TeacherBean {
 	@Temporal(TemporalType.DATE)
 	private Date created;
 	@Column(name = "TEACHER_PASSWORD", nullable = false)
+	@JsonIgnore
 	private String password;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<CourseBean> courses = new HashSet<>();
