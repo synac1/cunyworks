@@ -6,11 +6,9 @@ $(document).ready(
 			// Variables / Methods
 			var animationSpeed = 1200;
 			var populated = false;
-			var allSubjects;
-			var selectedSubject;
+			var selectedSubject = "";
 
-			function SubjectBean(id, name) {
-				this.subjectId = id;
+			function SubjectBean(name) {
 				this.name = name;
 			}
 
@@ -19,11 +17,11 @@ $(document).ready(
 				this.enrollmentCapacity = enrollmentCapacity;
 				this.name = name;
 				this.room = room;
-				//this.scheduleTime = scheduleTime;
+				this.scheduleTime = scheduleTime;
 				this.startDate = startDate;
-				//this.endDate = endDate;
+				this.endDate = endDate;
 				this.syllabus = syllabus;
-				//this.subject = subject;
+				this.subject = subject;
 			}
 
 			function clearEverything() {
@@ -56,12 +54,11 @@ $(document).ready(
 						"Content-Type" : "application/json"
 					},
 					success : function(response) {
-						allSubjects = response;
 						console.log(response);
 						$.each(response, function(index, value) {
 							$("#subSelect").append($("<option/>", {
-								value : value.subjectId,
-								text : value.name
+								value : value,
+								text : value
 							}));
 						});
 						$("#subDiv").toggle(animationSpeed);
@@ -105,6 +102,7 @@ $(document).ready(
 				var course = getCourseBeanFromForm();
 				console.log(course);
 				addNewCourse(course);
+				return false;
 			})
 
 			/*

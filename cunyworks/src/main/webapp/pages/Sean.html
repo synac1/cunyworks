@@ -3,44 +3,54 @@
 <head>
 <meta charset="utf-8">
 <title>HarrisonHighSchool</title>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-<link rel="stylesheet" media="all"
-	href="http://localhost:9999/cunyworks/assets/css/style.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<link rel="stylesheet" media="all" href="http://localhost:9999/cunyworks/assets/css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
 	<div class="col-md-6">
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>#</th>
-					<th>Course Name</th>
-					<th>Enrollment Capacity</th>
-					<th>Room</th>
-					<th>Schedule Time</th>
-					<th>Start Date</th>
-					<th>End Date</th>
-					<th>Syllabus</th>
-					<th></th>
-
+					<th>title</th>
+					<th>teacherId</th>
+					<th>title</th>
+					<th>email</th>
+					<th>firstName</th>
+					<th>lastName</th>
+					<th>phone</th>
+					<th>address</th>
+					<th>birthday</th>
+					<th>created</th>
 				</tr>
 			</thead>
 			<tbody></tbody>
 		</table>
 	</div>
 
-	<script
-		src="http://localhost:9999/cunyworks/assets/js/jquery-1.11.1.min.js"></script>
+	<script src="http://localhost:9999/cunyworks/assets/js/jquery-1.11.1.min.js"></script>
 	<script src="http://localhost:9999/cunyworks/assets/js/plugins.js"></script>
 	<script src="http://localhost:9999/cunyworks/assets/js/main.js"></script>
-	<script
-		src="http://localhost:9999/cunyworks/assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="http://localhost:9999/cunyworks/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 <script type="text/javascript">
 	$(document).ready(
 			function() {
+
+				function StudentBean(studentId, email, password, firstName,
+						lastName, phone, address, birthday, created, courses) {
+
+					this.studentId = studentId;
+					this.email = email;
+					this.password = password;
+					this.firstName = firstName;
+					this.lastName = lastName;
+					this.phone = phone;
+					this.address = address;
+					this.birthday = birthday;
+					this.created = created;
+					this.courses = courses;
+				}
 
 				function TeacherBean(teacherId, title, email, firstName,
 						lastName, phone, address, birthday, created) {
@@ -87,38 +97,27 @@
 				function tablewipe() {
 					$(".table tbody").empty();
 				}
-				//		  <th>#</th>
-				//<th>Course Name</th>
-				// <th>Enrollment Capacity</th>
-				// <th>Room</th>
-				// <th>Schedule Time</th>
-				// <th>Start Date</th>
-				//<th>End Date</th>
-				//<th>Syllabus</th>
-				// <th></th>
-
 				function tableload(response) {
 					$.each(response, function(index, temp) {
 						$(".table tbody").append("<tr>");
+						$(".table tbody").append("<td>" + temp.name + "</td>");
+						$(".table tbody").append("<td>" + temp.room + "</td>");
 						$(".table tbody").append(
-								" <td> " + temp.name + " </td> ");
+								"<td>" + temp.scheduledTime + "</td>");
 						$(".table tbody").append(
-								" <td> " + temp.enrollmentCapacity + " </td>");
-						$(".table tbody")
-								.append(" <td> " + temp.room + "</td>");
+								"<td>" + temp.startDate + "</td>");
 						$(".table tbody").append(
-								" <td> " + temp.scheduleTime + "</td> ");
+								"<td>" + temp.endDate + "</td>");
 						$(".table tbody").append(
-								" <td> " + temp.startDate + " </td> ");
+								"<td>" + temp.syllabus + "</td>");
 						$(".table tbody").append(
-								" <td> " + temp.endDate + " </td> ");
+								"<td>" + temp.created + "</td>");
 						$(".table tbody").append(
-								" <td> " + temp.syllabus + " </td> ");
+								"<td>" + temp.subject + "</td>");
 						$(".table tbody").append(
-								" <td> " + temp.created + " </td> ");
-						//	$(".table tbody").append(" <td> " + temp.subject + "</td>");
-						//	$(".table tbody").append(" <td> " + temp.teacher.lastname + "</td>");
-
+								"<td>" + temp.teacher.lastname + "</td>");
+						$(".table tbody").append(
+								"<td>" + temp.enrollmentCapacity + "</td>");
 						$(".table tbody").append("</tr>");
 					})
 				}

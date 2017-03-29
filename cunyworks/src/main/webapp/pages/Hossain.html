@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html class="ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->
+
 <html lang="en">
-<!--<![endif]-->
 <head>
 <meta charset="utf-8">
 <title>CUNY#WORKS</title>
@@ -13,15 +11,12 @@
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	crossorigin="anonymous"></script>
 
-<!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
 <link rel="stylesheet"
 	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
 <link rel="stylesheet" media="all"
-	href="http://localhost:8090/cunyworks/assets/bootstrap/css/bootstrap.min.css">
-<link href="http://localhost:8090/cunyworks/assets/css/style.css"
+	href="http://localhost:9999/cunyworks/assets/bootstrap/css/bootstrap.min.css">
+<link href="http://localhost:9999/cunyworks/assets/css/style.css"
 	rel="stylesheet">
 
 
@@ -91,18 +86,7 @@
 					</thead>
 
 					<tbody>
-					<button id="modal" type="button" class="btn btn-link" value="Modify">Modify </button>
-				<!-- 		<tr>
 
-							<td>123</td>
-							<td>Math</td>
-							<td>05-05-17</td>
-							<td>12-05-17</td>
-							<td><input id="modal" type="button"
-								class="btn blue launch-modal" value="Modify"></td>
-
-						</tr>
- -->
 					</tbody>
 				</table>
 			</div>
@@ -131,16 +115,7 @@
 	<footer id="footer">
 		<div class="container">
 			<section>
-				<article class="col-1">
-					<h3>Contact</h3>
-					<ul>
-						<li class="address"><a href="#">#######<br>New York,
-								NY 00000
-						</a></li>
-						<li class="mail"><a href="#">contact@cunyworks.com</a></li>
-						<li class="phone last"><a href="#">(971) 536 845 924</a></li>
-					</ul>
-				</article>
+				
 
 				
 			
@@ -157,13 +132,13 @@
 	<!-- / footer -->
 
 	<script
-		src="http://localhost:8090/cunyworks/assets/js/jquery-1.11.1.min.js"></script>
-	<script src="http://localhost:8090/cunyworks/assets/js/plugins.js"></script>
-	<script src="http://localhost:8090/cunyworks/assets/js/main.js"></script>
+		src="http://localhost:9999/cunyworks/assets/js/jquery-1.11.1.min.js"></script>
+	<script src="http://localhost:9999/cunyworks/assets/js/plugins.js"></script>
+	<script src="http://localhost:9999/cunyworks/assets/js/main.js"></script>
 	<script
-		src="http://localhost:8090/cunyworks/assets/bootstrap/js/bootstrap.min.js"></script>
+		src="http://localhost:9999/cunyworks/assets/bootstrap/js/bootstrap.min.js"></script>
 	
-	<div class="container">
+	
 	
 <div id="myModal" class="modal fade" aria-labelledby="myModalLabel" aria-hidden="true" tabindex="-1" role="dialog">
     <div class="modal-dialog">
@@ -173,7 +148,15 @@
                 <h4 class="modal-title">Course Information</h4>
             </div>
             <div class="modal-body" id="myModalBody">
-                <form>
+
+                <form id="myForm" method="post">
+                <div class="form-group ">
+      <label class="control-label " for="courseId">
+       Course Id
+      </label>
+      <input class="form-control" id="courseId" name="courseId" type="number"/>
+     </div>
+
      <div class="form-group ">
       <label class="control-label " for="course">
        Course
@@ -204,10 +187,25 @@
       </label>
       <input class="form-control" id="date1" name="date1" placeholder="MM/DD/YYYY" type="text"/>
      </div>
+     <label class="control-label " for="enrollmentCapacity">
+       Enrollment Capacity
+      </label>
+      <input class="form-control" id="capacity" name="capacity" type="number"/>
+     </div>
      <div class="form-group">
       <div>
        <button id="update" class="btn btn-primary " name="submit">
         Update
+       </button>
+       <div class="alert alert-success" role="alert"
+							style="display: none;">Updated successfully!</div>
+						<div class="alert alert-danger" role="alert"
+							style="display: none;">Error updating</div>
+      </div>
+       <div class="form-group">
+      <div>
+       <button id="close" class="btn btn-primary close" data-dismiss="modal">
+        Close
        </button>
       </div>
      </div>
@@ -217,170 +215,16 @@
         </div>
     </div>
 </div>
-	</div>
+	
 	<!--  -->
 
- <div class="bs-example">
-<!-- Button HTML (to Trigger Modal) -->
-<input type="button" class="btn btn-lg btn-primary launch-modal" value="Launch Demo Modal">
 
-<!-- Modal HTML -->
-<div id="myModal" class="modal fade">
-<div class="modal-dialog">
-<div class="modal-content">
-<!-- Content will be loaded here from "remote.php" file -->
-</div>
-</div>
-</div>
-</div>
-<!--  -->
+
+	<script src="http://localhost:9999/cunyworks/assets/js/hossain.js"></script>
+
+
 </body>
-<script type="text/javascript">
-
-// magic.js
-$(document).ready(function() {
-
-    // process the form
-    $('form').submit(function(event) {
-
-        // get the form data
-        // there are many ways to get this data using jQuery (you can use the class or id also)
-        var formData = {
-            'course'      : $('#course').val(),
-            'room'			:$('#room').val(),
-            'subject'    : $('#subject').val(),
-            'startDate'  : $('#date').val(),
-            'endDate'    : $('#date1').val()
-            
-        };
-
-        // process the form
-        $.ajax({
-            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-            url         : 'http://localhost:8090/cunyworks/teacher0/update', // the url where we want to POST
-            data        : formData, // our data object
-			dataType    : 'json',                       
-				encode          : true
-        })
-            // using the done promise callback
-            .done(function(data) {
-
-                // log data to the console so we can see
-                console.log(data); 
-
-                // here we will handle errors and validation messages
-            });
-
-        // stop the form from submitting the normal way and refreshing the page
-        event.preventDefault();
-    });
-
-});
-///////////////////////////////
-	$(document).ready(function(){
-$(".launch-modal").click(function(){
-$("#myModal").modal({
-remote: "http://localhost:8090/cunyworks/student1/courses"
-}).show();
-}); 
-});
 
 
-//////////////////////////////
-$(document).ready(function(){
-	$("#modal").click(function(){
-		$("#myModal").modal('show');
-	});
-});
-	$(document).ready(function() {
-		refresh();//initally loads
-				function CourseBean(name, room,startDate,endDate) {
-					this.name = name;
-					this.room = room;
-					//this.scheduleTime = scheduleTime;
-					this.startDate = startDate;
-					this.endDate = endDate;
-				//	this.syllabus = syllabus;
-					//this.created = created;
-					//this.subject = subject;
-					//this.teacher = teacher;
-					//this.enrollmentCapacity = enrollmentCapacity;
-				}
-		
-		$("#").click(function() {
-			$("#update").prop("disabled", true);
-			var name = $("#course").val();
-			var room = $("#room").val();
-			
-			//var subject= $("#subject").val();
-			var startDate = $("#date").val();
-			var endDate = $("#date1").val();
-			var course = new CourseBean(name,room,startDate, endDate);
-			console.log(course);
-			$.ajax("http://localhost:9999/cunyworks/teacher0/update", {
-				method : "POST",
-				data : JSON.stringify(course),
-				
-					ContentType : "application/json",
-				
-				success : function(response) {
-					$(".alert-success").text(response);
-					$(".alert-success").fadeIn();
-					window.setTimeout(function(response) {
-						$(".alert-success").fadeOut();
-						$("#update").prop("disabled", false);
-					}, 3000);
-					$("form")[0].reset(); //reset form fields
-					refresh();
-				},
-				error: function() {
-					$(".alert-danger").fadeIn();
-					window.setTimeout(function(response) {
-						$(".alert-danger").fadeOut();
-						$("#update").prop("disabled", false);
-					}, 3000);
-				}
-			});
-			return false; // prevent REFRESH
-		});
-		function refresh() {
-			$.ajax("http://localhost:8090/cunyworks/teacher0/allCourses", {
-				method : "GET",
-				headers : {
-					"Accept" : "application/json"
-				},
-				success : function(response) {
-					console.log(response);
-					tablewipe();
-					tableload(response);
-				}
-			});
-		}
-		// clear table body
-		function tablewipe() {
-			$(".table tbody").empty();
-		}
-		function tableload(response) {
-			$.each(response, function(index, temp) {
-				$(".table tbody").append("<tr>");
-				$(".table tbody").append("<td>" + temp.courseId + "</td>");
-				$(".table tbody").append("<td>" + temp.name + "</td>");
-				$(".table tbody").append("<td>" + temp.subject.name + "</td>");
-				
-				$(".table tbody").append("<td>" + temp.startDate + "</td>");
-				$(".table tbody").append("<td>" + temp.endDate + "</td>");
-								$(".table tbody").append("<td>" + temp.room + "</td>");
-								$(".table tbody").append("<td>" + temp.scheduleTime + "</td>");
-				
-				$(".table tbody").append("<td>" + temp.enrollmentCapacity + "</td>");
-				$(".table tbody").append("<td>" + '<button id="modal" type="button" class="btn btn-link launch-modal" value="Modify">Modify </button>' + "</td>");
-				
-				
-				
-				$(".table tbody").append("</tr>");
-			});
-		}
-	});
-</script>
 
 </html>
