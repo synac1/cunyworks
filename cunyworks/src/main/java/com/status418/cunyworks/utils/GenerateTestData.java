@@ -1,8 +1,5 @@
 package com.status418.cunyworks.utils;
 
-import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -21,12 +18,11 @@ import com.status418.cunyworks.dao.TeacherDAO;
 
 public class GenerateTestData {
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) {
 
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-		Date start = sdf.parse("01/01/2017");
-		Date end = sdf.parse("06/31/2017");
-		Date bDay = sdf.parse("01/01/1990");
+		String start = "01/01/2017";
+		String end = "06/31/2017";
+		String bDay = "01/01/1990";
 
 		SubjectBean sub1 = new SubjectBean();
 		sub1.setName("english");
@@ -66,17 +62,15 @@ public class GenerateTestData {
 		StudentBean s1 = new StudentBean();
 		s1.setFirstName("S1First");
 		s1.setLastName("S1Last");
-		s1.setBirthday(new Date());
+		s1.setBirthday(bDay);
 		s1.setEmail("1@student.com");
 		s1.setPassword("student");
 		s1.setAddress("student 1 address");
 		s1.setPhone("123456789");
-		s1.setBirthday(bDay);
 
 		StudentBean s2 = new StudentBean();
 		s2.setFirstName("S2First");
 		s2.setLastName("S2Last");
-		s2.setBirthday(new Date());
 		s2.setEmail("2@student.com");
 		s2.setPassword("student");
 		s2.setAddress("student 2 address");
@@ -86,7 +80,6 @@ public class GenerateTestData {
 		StudentBean s3 = new StudentBean();
 		s3.setFirstName("S3First");
 		s3.setLastName("S3Last");
-		s3.setBirthday(new Date());
 		s3.setEmail("3@student.com");
 		s3.setPassword("student");
 		s3.setAddress("student 3 address");
@@ -96,7 +89,6 @@ public class GenerateTestData {
 		StudentBean s4 = new StudentBean();
 		s4.setFirstName("S4First");
 		s4.setLastName("S4Last");
-		s4.setBirthday(new Date());
 		s4.setEmail("4@student.com");
 		s4.setPassword("student");
 		s4.setAddress("student 4 address");
@@ -106,7 +98,6 @@ public class GenerateTestData {
 		StudentBean s5 = new StudentBean();
 		s5.setFirstName("S5First");
 		s5.setLastName("S5Last");
-		s5.setBirthday(new Date());
 		s5.setEmail("5@student.com");
 		s5.setPassword("student");
 		s5.setAddress("student 5 address");
@@ -170,7 +161,7 @@ public class GenerateTestData {
 		c1.setEndDate(end);
 		c1.setEnrollmentCapacity(25);
 		c1.setRoom("A1");
-		c1.setScheduleTime(new Time(System.currentTimeMillis()));
+		c1.setScheduleTime("Wed, 2:00PM - 4:00PM");
 
 		CourseBean c2 = new CourseBean();
 		c2.setCreated(new Date());
@@ -179,7 +170,7 @@ public class GenerateTestData {
 		c2.setEndDate(end);
 		c2.setEnrollmentCapacity(25);
 		c2.setRoom("A2");
-		c2.setScheduleTime(new Time(System.currentTimeMillis()));
+		c2.setScheduleTime("Wed, 2:00PM - 4:00PM");
 
 		CourseBean c3 = new CourseBean();
 		c3.setCreated(new Date());
@@ -188,7 +179,7 @@ public class GenerateTestData {
 		c3.setEndDate(end);
 		c3.setEnrollmentCapacity(25);
 		c3.setRoom("A3");
-		c3.setScheduleTime(new Time(System.currentTimeMillis()));
+		c3.setScheduleTime("Wed, 2:00PM - 4:00PM");
 
 		CourseBean c4 = new CourseBean();
 		c4.setCreated(new Date());
@@ -197,7 +188,7 @@ public class GenerateTestData {
 		c4.setEndDate(end);
 		c4.setEnrollmentCapacity(25);
 		c4.setRoom("A4");
-		c4.setScheduleTime(new Time(System.currentTimeMillis()));
+		c4.setScheduleTime("Wed, 2:00PM - 4:00PM");
 
 		CourseBean c5 = new CourseBean();
 		c5.setCreated(new Date());
@@ -206,7 +197,7 @@ public class GenerateTestData {
 		c5.setEndDate(end);
 		c5.setEnrollmentCapacity(25);
 		c5.setRoom("A5");
-		c5.setScheduleTime(new Time(System.currentTimeMillis()));
+		c5.setScheduleTime("Wed, 2:00PM - 4:00PM");
 
 		// Courses have students
 		c1.getStudents().addAll(Arrays.asList(s1, s2, s3));

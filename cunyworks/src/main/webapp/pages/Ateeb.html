@@ -9,22 +9,24 @@
 <link rel="stylesheet" media="all" href="http://localhost:9999/cunyworks/assets/css/style.css" type="text/css">
 
 <style type="text/css">
-#subjects {
-	
+.hidden {
+	display:none;
 }
+
+#subSelect{
+	text-transform: capitalize;
+}
+
 </style>
 </head>
 <body>
 
 
-	<button id="addStep1">Add New Course</button>
+	
 	<div class="container">
-		<div class="subCont">
-			<select id="subjects" name="user" size="3">
-				<option>English</option>
-				<option>Math</option>
-				<option>Placeholder</option>
-				<option>Think of Something Yourself</option>
+	<button id="addCourseButton">Add New Course</button>
+		<div id="subDiv" class="hidden">
+			<select id="subSelect">
 			</select>
 		</div>
 		<div id="courseFormDiv" class="hidden form-group">

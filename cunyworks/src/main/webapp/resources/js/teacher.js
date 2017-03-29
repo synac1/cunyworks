@@ -19,11 +19,11 @@ $(document).ready(
 				this.enrollmentCapacity = enrollmentCapacity;
 				this.name = name;
 				this.room = room;
-				this.scheduleTime = scheduleTime;
+				//this.scheduleTime = scheduleTime;
 				this.startDate = startDate;
-				this.endDate = endDate;
+				//this.endDate = endDate;
 				this.syllabus = syllabus;
-				this.subject = subject;
+				//this.subject = subject;
 			}
 
 			function clearEverything() {
@@ -43,7 +43,7 @@ $(document).ready(
 				var courseEnd = $("#courseEnd").val();
 				var courseSyllabus = null;
 				var subject = allSubjects[$("#subSelect").val()];
-
+				console.log(subject);
 				return new CourseBean(courseEC, courseName, courseRoom,
 						courseTime, courseStart, courseEnd, courseSyllabus,
 						subject);
@@ -104,7 +104,7 @@ $(document).ready(
 			$("#courseFormButton").click(function(e) {
 				var course = getCourseBeanFromForm();
 				console.log(course);
-				// addNewCourse(course);
+				addNewCourse(course);
 			})
 
 			/*

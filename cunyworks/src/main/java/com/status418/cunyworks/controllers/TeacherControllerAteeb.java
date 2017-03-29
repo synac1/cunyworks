@@ -5,10 +5,6 @@ import static com.status418.cunyworks.utils.Constants.TEACHER_HOME_PAGE;
 import static com.status418.cunyworks.utils.Constants.TEACHER_HOME_URL;
 import static com.status418.cunyworks.utils.Constants.TEACHER_SUBJECTS_URL;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.http.HttpStatus;
@@ -37,23 +33,14 @@ public class TeacherControllerAteeb {
 	@ResponseBody
 	public ResponseEntity<String> addNewCourse(@RequestBody CourseBean course) {
 
-		System.out.println(Arrays.asList(course));
+		System.out.println(course);
 		return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = TEACHER_SUBJECTS_URL, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	// public ResponseEntity<List<String>> getAllSubjects() {
 	public ResponseEntity<Set<SubjectBean>> getAllSubjects() {
 		Set<SubjectBean> subjects = new FacadeImpl().getAllSubjects();
-		/*List<String> subjectNames = new ArrayList<String>();
-		for (SubjectBean s : subjects) {
-			subjectNames.add(s.getName());
-		}
-
-		Collections.sort(subjectNames);*/
-
-		// return new ResponseEntity<List<String>>(subjectNames, HttpStatus.OK);
 		return new ResponseEntity<Set<SubjectBean>>(subjects, HttpStatus.OK);
 	}
 }
