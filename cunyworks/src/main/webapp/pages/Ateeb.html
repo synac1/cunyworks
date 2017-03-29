@@ -3,59 +3,46 @@
 <head>
 <meta charset="utf-8">
 <title>Cuny#Works</title>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-<link rel="stylesheet" media="all"
-	href="http://localhost:9999/cunyworks/assets/bootstrap/css/bootstrap.min.css"
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<link rel="stylesheet" media="all" href="http://localhost:9999/cunyworks/assets/bootstrap/css/bootstrap.min.css"
 	type="text/css">
-<link rel="stylesheet" media="all"
-	href="http://localhost:9999/cunyworks/assets/css/style.css" type="text/css">
+<link rel="stylesheet" media="all" href="http://localhost:9999/cunyworks/assets/css/style.css" type="text/css">
 
 <style type="text/css">
-.hidden {
-	display: none;
-}
-
-#subSelect {
-	text-transform: capitalize;
+#subjects {
+	
 }
 </style>
-
-
-
 </head>
 <body>
 
 
-
-	<div id="newCourseDiv">
-		<button id="addCourseButton" class="btn btn-primary btn-block">Add New Course</button>
-		<div id="subDiv" class="hidden">
-			<select id="subSelect">
+	<button id="addStep1">Add New Course</button>
+	<div class="container">
+		<div class="subCont">
+			<select id="subjects" name="user" size="3">
+				<option>English</option>
+				<option>Math</option>
+				<option>Placeholder</option>
+				<option>Think of Something Yourself</option>
 			</select>
 		</div>
 		<div id="courseFormDiv" class="hidden form-group">
 			<form id="courseForm" action="#">
 				<label for="courseName">Course Name: </label> <input id="courseName" type="text" class="form-control">
-				<label for="courseRoom">Course Room: </label> <input id="courseRoom" type="number" class="form-control">
+				<label for="courseRoom">Course Room: </label> <input id="courseRoom" type="text" class="form-control">
 				<label for="courseEC">Enrollment Capacity: </label> <input id="courseEC" type="number" class="form-control">
 				<label for="courseTime">Start Time: </label> <input id="courseTime" type="time" class="form-control">
-				<label for="courseStart">Start Date: </label> <input id="courseStart" type="date" class="form-control">
-				<label for="courseEnd">End Date: </label> <input id="courseEnd" type="date" class="form-control">
-				<label for="CourseSyllabus">Syllabus: </label> <input id="CourseSyllabus" type="file" class="form-control-file">
+				<label for="courseStart">Start Date: </label> <input id="courseStart" type="text" class="form-control">
+				<label for="courseEnd">End Date: </label> <input id="courseEnd" type="text" class="form-control">
+				<label for="CourseSyllabus">Syllabus: </label> <input id="courseSyllabus" type="file" class="form-control-file">
 				<button id="courseFormButton" class="btn btn-primary">Submit</button>
 			</form>
 		</div>
 	</div>
 
 
-
-
-
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="http://localhost:9999/cunyworks/assets/js/jquery-1.11.1.min.js"></script>
-	<script src="http://localhost:9999/cunyworks/assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="http://localhost:9999/cunyworks/assets/js/teacher.js"></script>
 </body>
 </html>
