@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity(name = "COURSES")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="courseId")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "courseId")
 public class CourseBean {
 	@Id
 	@Column(name = "COURSE_ID")
@@ -52,19 +52,18 @@ public class CourseBean {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private SubjectBean subject;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonIgnore
+	
 	private TeacherBean teacher;
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Set<TextbookBean> textbooks = new HashSet<>();
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonIgnore 
+	@JsonIgnore
 	private Set<StudentBean> students = new HashSet<>();
 
 	public CourseBean() {
 
 	}
-	
 
 	public CourseBean(String name, String room, Date startDate, Date endDate) {
 		super();
@@ -73,7 +72,6 @@ public class CourseBean {
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
-
 
 	@PrePersist
 	protected void onCreate() {
