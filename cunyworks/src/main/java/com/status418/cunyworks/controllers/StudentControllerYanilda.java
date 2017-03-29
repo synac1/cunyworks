@@ -40,6 +40,7 @@ public class StudentControllerYanilda {
 	@ResponseBody // write directly to response body.. no redirection
 	public ResponseEntity<String> enrollclass(@RequestBody StudentBean student, @RequestBody CourseBean course) {
 		//int courseId=course.getCourseId();
+	
 		Set<CourseBean> courses= student.getCourses();
 		courses.add(course);
 		student.setCourses(courses);
