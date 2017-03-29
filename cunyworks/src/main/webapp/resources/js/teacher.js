@@ -17,15 +17,11 @@ $(document).ready(
 				this.enrollmentCapacity = enrollmentCapacity;
 				this.name = name;
 				this.room = room;
-				//this.scheduleTime = scheduleTime;
+				this.scheduleTime = scheduleTime;
 				this.startDate = startDate;
-				//this.endDate = endDate;
+				this.endDate = endDate;
 				this.syllabus = syllabus;
-<<<<<<< HEAD
-				this.subject = new SubjectBean(subject);
-=======
-				//this.subject = subject;
->>>>>>> branch 'master' of https://github.com/synac1/cunyworks.git
+				this.subject = subject;
 			}
 
 			function clearEverything() {
@@ -44,13 +40,8 @@ $(document).ready(
 				var courseStart = $("#courseStart").val();
 				var courseEnd = $("#courseEnd").val();
 				var courseSyllabus = null;
-<<<<<<< HEAD
-				var subject = $("#subSelect option:selected").val();
-
-=======
 				var subject = allSubjects[$("#subSelect").val()];
 				console.log(subject);
->>>>>>> branch 'master' of https://github.com/synac1/cunyworks.git
 				return new CourseBean(courseEC, courseName, courseRoom,
 						courseTime, courseStart, courseEnd, courseSyllabus,
 						subject);
@@ -111,10 +102,7 @@ $(document).ready(
 				var course = getCourseBeanFromForm();
 				console.log(course);
 				addNewCourse(course);
-<<<<<<< HEAD
 				return false;
-=======
->>>>>>> branch 'master' of https://github.com/synac1/cunyworks.git
 			})
 
 			/*
