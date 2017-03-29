@@ -52,5 +52,5 @@ public class StudentControllerSean {
 	public void dropCoursePage() {
 
 	}
-
+	
 }
