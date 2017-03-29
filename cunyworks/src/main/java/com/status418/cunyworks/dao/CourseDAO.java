@@ -17,4 +17,6 @@ public interface CourseDAO {
 	public void delete(CourseBean course);
 
 	public Set<TextbookBean> getTextBooksByCourse(CourseBean course);
+
+	public CourseBean findById(int id);
 }

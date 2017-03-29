@@ -67,22 +67,13 @@
     </tr>
   </thead>
   <tbody>
-  	
-    <tr id="math">
-      <th scope="row">1</th>
-      <td>Math</td>
-      <td>10</td>
-      <td>2A</td>
-      <td>Wed/Thurs 4-6PM</td>
-      <td>3/24/2017</td>
-      <td>7/24/2017</td>
-      <td><a href="#">Syllabus</a></td>
-      <td><a href="#fancy" class="btn blue get-contact">Enroll</a></td>
-    </tr>
-   
   </tbody>
 </table>
 
+
+<form id="userForm" method="post" style="display: none;">
+    <input type="text" name="email" />
+</form>
 	<section class="posts">
 		
 	</section>
@@ -131,10 +122,11 @@
 	<script src="http://localhost:9999/cunyworks/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 <script type="text/javascript">
+
 $(function(){
 		//Hello
-}
-$(document).ready(function(){
+
+
 		fetchstuff();
 		
 function fetchstuff(){

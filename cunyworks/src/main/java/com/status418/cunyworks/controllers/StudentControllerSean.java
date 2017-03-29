@@ -27,7 +27,11 @@ public class StudentControllerSean {
 	@ResponseBody
 	public ResponseEntity<Set<CourseBean>> getall() {
 		Set<CourseBean> courses = new FacadeImpl().getById(1).getCourses();
+
 		System.out.println(courses);
+		for(CourseBean course: courses){
+			System.out.println(course.getTeacher());
+		}
 		return new ResponseEntity<Set<CourseBean>>(courses, HttpStatus.OK);
 	}
 
