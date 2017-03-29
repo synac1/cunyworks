@@ -9,5 +9,7 @@ public interface TeacherDAO {
 	public TeacherBean getByUsername(String username);
 
 	public void saveOrUpdate(TeacherBean teacher);
+	
+	public void merge(TeacherBean teacher);
 
 }

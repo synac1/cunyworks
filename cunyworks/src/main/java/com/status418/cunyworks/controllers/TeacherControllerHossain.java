@@ -45,17 +45,24 @@ public class TeacherControllerHossain {
 		
 		FacadeImpl facade = new FacadeImpl();
 		CourseBean cbean = 	facade.getCourseById(course.getCourseId());
-		
-		System.out.println(course);
+		cbean.setName(course.getName());
+		cbean.setRoom(course.getRoom());
+		cbean.setTeacher(teacher);
+		cbean.setStartDate(course.getStartDate().toString());
+
+		cbean.setEndDate(course.getEndDate().toString());
+		cbean.setEnrollmentCapacity(course.getEnrollmentCapacity());
+		//cbean.setStartDate(course.getStartDate());
+		System.out.println(cbean);
 		System.out.println(course.getSubject());
 		
 		
-		facade.saveOrUpdate(course);
+		facade.merge(cbean);
 		Set<CourseBean> courses = teacher.getCourses();
 		
-		courses.add(course);
+		courses.add(cbean);
 		teacher.setCourses(courses);
-				facade.saveOrUpdate(teacher);
+				facade.merge(teacher);
 		
 		
 		return new  ResponseEntity<String>("Success!",HttpStatus.OK);

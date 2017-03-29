@@ -35,5 +35,12 @@ public class TeacherDAOImpl implements TeacherDAO {
 	public void saveOrUpdate(TeacherBean teacher) {
 		sessionFactory.getCurrentSession().saveOrUpdate(teacher);
 	}
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
+
+	@Override
+	public void merge(TeacherBean teacher) {
+		sessionFactory.getCurrentSession().merge(teacher);
+		
+	}
 
 }

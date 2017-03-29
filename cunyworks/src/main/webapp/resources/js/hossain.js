@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 					this.name = name;
 					this.room = room;
-					this.subject = subject;
+					//this.subject = subject;
 
 					//this.scheduleTime = scheduleTime;
 					this.startDate = startDate;
@@ -30,7 +30,7 @@ $(document).ready(function() {
 			var name = $("#course").val();
 			var room = $("#room").val();
 			
-			var subject= $("#subject").val();
+			//var subject= $("#subject").val();
 
 			var startDate = $("#startDate").val();
 			var endDate = $("#endDate").val();
@@ -53,7 +53,7 @@ $(document).ready(function() {
 						$(".alert-success").fadeOut();
 						$("#update").prop("disabled", false);
 					}, 3000);
-					$("form")[0].reset(); //reset form fields
+					$("#myModal").trigger("reset"); //reset form fields
 					refresh();
 				},
 				error: function() {

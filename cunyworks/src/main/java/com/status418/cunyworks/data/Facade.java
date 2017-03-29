@@ -47,4 +47,6 @@ public interface Facade {
 
 	public void merge(CourseBean course);
 
+	public void merge(TeacherBean teacher);
+
 }
