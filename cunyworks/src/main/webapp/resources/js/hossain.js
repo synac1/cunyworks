@@ -8,18 +8,19 @@ $(document).ready(function() {
 
 					this.name = name;
 					this.room = room;
+					this.subject = subject;
+
 					//this.scheduleTime = scheduleTime;
 					this.startDate = startDate;
 					this.endDate = endDate;
 					//this.syllabus = syllabus;
 					//this.created = created;
-					//this.subject = subject;
 					//this.teacher = teacher;
 					this.enrollmentCapacity = enrollmentCapacity;
 				}
 
 				
-			
+			//var allCourses;
 		$("#update").click(function() {
 
 		
@@ -29,13 +30,15 @@ $(document).ready(function() {
 			var name = $("#course").val();
 			var room = $("#room").val();
 			
-			//var subject= $("#subject").val();
+			var subject= $("#subject").val();
 
 			var startDate = $("#startDate").val();
 			var endDate = $("#endDate").val();
 			var enrollmentCapacity = $("#capacity").val();
 			var courseBean = new CourseBean(courseId,name,room,startDate,endDate,enrollmentCapacity);
 
+			//allCourses[0].startDate = ;;;;
+			
 			console.log(course);
 			$.ajax("http://localhost:9999/cunyworks/teacher0/update", {
 				method : "POST",
@@ -70,6 +73,7 @@ $(document).ready(function() {
 					"Accept" : "application/json"
 				},
 				success : function(response) {
+					allCourses = response;
 					console.log(response);
 					tablewipe();
 					tableload(response);
@@ -113,6 +117,7 @@ $(document).ready(function() {
 		}
 		function populate(frm,response){
 		$.each(response,function(key,value){
+			//$("#formName").addAttribute("id").val=key //
 			$('#courseId',frm ).val(value.courseId);
 			
 		    $('#course',frm ).val(value.name);
