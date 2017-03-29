@@ -1,7 +1,8 @@
 package com.status418.cunyworks.beans;
 
 import java.sql.Blob;
-import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -39,10 +40,19 @@ public class CourseBean {
 	@Column(name = "COURSE_ROOM")
 	private String room;
 	@Column(name = "COURSE_SCHEDULE_TIME")
+<<<<<<< HEAD
 	private Time scheduleTime;
 	@Column(name = "COURSE_START_DATE")
 	private Date startDate;
 	@Column(name = "COURSE_END_DATE")
+=======
+	private String scheduleTime;
+	@Column(name = "COURSE_START_DATE")
+	@Temporal(TemporalType.DATE)
+	private Date startDate;
+	@Column(name = "COURSE_END_DATE")
+	@Temporal(TemporalType.DATE)
+>>>>>>> branch 'master' of https://github.com/synac1/cunyworks.git
 	private Date endDate;
 	@Column(name = "COURSE_SYLLABUS")
 	private Blob syllabus;
@@ -64,8 +74,12 @@ public class CourseBean {
 	public CourseBean() {
 
 	}
+<<<<<<< HEAD
 	
 
+=======
+
+>>>>>>> branch 'master' of https://github.com/synac1/cunyworks.git
 	public CourseBean(String name, String room, Date startDate, Date endDate) {
 		super();
 		this.name = name;
@@ -88,7 +102,7 @@ public class CourseBean {
 		created = new Date();
 	}
 
-	public CourseBean(int courseId, int enrollmentCapacity, String name, String room, Time scheduleTime, Date startDate,
+	public CourseBean(int courseId, int enrollmentCapacity, String name, String room, String scheduleTime, Date startDate,
 			Date endDate, Blob syllabus, Date created, SubjectBean subject, TeacherBean teacher,
 			Set<TextbookBean> textbooks, Set<StudentBean> students) {
 		super();
@@ -139,11 +153,11 @@ public class CourseBean {
 		this.room = room;
 	}
 
-	public Time getScheduleTime() {
+	public String getScheduleTime() {
 		return scheduleTime;
 	}
 
-	public void setScheduleTime(Time scheduleTime) {
+	public void setScheduleTime(String scheduleTime) {
 		this.scheduleTime = scheduleTime;
 	}
 
@@ -151,16 +165,26 @@ public class CourseBean {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setStartDate(String startDate) {
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		try {
+			this.startDate = sdf.parse(startDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
-
+	
 	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setEndDate(String endDate) {
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		try {
+			this.endDate = sdf.parse(endDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public Blob getSyllabus() {
