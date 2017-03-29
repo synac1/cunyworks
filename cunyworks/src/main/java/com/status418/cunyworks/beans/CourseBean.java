@@ -154,7 +154,7 @@ public class CourseBean {
 	}
 
 	public void setStartDate(String startDate) {
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			this.startDate = sdf.parse(startDate);
 		} catch (ParseException e) {
@@ -167,7 +167,7 @@ public class CourseBean {
 	}
 
 	public void setEndDate(String endDate) {
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			this.endDate = sdf.parse(endDate);
 		} catch (ParseException e) {

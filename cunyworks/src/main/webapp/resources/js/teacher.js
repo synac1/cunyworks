@@ -7,7 +7,8 @@ $(document).ready(
 			var animationSpeed = 1200;
 			var populated = false;
 			var selectedSubject = "";
-
+			var allSubjects;
+			
 			function SubjectBean(name) {
 				this.name = name;
 			}
@@ -41,7 +42,7 @@ $(document).ready(
 				var courseEnd = $("#courseEnd").val();
 				var courseSyllabus = null;
 				var subject = allSubjects[$("#subSelect").val()];
-				console.log(subject);
+				
 				return new CourseBean(courseEC, courseName, courseRoom,
 						courseTime, courseStart, courseEnd, courseSyllabus,
 						subject);
@@ -54,11 +55,12 @@ $(document).ready(
 						"Content-Type" : "application/json"
 					},
 					success : function(response) {
+						allSubjects = response;
 						console.log(response);
 						$.each(response, function(index, value) {
 							$("#subSelect").append($("<option/>", {
-								value : value,
-								text : value
+								value : value.subjectId,
+								text : value.name
 							}));
 						});
 						$("#subDiv").toggle(animationSpeed);

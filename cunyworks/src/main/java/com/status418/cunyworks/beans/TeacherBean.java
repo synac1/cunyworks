@@ -1,5 +1,7 @@
 package com.status418.cunyworks.beans;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -121,8 +123,13 @@ public class TeacherBean {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
+	public void setBirthday(String birthday) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			this.birthday = sdf.parse(birthday);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public Date getCreated() {
