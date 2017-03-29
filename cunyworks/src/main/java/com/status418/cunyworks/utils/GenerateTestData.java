@@ -20,9 +20,9 @@ public class GenerateTestData {
 
 	public static void main(String[] args) {
 
-		String start = "01/01/2017";
-		String end = "06/31/2017";
-		String bDay = "01/01/1990";
+		String start = "2017-01-01";
+		String end = "2017-06-31";
+		String bDay = "1990-06-01";
 
 		SubjectBean sub1 = new SubjectBean();
 		sub1.setName("english");
@@ -107,7 +107,7 @@ public class GenerateTestData {
 		TeacherBean t1 = new TeacherBean();
 		t1.setFirstName("t1First");
 		t1.setLastName("t1Last");
-		t1.setBirthday(new Date());
+		t1.setBirthday(bDay);
 		t1.setEmail("1@teacher.com");
 		t1.setPassword("teacher");
 		t1.setAddress("teacher 1 address");
@@ -117,7 +117,7 @@ public class GenerateTestData {
 		TeacherBean t2 = new TeacherBean();
 		t2.setFirstName("t2First");
 		t2.setLastName("t2Last");
-		t2.setBirthday(new Date());
+		t2.setBirthday(bDay);
 		t2.setEmail("2@teacher.com");
 		t2.setPassword("teacher");
 		t2.setAddress("teacher 2 address");
@@ -127,7 +127,7 @@ public class GenerateTestData {
 		TeacherBean t3 = new TeacherBean();
 		t3.setFirstName("t3First");
 		t3.setLastName("t3Last");
-		t3.setBirthday(new Date());
+		t3.setBirthday(bDay);
 		t3.setEmail("3@teacher.com");
 		t3.setPassword("teacher");
 		t3.setAddress("teacher 3 address");
@@ -137,7 +137,7 @@ public class GenerateTestData {
 		TeacherBean t4 = new TeacherBean();
 		t4.setFirstName("t4First");
 		t4.setLastName("t4Last");
-		t4.setBirthday(new Date());
+		t4.setBirthday(bDay);
 		t4.setEmail("4@teacher.com");
 		t4.setPassword("teacher");
 		t4.setAddress("teacher 4 address");
@@ -147,7 +147,7 @@ public class GenerateTestData {
 		TeacherBean t5 = new TeacherBean();
 		t5.setFirstName("t5First");
 		t5.setLastName("t5Last");
-		t5.setBirthday(new Date());
+		t5.setBirthday(bDay);
 		t5.setEmail("5@teacher.com");
 		t5.setPassword("teacher");
 		t5.setAddress("teacher 5 address");

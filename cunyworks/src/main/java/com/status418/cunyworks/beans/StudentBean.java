@@ -122,7 +122,7 @@ public class StudentBean {
 	}
 
 	public void setBirthday(String birthday) {
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			this.birthday = sdf.parse(birthday);
 		} catch (ParseException e) {
