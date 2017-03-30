@@ -1,5 +1,6 @@
 package com.status418.cunyworks.controllers;
 
+import java.text.SimpleDateFormat;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,10 @@ public class TeacherControllerHossain {
 		return "Hossain.html";
 	}
 
-	@RequestMapping(value = "getmodal", method = RequestMethod.GET)
-	public String getModal() {
-		return "hossainmodal.html";
-	}
+//	@RequestMapping(value = "getmodal", method = RequestMethod.GET)
+//	public String getModal() {
+//		return "hossainmodal.html";
+//	}
 
 	@RequestMapping(value = "allCourses", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
@@ -59,9 +60,10 @@ public class TeacherControllerHossain {
 		cbean.setTeacher(teacher);
 		cbean.setStartDate(course.getStartDate().toString());
 
-		cbean.setEndDate(course.getEndDate().toString());
+		cbean.copyEndDate(course.getEndDate());
+		cbean.copyStartDate(course.getStartDate());
 		cbean.setEnrollmentCapacity(course.getEnrollmentCapacity());
-		// cbean.setStartDate(course.getStartDate());
+		//cbean.setStartDate(new SimpleDateFormat("yyyy-MM-dd").format(course.getStartDate()));
 		System.out.println(cbean);
 		System.out.println(course.getSubject());
 

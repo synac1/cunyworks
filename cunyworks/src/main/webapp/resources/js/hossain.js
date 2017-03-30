@@ -73,12 +73,14 @@ $(document).ready(function() {
 					"Accept" : "application/json"
 				},
 				success : function(response) {
-					allCourses = response;
+					
 					console.log(response);
 					tablewipe();
-					tableload(response);
-					//loadForm(response);
 					populate("#myForm",response);
+
+					tableload(response);
+					
+					//loadForm(response);
 				}
 			});
 			
@@ -112,6 +114,7 @@ $(document).ready(function() {
 
 				
 				$(".table tbody").append("</tr>");
+
 				
 
 				
@@ -119,8 +122,15 @@ $(document).ready(function() {
 			
 			
 		}
-	
+//		function loadDate(){
+//			
+//			$('#myTable > tbody  > tr').each(populate("myModal",response));
+//
+//		}
+		var rowNum = $('#myTable tbody').children().length;
+
 		function populate(frm,response){
+
 		$.each(response,function(key,value){
 			//$("#formName").addAttribute("id").val=key //
 			$('#courseId',frm ).val(value.courseId);

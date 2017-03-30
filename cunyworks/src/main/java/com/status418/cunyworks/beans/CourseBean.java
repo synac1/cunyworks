@@ -247,6 +247,14 @@ public class CourseBean {
 	public void removeStudent(StudentBean student) {
 		this.students.remove(student);
 	}
+	public void copyStartDate(Date date){
+		this.startDate = date;
+		
+	}
+	public void copyEndDate(Date date){
+		this.endDate = date;
+		
+	}
 
 	@Override
 	public String toString() {
