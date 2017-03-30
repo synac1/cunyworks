@@ -162,6 +162,7 @@ public class GenerateTestData {
 		c1.setEnrollmentCapacity(25);
 		c1.setRoom("A1");
 		c1.setScheduleTime("Wed, 2:00PM - 4:00PM");
+		c1.setDescription("This is Description 1");
 
 		CourseBean c2 = new CourseBean();
 		c2.setCreated(new Date());
@@ -171,6 +172,7 @@ public class GenerateTestData {
 		c2.setEnrollmentCapacity(25);
 		c2.setRoom("A2");
 		c2.setScheduleTime("Wed, 2:00PM - 4:00PM");
+		c2.setDescription("This is Description 2");
 
 		CourseBean c3 = new CourseBean();
 		c3.setCreated(new Date());
@@ -180,6 +182,7 @@ public class GenerateTestData {
 		c3.setEnrollmentCapacity(25);
 		c3.setRoom("A3");
 		c3.setScheduleTime("Wed, 2:00PM - 4:00PM");
+		c3.setDescription("This is Description 3");
 
 		CourseBean c4 = new CourseBean();
 		c4.setCreated(new Date());
@@ -189,6 +192,7 @@ public class GenerateTestData {
 		c4.setEnrollmentCapacity(25);
 		c4.setRoom("A4");
 		c4.setScheduleTime("Wed, 2:00PM - 4:00PM");
+		c4.setDescription("This is Description 4");
 
 		CourseBean c5 = new CourseBean();
 		c5.setCreated(new Date());
@@ -198,6 +202,7 @@ public class GenerateTestData {
 		c5.setEnrollmentCapacity(25);
 		c5.setRoom("A5");
 		c5.setScheduleTime("Wed, 2:00PM - 4:00PM");
+		c5.setDescription("This is Description 5");
 
 		// Courses have students
 		c1.getStudents().addAll(Arrays.asList(s1, s2, s3));
@@ -230,18 +235,17 @@ public class GenerateTestData {
 
 
 		// teachers have courses and vice versa
-		t1.getCourses().add(c1);
-		t1.getCourses().add(c2);
-		t1.getCourses().add(c3);
-		
+		t1.addCourse(c1);
+		t1.addCourse(c2);
+		t1.addCourse(c3);
 //		t2.getCourses().add(c2);
 //		t3.getCourses().add(c3);
-//		t4.getCourses().add(c4);
-//		t5.getCourses().add(c5);
-//		
+		t4.addCourse(c4);
+		t5.addCourse(c5);
+	
 		c1.setTeacher(t1);
-		c2.setTeacher(t2);
-		c3.setTeacher(t3);
+		c2.setTeacher(t1);
+		c3.setTeacher(t1);
 		c4.setTeacher(t4);
 		c5.setTeacher(t5);
 		
