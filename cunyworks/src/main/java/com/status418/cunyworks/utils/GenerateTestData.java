@@ -231,11 +231,14 @@ public class GenerateTestData {
 
 		// teachers have courses and vice versa
 		t1.getCourses().add(c1);
-		t2.getCourses().add(c2);
-		t3.getCourses().add(c3);
-		t4.getCourses().add(c4);
-		t5.getCourses().add(c5);
+		t1.getCourses().add(c2);
+		t1.getCourses().add(c3);
 		
+//		t2.getCourses().add(c2);
+//		t3.getCourses().add(c3);
+//		t4.getCourses().add(c4);
+//		t5.getCourses().add(c5);
+//		
 		c1.setTeacher(t1);
 		c2.setTeacher(t2);
 		c3.setTeacher(t3);

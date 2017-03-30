@@ -54,6 +54,7 @@ public class TeacherBean {
 	@JsonIgnore
 	private String password;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Set<CourseBean> courses = new HashSet<>();
 
 	public TeacherBean() {

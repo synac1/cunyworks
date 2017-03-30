@@ -78,7 +78,7 @@ $(document).ready(function() {
 					tablewipe();
 					tableload(response);
 					//loadForm(response);
-					populate("#myForm",response)
+					populate("#myForm",response);
 				}
 			});
 			
@@ -94,6 +94,7 @@ $(document).ready(function() {
 		function tableload(response) {
 		
 			$.each(response, function(index, temp) {
+
 				$(".table tbody").append("<tr>");
 				$(".table tbody").append("<td>" + temp.courseId + "</td>");
 				$(".table tbody").append("<td>" + temp.name + "</td>");
@@ -107,14 +108,18 @@ $(document).ready(function() {
 				$(".table tbody").append("<td>" + temp.enrollmentCapacity + "</td>");
 				$(".table tbody").append("<td>" + '<a href="#myModal" class="btn btn-lg btn-primary" data-toggle="modal">Modify</a>' + "</td>");
 				
-				
+			
+
 				
 				$(".table tbody").append("</tr>");
+				
+
 				
 			});
 			
 			
 		}
+	
 		function populate(frm,response){
 		$.each(response,function(key,value){
 			//$("#formName").addAttribute("id").val=key //
