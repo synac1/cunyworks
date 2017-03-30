@@ -57,6 +57,7 @@ public class CourseBean {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private SubjectBean subject;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonIgnore
 	private TeacherBean teacher;
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonIgnore
@@ -230,16 +231,6 @@ public class CourseBean {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	@JsonIgnore
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	@JsonIgnore
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
 	}
 
 	public void addTextbook(TextbookBean textbook) {
