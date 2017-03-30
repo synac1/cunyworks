@@ -1,8 +1,8 @@
 package com.status418.cunyworks.controllers;
 
-import java.io.IOException;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.HttpStatus;
@@ -18,13 +18,19 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.status418.cunyworks.beans.CourseBean;
 import com.status418.cunyworks.beans.StudentBean;
-import com.status418.cunyworks.dao.CourseDAOImpl;
 import com.status418.cunyworks.dao.StudentDAOImpl;
 import com.status418.cunyworks.data.FacadeImpl;
 
 @Controller
 @RequestMapping(value = "student")
 public class StudentControllerYanilda {
+
+	@Autowired
+	private FacadeImpl facadeImpl;
+
+	public void setFacadeImpl(FacadeImpl facadeImpl) {
+		this.facadeImpl = facadeImpl;
+	}
 
 	@RequestMapping(value = "/enroll", method = RequestMethod.GET)
 	public String HomePage1() {
@@ -35,7 +41,7 @@ public class StudentControllerYanilda {
 	@RequestMapping(value = "new_courses", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Set<CourseBean>> getallCourses() {
-		Set<CourseBean> courses = new FacadeImpl().getAllCourses();
+		Set<CourseBean> courses = facadeImpl.getAllCourses();
 		System.out.println(courses);
 		return new ResponseEntity<Set<CourseBean>>(courses, HttpStatus.OK);
 	}
@@ -51,19 +57,17 @@ public class StudentControllerYanilda {
 			int courseId = mapper.convertValue(node.get("courseN"), int.class);
 			System.out.println(studentId + "," + courseId);
 
-			FacadeImpl fimpl = new FacadeImpl();
-			StudentBean student = fimpl.getStudentById(studentId);
-			CourseBean course = fimpl.getCourseById(courseId);
+			StudentBean student = facadeImpl.getStudentById(studentId);
+			CourseBean course = facadeImpl.getCourseById(courseId);
 
 			student.getCourses().add(course);
 			course.getStudents().add(student);
 
-			fimpl.merge(course);
-		
+			facadeImpl.merge(course);
+
 			System.out.println(student.getCourses().size());
 			System.out.println(str);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -77,11 +81,7 @@ public class StudentControllerYanilda {
 		Set<CourseBean> courses = student.getCourses();
 		courses.remove(course);
 		student.setCourses(courses);
-
-		ApplicationContext contxt = new ClassPathXmlApplicationContext("/WEB_INF/beanbag.xml");
-		contxt.getBean(StudentDAOImpl.class).saveOrUpdate(student);
-		;
-
+		facadeImpl.saveOrUpdate(student);
 		return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
 	}
 

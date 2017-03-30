@@ -2,6 +2,7 @@ package com.status418.cunyworks.controllers;
 
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,13 @@ import com.status418.cunyworks.data.FacadeImpl;
 @RequestMapping(value = "student1")
 public class StudentControllerSean {
 
+	@Autowired
+	private FacadeImpl facadeImpl;
+	
+	public void setFacadeImpl(FacadeImpl facadeImpl) {
+		this.facadeImpl = facadeImpl;
+	}
+
 	@RequestMapping(value = "/student", method = RequestMethod.GET)
 	public String HomePage() {
 		return "Sean.html";
@@ -26,7 +34,7 @@ public class StudentControllerSean {
 	@RequestMapping(value = "studentcourses", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Set<CourseBean>> getAllStudentCourses() {
-		Set<CourseBean> courses = new FacadeImpl().getStudentById(1).getCourses();
+		Set<CourseBean> courses = facadeImpl.getStudentById(1).getCourses();
 		System.out.println("student courses");
 		System.out.println(courses);
 		return new ResponseEntity<Set<CourseBean>>(courses, HttpStatus.OK);
@@ -35,7 +43,7 @@ public class StudentControllerSean {
 	@RequestMapping(value = "courses", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Set<CourseBean>> getallCourses() {
-		Set<CourseBean> courses = new FacadeImpl().getAllCourses();
+		Set<CourseBean> courses = facadeImpl.getAllCourses();
 		System.out.println("Courses");
 		System.out.println(courses);
 		return new ResponseEntity<Set<CourseBean>>(courses, HttpStatus.OK);

@@ -7,6 +7,7 @@ import static com.status418.cunyworks.utils.Constants.TEACHER_SUBJECTS_URL;
 
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,14 @@ import com.status418.cunyworks.data.FacadeImpl;
 @Controller
 @RequestMapping(value = "teacher")
 public class TeacherControllerAteeb {
-
+	
+	@Autowired
+	private FacadeImpl facadeImpl;
+	
+	public void setFacadeImpl(FacadeImpl facadeImpl) {
+		this.facadeImpl = facadeImpl;
+	}
+	
 	@RequestMapping(value = TEACHER_HOME_URL, method = RequestMethod.GET)
 	public String home() {
 		return TEACHER_HOME_PAGE;
@@ -33,14 +41,14 @@ public class TeacherControllerAteeb {
 	@ResponseBody
 	public ResponseEntity<String> addNewCourse(@RequestBody CourseBean course) {
 		course.getSubject().addCourse(course);
-		new FacadeImpl().saveOrUpdate(course);
+		facadeImpl.saveOrUpdate(course);
 		return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = TEACHER_SUBJECTS_URL, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Set<SubjectBean>> getAllSubjects() {
-		Set<SubjectBean> subjects = new FacadeImpl().getAllSubjects();
+		Set<SubjectBean> subjects = facadeImpl.getAllSubjects();
 		return new ResponseEntity<Set<SubjectBean>>(subjects, HttpStatus.OK);
 	}
 }

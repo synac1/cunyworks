@@ -2,6 +2,7 @@ package com.status418.cunyworks.controllers;
 
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +19,19 @@ import com.status418.cunyworks.data.FacadeImpl;
 @Controller
 @RequestMapping(value = "teacher0")
 public class TeacherControllerHossain {
+
+	@Autowired
+	private FacadeImpl facadeImpl;
+
+	public void setFacadeImpl(FacadeImpl facadeImpl) {
+		this.facadeImpl = facadeImpl;
+	}
+
 	@RequestMapping(value = "home", method = RequestMethod.GET)
 	public String home() {
 		return "Hossain.html";
 	}
+
 	@RequestMapping(value = "getmodal", method = RequestMethod.GET)
 	public String getModal() {
 		return "hossainmodal.html";
@@ -31,20 +41,19 @@ public class TeacherControllerHossain {
 	@ResponseBody
 	public ResponseEntity<Set<CourseBean>> getAllCourses() {
 
-		TeacherBean teacher = new FacadeImpl().getTeacherById(1);
-	System.out.println(teacher);
+		TeacherBean teacher = facadeImpl.getTeacherById(1);
+		System.out.println(teacher);
 		Set<CourseBean> allCourses = teacher.getCourses();
-		//System.out.println(allCourses.iterator().next().getSubject().getName());
+		// System.out.println(allCourses.iterator().next().getSubject().getName());
 		return new ResponseEntity<Set<CourseBean>>(allCourses, HttpStatus.OK);
-		
 	}
-	@RequestMapping(value="update",method=RequestMethod.POST, consumes= MediaType.APPLICATION_JSON_VALUE)
+
+	@RequestMapping(value = "update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<String> update(@RequestBody CourseBean course){
-		TeacherBean teacher = new FacadeImpl().getTeacherById(1);
-		
-		FacadeImpl facade = new FacadeImpl();
-		CourseBean cbean = 	facade.getCourseById(course.getCourseId());
+	public ResponseEntity<String> update(@RequestBody CourseBean course) {
+		TeacherBean teacher = facadeImpl.getTeacherById(1);
+
+		CourseBean cbean = facadeImpl.getCourseById(course.getCourseId());
 		cbean.setName(course.getName());
 		cbean.setRoom(course.getRoom());
 		cbean.setTeacher(teacher);
@@ -52,32 +61,26 @@ public class TeacherControllerHossain {
 
 		cbean.setEndDate(course.getEndDate().toString());
 		cbean.setEnrollmentCapacity(course.getEnrollmentCapacity());
-		//cbean.setStartDate(course.getStartDate());
+		// cbean.setStartDate(course.getStartDate());
 		System.out.println(cbean);
 		System.out.println(course.getSubject());
-		
-		
-		facade.merge(cbean);
+
+		facadeImpl.merge(cbean);
 		Set<CourseBean> courses = teacher.getCourses();
-		
+
 		courses.add(cbean);
 		teacher.setCourses(courses);
-				facade.merge(teacher);
-		
-		
-		return new  ResponseEntity<String>("Success!",HttpStatus.OK);
-		
-		
+		facadeImpl.merge(teacher);
+
+		return new ResponseEntity<String>("Success!", HttpStatus.OK);
 	}
-	@RequestMapping(value="teacherId",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+
+	@RequestMapping(value = "teacherId", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<TeacherBean> findTeacherbyId(int teacherId){
-		TeacherBean teacher = new FacadeImpl().getTeacherById(1);
-		
+	public ResponseEntity<TeacherBean> findTeacherbyId(int teacherId) {
+		TeacherBean teacher = facadeImpl.getTeacherById(1);
 		System.out.println(teacher);
-		
-		return new ResponseEntity<TeacherBean>(teacher,HttpStatus.OK);
-		
+		return new ResponseEntity<TeacherBean>(teacher, HttpStatus.OK);
 	}
 
 }

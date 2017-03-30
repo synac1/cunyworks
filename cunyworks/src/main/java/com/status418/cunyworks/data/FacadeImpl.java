@@ -2,9 +2,6 @@ package com.status418.cunyworks.data;
 
 import java.util.Set;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import com.status418.cunyworks.beans.CourseBean;
 import com.status418.cunyworks.beans.StudentBean;
 import com.status418.cunyworks.beans.SubjectBean;
@@ -20,21 +17,37 @@ public class FacadeImpl implements Facade {
 	private StudentDAO studentDao;
 	private TeacherDAO teacherDao;
 	private SubjectDAO subjectDao;
-	private static ApplicationContext context = new ClassPathXmlApplicationContext("dao-beans.xml");
+	/*private static ApplicationContext context = new ClassPathXmlApplicationContext("dao-beans.xml");
 
 	public FacadeImpl() {
 		courseDao = context.getBean(CourseDAO.class);
 		studentDao = context.getBean(StudentDAO.class);
 		teacherDao = context.getBean(TeacherDAO.class);
 		subjectDao = context.getBean(SubjectDAO.class);
+	}*/
+	
+	public void setCourseDao(CourseDAO courseDao) {
+		this.courseDao = courseDao;
 	}
 
+	public void setStudentDao(StudentDAO studentDao) {
+		this.studentDao = studentDao;
+	}
+
+	public void setTeacherDao(TeacherDAO teacherDao) {
+		this.teacherDao = teacherDao;
+	}
+
+	public void setSubjectDao(SubjectDAO subjectDao) {
+		this.subjectDao = subjectDao;
+	}
+	
 	// CourseDAO Methods
 	@Override
 	public Set<CourseBean> getAllCourses() {
 		return courseDao.getAll();
 	}
-
+	
 	@Override
 	public Set<StudentBean> getAllStudentsByCourse(CourseBean course) {
 		return courseDao.getAllStudentsByCourse(course);
