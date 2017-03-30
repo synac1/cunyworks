@@ -16,4 +16,8 @@ public interface SubjectDAO {
 
 	public Set<CourseBean> getAllCoursesBySubject(String subjectName);
 
+	public SubjectBean getById(int id);
+
+	public void merge(SubjectBean subject);
+
 }

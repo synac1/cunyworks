@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity(name = "COURSES")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="courseId")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "courseId")
 public class CourseBean {
 	@Id
 	@Column(name = "COURSE_ID")
@@ -49,19 +49,20 @@ public class CourseBean {
 	private Date endDate;
 	@Column(name = "COURSE_SYLLABUS")
 	private Blob syllabus;
+	@Column(name = "COURSE_DESCRIPTION")
+	private String description;
 	@Column(name = "COURSE_CREATED")
 	@Temporal(TemporalType.DATE)
 	private Date created;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private SubjectBean subject;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	
 	private TeacherBean teacher;
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Set<TextbookBean> textbooks = new HashSet<>();
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonIgnore 
+	@JsonIgnore
 	private Set<StudentBean> students = new HashSet<>();
 
 	public CourseBean() {
@@ -75,7 +76,8 @@ public class CourseBean {
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
-	public CourseBean(int courseId,String name, String room, Date startDate, Date endDate) {
+
+	public CourseBean(int courseId, String name, String room, Date startDate, Date endDate) {
 		super();
 		this.courseId = courseId;
 		this.name = name;
@@ -84,14 +86,13 @@ public class CourseBean {
 		this.endDate = endDate;
 	}
 
-
 	@PrePersist
 	protected void onCreate() {
 		created = new Date();
 	}
 
-	public CourseBean(int courseId, int enrollmentCapacity, String name, String room, String scheduleTime, Date startDate,
-			Date endDate, Blob syllabus, Date created, SubjectBean subject, TeacherBean teacher,
+	public CourseBean(int courseId, int enrollmentCapacity, String name, String room, String scheduleTime,
+			Date startDate, Date endDate, Blob syllabus, Date created, SubjectBean subject, TeacherBean teacher,
 			Set<TextbookBean> textbooks, Set<StudentBean> students) {
 		super();
 		this.courseId = courseId;
@@ -161,7 +162,7 @@ public class CourseBean {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Date getEndDate() {
 		return endDate;
 	}
@@ -223,11 +224,46 @@ public class CourseBean {
 		this.students = students;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@JsonIgnore
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	@JsonIgnore
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public void addTextbook(TextbookBean textbook) {
+		this.textbooks.add(textbook);
+	}
+
+	public void removeTextbook(TextbookBean textbook) {
+		this.textbooks.remove(textbook);
+	}
+
+	public void addStudent(StudentBean student) {
+		this.students.add(student);
+	}
+
+	public void removeStudent(StudentBean student) {
+		this.students.remove(student);
+	}
+
 	@Override
 	public String toString() {
 		return "CourseBean [courseId=" + courseId + ", enrollmentCapacity=" + enrollmentCapacity + ", name=" + name
 				+ ", room=" + room + ", scheduleTime=" + scheduleTime + ", startDate=" + startDate + ", endDate="
-				+ endDate + ", syllabus=" + syllabus + ", created=" + created + "]";
+				+ endDate + ", syllabus=" + syllabus + ", description=" + description + ", created=" + created
+				+ ", subject=" + subject + "]";
 	}
 
 }

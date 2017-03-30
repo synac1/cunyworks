@@ -35,7 +35,7 @@ public class StudentControllerYanilda {
 	@RequestMapping(value = "new_courses", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Set<CourseBean>> getallCourses() {
-		Set<CourseBean> courses = new FacadeImpl().getAllCourse();
+		Set<CourseBean> courses = new FacadeImpl().getAllCourses();
 		System.out.println(courses);
 		return new ResponseEntity<Set<CourseBean>>(courses, HttpStatus.OK);
 	}
@@ -52,7 +52,7 @@ public class StudentControllerYanilda {
 			System.out.println(studentId + "," + courseId);
 
 			FacadeImpl fimpl = new FacadeImpl();
-			StudentBean student = fimpl.getById(studentId);
+			StudentBean student = fimpl.getStudentById(studentId);
 			CourseBean course = fimpl.getCourseById(courseId);
 
 			student.getCourses().add(course);

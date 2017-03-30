@@ -1,5 +1,47 @@
 $(document).ready(
 		function() {
+
+			// override jquery validate plugin defaults
+			$.validator.setDefaults({
+				highlight : function(element) {
+					$(element).closest(".form-group").addClass("has-error");
+				},
+				unhighlight : function(element) {
+					$(element).closest(".form-group").removeClass("has-error");
+				},
+				errorElement : "span",
+				errorClass : "help-block",
+				errorPlacement : function(error, element) {
+					if (element.parent(".input-group").length) {
+						error.insertAfter(element.parent());
+					} else {
+						error.insertAfter(element);
+					}
+				}
+			});
+
+			// Input Validation
+			$("#courseForm").validate({ // initialize the jQuery validation
+				// plug-in
+				rules : {
+					courseName : {
+						required : true
+					},
+					courseRoom : {
+						required : true
+					},
+					courseEC : {
+						required : true
+					},
+					groupDays : {
+						required : true
+					}
+				},
+				messages : {
+
+				}
+			});
+
 			// required to get jQuery functions to work properly with CSS
 			$(".hidden").hide().removeClass("hidden");
 
@@ -8,7 +50,7 @@ $(document).ready(
 			var populated = false;
 			var selectedSubject = "";
 			var allSubjects;
-			
+
 			function SubjectBean(name) {
 				this.name = name;
 			}
@@ -26,7 +68,6 @@ $(document).ready(
 			}
 
 			function clearEverything() {
-				$("#subDiv").hide();
 				$("#courseFormDiv").hide();
 
 				$("#subSelect").html("");
@@ -37,12 +78,22 @@ $(document).ready(
 				var courseName = $("#courseName").val();
 				var courseRoom = $("#courseRoom").val();
 				var courseEC = $("#courseEC").val();
-				var courseTime = $("#courseTime").val();
+
+				var courseTime = $("#courseStartTime").val() + " - "
+						+ $("#courseEndTime").val();
+				var checkboxValues = $("input[name=groupDays]:checked").map(
+						function() {
+							return this.value;
+						}).get();
+				$.each(checkboxValues, function(i, elt) {
+					courseTime = elt + ", " + courseTime;
+				})
+
 				var courseStart = $("#courseStart").val();
 				var courseEnd = $("#courseEnd").val();
 				var courseSyllabus = null;
 				var subject = allSubjects[$("#subSelect").val()];
-				
+
 				return new CourseBean(courseEC, courseName, courseRoom,
 						courseTime, courseStart, courseEnd, courseSyllabus,
 						subject);
@@ -57,13 +108,16 @@ $(document).ready(
 					success : function(response) {
 						allSubjects = response;
 						console.log(response);
+						$("#subSelect").append($("<option/>", {
+							value : "",
+							text : ""
+						}));
 						$.each(response, function(index, value) {
 							$("#subSelect").append($("<option/>", {
 								value : value.subjectId,
 								text : value.name
 							}));
 						});
-						$("#subDiv").toggle(animationSpeed);
 						$("#courseFormDiv").toggle(animationSpeed);
 					},
 					error : function() {
@@ -100,20 +154,17 @@ $(document).ready(
 				}
 			});
 
-			$("#courseFormButton").click(function(e) {
+			$("#courseForm").submit(function(e) {
+				e.preventDefault();
+				$form = $(this);
+				/*if ($form != valid) {
+					return false;
+				}*/
+
 				var course = getCourseBeanFromForm();
 				console.log(course);
 				addNewCourse(course);
-				return false;
-			})
 
-			/*
-			 * $(document).ready(function(){
-			 * $(".launch-modal").click(function(){ $("#myModal").modal({
-			 * remote: "http://localhost:9999/cunyworks/student1/courses" });
-			 * }); });
-			 * 
-			 * 
-			 */
+			});
 
 		});

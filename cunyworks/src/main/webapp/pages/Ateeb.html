@@ -12,26 +12,8 @@
 	href="http://localhost:9999/cunyworks/assets/css/style.css" type="text/css">
 
 <style type="text/css">
-.hidden { <<<<<<<
-	HEAD display: none;
-}
-
-#subSelect {
-	text-transform: capitalize; =======
+.hidden { 
 	display: none;
-	>>>>>>>
-	branch
-	'master'
-	of
-	https
-	:
-	/
-	/
-	github.com
-	/
-	synac1
-	/
-	cunyworks.git
 }
 
 #subSelect {
@@ -39,30 +21,42 @@
 }
 </style>
 
-
-
 </head>
 <body>
 
 	<div class="container">
-		<button id="addCourseButton">Add New Course</button>
-		<div id="subDiv" class="hidden">
-			<select id="subSelect">
-			</select>
-		</div>
+		<button class="btn btn-lg btn-primary btn-block" id="addCourseButton">Add New Course</button>
 		<div id="courseFormDiv" class="hidden form-group">
 			<form id="courseForm" action="#">
-				<label for="courseName">Course Name: </label> <input id="courseName" type="text"
-					class="form-control"> <label for="courseRoom">Course Room: </label> <input
-					id="courseRoom" type="text" class="form-control"> <label for="courseEC">Enrollment
-					Capacity: </label> <input id="courseEC" type="number" class="form-control"> <label
-					for="courseTime">Start Time: </label> <input id="courseTime" type="text"
-					class="form-control"> <label for="courseStart">Start Date: </label> <input
-					id="courseStart" type="date" class="form-control"> <label for="courseEnd">End
-					Date: </label> <input id="courseEnd" type="date" class="form-control"> <label
-					for="CourseSyllabus">Syllabus: </label> <input id="courseSyllabus" type="file"
-					class="form-control-file">
-				<button id="courseFormButton" class="btn btn-primary">Submit</button>
+				<label for="subSelect">Subject: </label>
+				<select id="subSelect" class="form-control"></select>
+				<label for="courseName">Course Name:</label> 
+				<input id="courseName" name="courseName" type="text" class="form-control" required>
+				<label for="courseRoom">Course Room: </label> 
+				<input id="courseRoom" name="courseRoom" type="text" class="form-control"> 
+				<label for="courseEC">Enrollment Capacity: </label> 
+				<input id="courseEC" type="number" class="form-control">
+				<fieldset>
+					<legend>Days</legend>
+					<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Sunday">Sunday</label>
+					<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Monday">Monday</label>
+					<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Tuesday">Tuesday</label>
+					<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Wednesday">Wednesday</label>
+					<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Thursday">Thursday</label>
+					<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Friday">Friday</label>
+					<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Saturday">Saturday</label>
+				</fieldset>
+				<label for="courseStartTime">From: </label> 
+				<input id="courseStartTime" type="time" class="form-control">
+				<label for="courseEndTime">To: </label> 
+				<input id="courseEndTime" type="time" class="form-control">
+				<label for="courseStart">Start Date: </label> 
+				<input id="courseStart" type="date" class="form-control"> 
+				<label for="courseEnd">End Date: </label> 
+				<input id="courseEnd" type="date" class="form-control"> 
+				<label for="CourseSyllabus">Syllabus: </label> 
+				<input id="courseSyllabus" type="file" class="form-control-file">
+				<input id="courseFormButton" class="btn btn-lg btn-primary btn-block" type="submit">
 			</form>
 
 		</div>
@@ -73,9 +67,11 @@
 
 
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	
 	<script src="http://localhost:9999/cunyworks/assets/js/jquery-1.11.1.min.js"></script>
 	<script src="http://localhost:9999/cunyworks/assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="http://localhost:9999/cunyworks/assets/js/jquery.validate.js"></script>
+	<script src="http://localhost:9999/cunyworks/assets/js/additional-methods.js"></script>
 	<script src="http://localhost:9999/cunyworks/assets/js/teacher.js"></script>
 </body>
 </html>

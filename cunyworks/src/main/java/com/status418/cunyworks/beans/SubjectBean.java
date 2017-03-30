@@ -68,9 +68,17 @@ public class SubjectBean {
 		this.courses = courses;
 	}
 
+	public void addCourse(CourseBean course) {
+		this.courses.add(course);
+	}
+
+	public void removeCourse(CourseBean course) {
+		this.courses.remove(course);
+	}
+
 	@Override
 	public String toString() {
-		return "SubjectBean [subjectId=" + subjectId + ", name=" + name + ", courses=" + courses + "]";
+		return "SubjectBean [subjectId=" + subjectId + ", name=" + name + "]";
 	}
 
 }

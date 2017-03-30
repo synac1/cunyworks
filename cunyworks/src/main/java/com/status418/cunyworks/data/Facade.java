@@ -10,7 +10,8 @@ import com.status418.cunyworks.beans.TextbookBean;
 
 public interface Facade {
 
-	public Set<CourseBean> getAllCourse();
+	// CourseDAO methods
+	public Set<CourseBean> getAllCourses();
 
 	public Set<StudentBean> getAllStudentsByCourse(CourseBean course);
 
@@ -20,15 +21,22 @@ public interface Facade {
 
 	public Set<TextbookBean> getTextBooksByCourse(CourseBean course);
 
-	public StudentBean getById(int id);
+	public CourseBean getCourseById(int id);
 
-	public StudentBean getByUsername(String username);
+	public void merge(CourseBean course);
+	
+	// StudentDAO methods
+	public StudentBean getStudentById(int id);
 
-	public Set<StudentBean> getAll();
+	public StudentBean getStudentByUsername(String username);
 
-	public void saveOrUpdate(StudentBean student); // Check if this works for
-													// removing course
+	public Set<StudentBean> getAllStudents();
 
+	public void saveOrUpdate(StudentBean student);
+	
+	public void merge(StudentBean student);
+	
+	// SubjectDAO Methods
 	public Set<SubjectBean> getAllSubjects();
 
 	public Set<TextbookBean> getAllTextBooksBySubject(String subject);
@@ -37,16 +45,17 @@ public interface Facade {
 
 	public Set<CourseBean> getAllCoursesBySubject(String subjectName);
 
-	public TeacherBean getByTeacherId(int id);
+	public SubjectBean getSubjectById(int id);
 
-	public TeacherBean getByTeacherUsername(String username);
+	public void merge(SubjectBean subject);
+	
+	// TeacherDAO methods
+	public TeacherBean getTeacherById(int id);
+
+	public TeacherBean getTeacherByUsername(String username);
 
 	public void saveOrUpdate(TeacherBean teacher);
-
-	CourseBean getCourseById(int id);
-
-	public void merge(CourseBean course);
-
+	
 	public void merge(TeacherBean teacher);
 
 }

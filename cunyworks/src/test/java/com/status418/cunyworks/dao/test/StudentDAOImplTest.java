@@ -6,12 +6,12 @@ public class StudentDAOImplTest {
 
 	@Test
 	public void testGetStudentById() {
-		
+
 	}
 
 	@Test
 	public void testGetStudentByUsername() {
-		
+
 	}
 
 	@Test
@@ -21,6 +21,6 @@ public class StudentDAOImplTest {
 
 	@Test
 	public void testUpdateStudent() {
-		
+
 	}
 }

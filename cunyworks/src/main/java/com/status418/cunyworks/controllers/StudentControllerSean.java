@@ -26,7 +26,7 @@ public class StudentControllerSean {
 	@RequestMapping(value = "studentcourses", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Set<CourseBean>> getAllStudentCourses() {
-		Set<CourseBean> courses = new FacadeImpl().getById(1).getCourses();
+		Set<CourseBean> courses = new FacadeImpl().getStudentById(1).getCourses();
 		System.out.println("student courses");
 		System.out.println(courses);
 		return new ResponseEntity<Set<CourseBean>>(courses, HttpStatus.OK);
@@ -35,7 +35,7 @@ public class StudentControllerSean {
 	@RequestMapping(value = "courses", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Set<CourseBean>> getallCourses() {
-		Set<CourseBean> courses = new FacadeImpl().getAllCourse();
+		Set<CourseBean> courses = new FacadeImpl().getAllCourses();
 		System.out.println("Courses");
 		System.out.println(courses);
 		return new ResponseEntity<Set<CourseBean>>(courses, HttpStatus.OK);

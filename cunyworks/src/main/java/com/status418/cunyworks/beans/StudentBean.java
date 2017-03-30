@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity(name = "STUDENTS")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="studentId")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "studentId")
 public class StudentBean {
 	@Id
 	@Column(name = "STUDENT_ID")
@@ -48,7 +48,7 @@ public class StudentBean {
 	@Column(name = "STUDENT_CREATED")
 	@Temporal(TemporalType.DATE)
 	private Date created;
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy="students", cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "students", cascade = CascadeType.ALL)
 	private Set<CourseBean> courses = new HashSet<>();
 
 	public StudentBean() {
@@ -144,6 +144,14 @@ public class StudentBean {
 
 	public void setCourses(Set<CourseBean> courses) {
 		this.courses = courses;
+	}
+
+	public void addCourse(CourseBean course) {
+		this.courses.add(course);
+	}
+
+	public void removeCourse(CourseBean course) {
+		this.courses.remove(course);
 	}
 
 	@Override

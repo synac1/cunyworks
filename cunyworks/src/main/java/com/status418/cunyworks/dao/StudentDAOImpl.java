@@ -18,7 +18,7 @@ public class StudentDAOImpl implements StudentDAO {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
+	
 	@Transactional
 	@Override
 	public StudentBean getById(int id) {
@@ -49,10 +49,10 @@ public class StudentDAOImpl implements StudentDAO {
 		sessionFactory.getCurrentSession().saveOrUpdate(student);
 	}
 
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
 	@Override
-	public void update(StudentBean student) {
-		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().update(student);
+	public void merge(StudentBean student) {
+		sessionFactory.getCurrentSession().merge(student);
 	}
 
 }

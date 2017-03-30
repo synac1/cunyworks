@@ -23,15 +23,15 @@ public class FacadeImpl implements Facade {
 	private static ApplicationContext context = new ClassPathXmlApplicationContext("dao-beans.xml");
 
 	public FacadeImpl() {
-
 		courseDao = context.getBean(CourseDAO.class);
 		studentDao = context.getBean(StudentDAO.class);
 		teacherDao = context.getBean(TeacherDAO.class);
 		subjectDao = context.getBean(SubjectDAO.class);
 	}
 
+	// CourseDAO Methods
 	@Override
-	public Set<CourseBean> getAllCourse() {
+	public Set<CourseBean> getAllCourses() {
 		return courseDao.getAll();
 	}
 
@@ -46,33 +46,39 @@ public class FacadeImpl implements Facade {
 	}
 
 	@Override
-	public void merge(CourseBean course) {
-		courseDao.merge(course);
-	}
-
-	@Override
 	public void delete(CourseBean course) {
 		courseDao.delete(course);
-
 	}
 
 	@Override
 	public Set<TextbookBean> getTextBooksByCourse(CourseBean course) {
-		return courseDao.getTextBooksByCourse(course);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public StudentBean getById(int id) {
+	public CourseBean getCourseById(int id) {
+		return courseDao.getbyId(id);
+	}
+
+	@Override
+	public void merge(CourseBean course) {
+		courseDao.merge(course);
+	}
+
+	// StudentDAO methods
+	@Override
+	public StudentBean getStudentById(int id) {
 		return studentDao.getById(id);
 	}
 
 	@Override
-	public StudentBean getByUsername(String username) {
+	public StudentBean getStudentByUsername(String username) {
 		return studentDao.getByUsername(username);
 	}
 
 	@Override
-	public Set<StudentBean> getAll() {
+	public Set<StudentBean> getAllStudents() {
 		return studentDao.getAll();
 	}
 
@@ -81,6 +87,12 @@ public class FacadeImpl implements Facade {
 		studentDao.saveOrUpdate(student);
 	}
 
+	@Override
+	public void merge(StudentBean student) {
+		studentDao.merge(student);
+	}
+
+	// SubjectDAO methods
 	@Override
 	public Set<SubjectBean> getAllSubjects() {
 		return subjectDao.getAllSubjects();
@@ -102,12 +114,23 @@ public class FacadeImpl implements Facade {
 	}
 
 	@Override
-	public TeacherBean getByTeacherId(int id) {
+	public SubjectBean getSubjectById(int id) {
+		return subjectDao.getById(id);
+	}
+
+	@Override
+	public void merge(SubjectBean subject) {
+		subjectDao.merge(subject);
+	}
+
+	// TeacherDAO Methods
+	@Override
+	public TeacherBean getTeacherById(int id) {
 		return teacherDao.getById(id);
 	}
 
 	@Override
-	public TeacherBean getByTeacherUsername(String username) {
+	public TeacherBean getTeacherByUsername(String username) {
 		return teacherDao.getByUsername(username);
 	}
 
@@ -117,19 +140,8 @@ public class FacadeImpl implements Facade {
 	}
 
 	@Override
-	public CourseBean getCourseById(int id) {
-		return courseDao.getbyId(id);
-	}
-
-	public void update(StudentBean student) {
-		// TODO Auto-generated method stub
-		studentDao.update(student);
-	}
-
-	@Override
 	public void merge(TeacherBean teacher) {
 		teacherDao.merge(teacher);
-		
 	}
 
 }

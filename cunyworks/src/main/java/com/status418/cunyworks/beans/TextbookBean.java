@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity(name = "TEXTBOOKS")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="textbookId")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "textbookId")
 public class TextbookBean {
 	@Id
 	@Column(name = "TEXTBOOK_ID")
@@ -73,6 +73,14 @@ public class TextbookBean {
 
 	public void setCourses(Set<CourseBean> courses) {
 		this.courses = courses;
+	}
+	
+	public void addCourse(CourseBean course){
+		this.courses.add(course);
+	}
+
+	public void removeCourse(CourseBean course) {
+		this.courses.remove(course);
 	}
 
 	@Override

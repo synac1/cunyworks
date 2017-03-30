@@ -32,7 +32,8 @@ public class TeacherControllerAteeb {
 	@RequestMapping(value = TEACHER_COURSE_INSERT_URL, method = RequestMethod.POST, headers = "Accept=application/json")
 	@ResponseBody
 	public ResponseEntity<String> addNewCourse(@RequestBody CourseBean course) {
-		System.out.println(course);
+		course.getSubject().addCourse(course);
+		new FacadeImpl().saveOrUpdate(course);
 		return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
 	}
 

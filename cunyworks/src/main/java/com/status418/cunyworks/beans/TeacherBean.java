@@ -158,6 +158,14 @@ public class TeacherBean {
 		this.courses = courses;
 	}
 
+	public void addCourse(CourseBean course){
+		this.courses.add(course);
+	}
+	
+	public void removeCourse(CourseBean course) {
+		this.courses.remove(course);
+	}
+	
 	@Override
 	public String toString() {
 		return "TeacherBean [teacherId=" + teacherId + ", title=" + title + ", email=" + email + ", firstName="

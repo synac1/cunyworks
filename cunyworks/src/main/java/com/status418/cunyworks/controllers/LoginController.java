@@ -16,8 +16,8 @@ public class LoginController {
 
 		FacadeImpl f = new FacadeImpl();
 
-		StudentBean s = f.getByUsername(username);
-		TeacherBean t = f.getByTeacherUsername(username);
+		StudentBean s = f.getStudentByUsername(username);
+		TeacherBean t = f.getTeacherByUsername(username);
 
 		if (s != null && s.getPassword().equals(password)) {
 

@@ -32,7 +32,7 @@ public class SubjectDAOImpl implements SubjectDAO {
 		result.addAll(allSubject);
 		return result;
 	}
-	
+
 	@Transactional
 	@Override
 	public Set<TextbookBean> getAllTextBooksBySubject(String subject) {
@@ -58,7 +58,19 @@ public class SubjectDAOImpl implements SubjectDAO {
 				.add(Restrictions.eq("name", subjectName)).uniqueResult();
 		Set<CourseBean> result = subjectObj.getCourses();
 		return result;
+	}
 
+	@Transactional
+	@Override
+	public SubjectBean getById(int id) {
+		SubjectBean subject = (SubjectBean) sessionFactory.openSession().get(SubjectBean.class, id);
+		return subject;
+	}
+
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
+	@Override
+	public void merge(SubjectBean subject) {
+		sessionFactory.getCurrentSession().merge(subject);
 	}
 
 }

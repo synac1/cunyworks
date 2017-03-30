@@ -51,6 +51,7 @@ public class CourseDAOImpl implements CourseDAO {
 	public void merge(CourseBean course) {
 		sessionFactory.getCurrentSession().merge(course);
 	}
+	
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
 	@Override
 	public void delete(CourseBean course) {
