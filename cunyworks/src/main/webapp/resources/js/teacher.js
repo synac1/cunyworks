@@ -56,7 +56,7 @@ $(document).ready(
 			}
 
 			function CourseBean(enrollmentCapacity, name, room, scheduleTime,
-					startDate, endDate, syllabus, subject) {
+					startDate, endDate, syllabus, subject, description) {
 				this.enrollmentCapacity = enrollmentCapacity;
 				this.name = name;
 				this.room = room;
@@ -65,6 +65,7 @@ $(document).ready(
 				this.endDate = endDate;
 				this.syllabus = syllabus;
 				this.subject = subject;
+				this.description = description;
 			}
 
 			function clearEverything() {
@@ -93,10 +94,11 @@ $(document).ready(
 				var courseEnd = $("#courseEnd").val();
 				var courseSyllabus = null;
 				var subject = allSubjects[$("#subSelect").val()];
+				var description = $("#courseDesc").val();
 
 				return new CourseBean(courseEC, courseName, courseRoom,
 						courseTime, courseStart, courseEnd, courseSyllabus,
-						subject);
+						subject, description);
 			}
 
 			function populateSubSelect() {
@@ -127,6 +129,7 @@ $(document).ready(
 			}
 
 			function addNewCourse(course) {
+				console.log(course);
 				$.ajax("http://localhost:9999/cunyworks/teacher/insert", {
 					method : "POST",
 					headers : {
@@ -157,9 +160,9 @@ $(document).ready(
 			$("#courseForm").submit(function(e) {
 				e.preventDefault();
 				$form = $(this);
-				/*if ($form != valid) {
-					return false;
-				}*/
+				/*
+				 * if ($form != valid) { return false; }
+				 */
 
 				var course = getCourseBeanFromForm();
 				console.log(course);
