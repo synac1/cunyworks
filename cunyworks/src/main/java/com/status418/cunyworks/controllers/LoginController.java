@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.method.annotation.SessionAttributesHandler;
 
 import com.status418.cunyworks.beans.StudentBean;
 import com.status418.cunyworks.beans.TeacherBean;
@@ -25,7 +26,7 @@ public class LoginController {
 		TeacherBean t = facadeImpl.getTeacherByUsername(username);
 
 		if (s != null && s.getPassword().equals(password)) {
-
+			 
 			return "student";
 		} else if (t != null && t.getPassword().equals(password)) {
 			return "teacher";
