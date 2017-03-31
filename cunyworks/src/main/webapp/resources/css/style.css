@@ -1325,9 +1325,12 @@ a.btn.blue,
 	float: right;
 	padding: 0 4px;
 }
+#myModal .center {
+	
+}
 
 #myModal fieldset {
-	width: 370px;
+	width: 100%;
 	background: #e6e8ec url(../images/ico_form.png) no-repeat 21px 19px;
 	border-radius: 4px;
 	height: 52px;
@@ -1347,6 +1350,14 @@ a.btn.blue,
 	height: 172px;
 }
 
+#slider{
+	background: url(../img/intro-bg.jpg) no-repeat center center;
+ min-height: 800px;
+  padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+      background-size: cover;
+}
 #myModal input {
 	height: 52px;
 	font-size: 14px;
