@@ -19,7 +19,7 @@ import com.status418.cunyworks.beans.StudentBean;
 import com.status418.cunyworks.data.FacadeImpl;
 
 @Controller
-@RequestMapping(value = "student")
+//@RequestMapping(value ="/student")
 public class StudentController {
 
 	@Autowired
@@ -29,7 +29,7 @@ public class StudentController {
 		this.facadeImpl = facadeImpl;
 	}
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	@RequestMapping(value="/student", method=RequestMethod.GET)
 	public String HomePage(){
 		return "student.html";
 		
@@ -45,6 +45,13 @@ public class StudentController {
 	@ResponseBody
 	public ResponseEntity<Set<CourseBean>> getallCourses() {
 		Set<CourseBean> courses = facadeImpl.getAllCourses();
+		System.out.println(courses);
+		return new ResponseEntity<Set<CourseBean>>(courses, HttpStatus.OK);
+	}
+	@RequestMapping(value = "courses", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<Set<CourseBean>> getCourses() {
+		Set<CourseBean> courses = facadeImpl.getStudentById(1).getCourses();
 		System.out.println(courses);
 		return new ResponseEntity<Set<CourseBean>>(courses, HttpStatus.OK);
 	}

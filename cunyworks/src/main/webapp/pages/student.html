@@ -103,7 +103,8 @@
 				<th>Schedule Time</th>
 				<th>Start Date</th>
 				<th>End Date</th>
-				
+				<!-- <th>Syllabus</th> -->
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -208,7 +209,7 @@
 </body>
 <script type="text/javascript">
 	$(function() {
-
+		fetchstudent();
 		fetchstuff();
 		$("#showsc").on("click", function() {
 			$( "#scourseTable" ).toggle();
@@ -225,7 +226,7 @@
 			var courseId = $("#idOfClass").val();
 			var studentId = 1;
 
-			$.ajax("http://localhost:9999/cunyworks/student/new", {
+			$.ajax("http://localhost:9999/cunyworks/new", {
 				method : "POST",
 				contentType : "application/json",
 				data : JSON.stringify({
@@ -240,7 +241,7 @@
 		});
 
 		function fetchstuff() {
-			$.ajax("http://localhost:9999/cunyworks/student/new_courses", {
+			$.ajax("http://localhost:9999/cunyworks/new_courses", {
 				method : "GET",
 				dataType : "json",
 				success : function(response) {
@@ -250,14 +251,32 @@
 				}
 			});
 		}
+		function fetchstudent() {
+			$.ajax("http://localhost:9999/cunyworks/courses", {
+				method : "GET",
+				dataType : "json",
+				success : function(response) {
+					console.log(response);
+					tablewipeold();
+					tableloadhome(response);
+					tableloaddrop(response);
+				}
+			});
+		}
+		
 
 		function tablewipe() {
-			$("#courseTable tbody").empty();
+			$("#allcourseTable tbody").empty();
+		}
+		
+		function tablewipeold() {
+			$("#scourseTable tbody").empty();
+			$("#dcourseTable tbody").empty();
 		}
 
 		function tableload(response) {
 			$.each(response, function(index, temp) {
-				$("#courseTable tbody").append(
+				$("#allcourseTable tbody").append(
 						'<tr data-toggle="modal" data-target="#myModal" data-id='+temp.courseId+' >'
 								+ '<td scope="row">'
 								+ temp.courseId
@@ -286,8 +305,65 @@
 								+ "<td style='visibility: hidden;'>"
 								+ temp.description
 								+ "</td>"
-							
+								+ "</tr>");
 
+			});
+		}
+		function tableloadhome(response) {
+			$.each(response, function(index, temp) {
+				$("#scourseTable tbody").append(
+						'<tr>'
+								+ '<td scope="row">'
+								+ temp.courseId
+								+ '</td>'
+								+ "<td id='cname'>"
+								+ temp.subject.name
+								+ "</td>"
+								+ "<td>"
+								+ temp.enrollmentCapacity
+								+ "</td>"
+								+ "<td>"
+								+ temp.room
+								+ "</td>"
+								+ "<td>"
+								+ temp.scheduleTime
+								+ "</td>"
+								+ "<td>"
+								+ temp.startDate
+								+ "</td>"
+								+ "<td>"
+								+ temp.endDate
+								+ "</td>"
+
+								+ "</tr>");
+
+			});
+		}
+function tableloaddrop(response) {
+			$.each(response, function(index, temp) {
+				$("#dcourseTable tbody").append(
+						'<tr>'
+								+ '<td scope="row">'
+								+ temp.courseId
+								+ '</td>'
+								+ "<td id='cname'>"
+								+ temp.subject.name
+								+ "</td>"
+								+ "<td>"
+								+ temp.enrollmentCapacity
+								+ "</td>"
+								+ "<td>"
+								+ temp.room
+								+ "</td>"
+								+ "<td>"
+								+ temp.scheduleTime
+								+ "</td>"
+								+ "<td>"
+								+ temp.startDate
+								+ "</td>"
+								+ "<td>"
+								+ temp.endDate
+								+ "</td>"
 								+ "</tr>");
 
 			});
