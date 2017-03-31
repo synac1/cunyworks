@@ -7,14 +7,12 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 <link rel="stylesheet" media="all"
-	href="http://localhost:9999/cunyworks/assets/bootstrap/css/bootstrap.min.css"
-	type="text/css">
+	href="http://localhost:9999/cunyworks/assets/bootstrap/css/bootstrap.min.css" type="text/css">
 
 
 	
 
-<link rel="stylesheet" media="all"
-	href="http://localhost:9999/cunyworks/assets/css/style.css" type="text/css">
+<link rel="stylesheet" media="all" href="http://localhost:9999/cunyworks/assets/css/style.css" type="text/css">
 	
 <style type="text/css">	
 
@@ -60,64 +58,44 @@
 			<!-- / navigation -->
 		</div>
 		<!-- / container -->
-
 	</header>
 	<!-- / header -->
 
 	<div class="divider"></div>
-
 	<div class="content">
-
 		<div class="container">
 			<div class="main-content">
-
-
+				<h2>Courses:</h2>
 				<table id="myTable" class="table table-inverse" style="text-transform: capitalize;">
-					<p>Courses</p>
 					<thead>
 						<tr>
 							<th>Course Id</th>
 							<th>Course Name</th>
 							<th>Subject</th>
-							
 							<th>Start Date</th>
 							<th>End Date</th>
 							<th>Description</th>
-							
 							<th>Room</th>
 							<th>Schedule Time</th>
-							
 							<th>Enrollment Capacity</th>
 							<th></th>
-							
-							
 						</tr>
 					</thead>
-
 					<tbody>
-
 					</tbody>
 				</table>
 			</div>
 
-
-
-
- 			<aside id="sidebar"> 
-			<div class="widget sidemenu"> 
+			<aside id="sidebar"> 
+				<div class="widget sidemenu"> 
 					<ul> 
-						<li>
-	<a href="#courseAddModal" class="btn btn-primary" data-toggle="modal">Add</a></li> 
-
-
+						<li><a href="#courseAddModal" class="btn btn-primary" data-toggle="modal">Add</a></li> 
 					</ul> 
 				</div> 
 			</aside> 
-			
-
  		</div> 
- 		 
 	</div> 
+	
   	<div id="courseAddModal" class="modal fade" aria-labelledby="myModalLabel" aria-hidden="true" tabindex="-1" role="dialog">
     	<div class="modal-dialog">
         	<div class="modal-content">
@@ -126,84 +104,63 @@
 	                <h4 class="modal-title">Course Information</h4>
 	            </div>
             	<div class="modal-body" id="myModalBody">
-
-
-
-	<div class="container">
-		<button class="btn btn-lg btn-primary btn-block" id="addCourseButton">Add New Course</button>
-		<div id="courseFormDiv" class="hidden form-group">
-			<form id="courseForm" action="#">
-				<label for="subSelect">Subject: </label>
-				<select id="subSelect" class="form-control"></select>
-				<label for="courseName">Course Name:</label> 
-				<input id="courseName" name="courseName" type="text" class="form-control" required>
-				<label for="courseRoom">Course Room: </label> 
-				<input id="courseRoom" name="courseRoom" type="text" class="form-control"> 
-				<label for="courseEC">Enrollment Capacity: </label> 
-				<input id="courseEC" type="number" class="form-control">
-				<fieldset>
-					<legend>Days</legend>
-					<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Sunday">Sunday</label>
-					<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Monday">Monday</label>
-					<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Tuesday">Tuesday</label>
-					<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Wednesday">Wednesday</label>
-					<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Thursday">Thursday</label>
-					<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Friday">Friday</label>
-					<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Saturday">Saturday</label>
-				</fieldset>
-				<label for="courseStartTime">From: </label> 
-				<input id="courseStartTime" type="time" class="form-control">
-				<label for="courseEndTime">To: </label> 
-				<input id="courseEndTime" type="time" class="form-control">
-				<label for="courseStart">Start Date: </label> 
-				<input id="courseStart" type="date" class="form-control"> 
-				<label for="courseEnd">End Date: </label> 
-				<input id="courseEnd" type="date" class="form-control"> 
-				<label for="courseDesc">Description: </label> 
-				<textarea id="courseDesc" rows="5" class="form-control"> </textarea>
-				<label for="CourseSyllabus">Syllabus: </label> 
-				<input id="courseSyllabus" type="file" class="form-control-file" disabled>
-				<input id="courseFormButton" class="btn btn-lg btn-primary btn-block" type="submit">
-			</form>
-
-		</div>
-	</div>
-
-
+            	
+					<div class="container">
+						<button class="btn btn-lg btn-primary btn-block" id="addCourseButton">Add New Course</button>
+						<div id="courseFormDiv" class="hidden form-group">
+							<form id="courseForm" action="#">
+								<label for="subSelect">Subject: </label>
+								<select id="subSelect" class="form-control"></select>
+								<label for="courseName">Course Name:</label> 
+								<input id="courseName" name="courseName" type="text" class="form-control" required>
+								<label for="courseRoom">Course Room: </label> 
+								<input id="courseRoom" name="courseRoom" type="text" class="form-control"> 
+								<label for="courseEC">Enrollment Capacity: </label> 
+								<input id="courseEC" type="number" class="form-control">
+								<fieldset>
+									<legend>Days</legend>
+									<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Sunday">Sunday</label>
+									<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Monday">Monday</label>
+									<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Tuesday">Tuesday</label>
+									<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Wednesday">Wednesday</label>
+									<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Thursday">Thursday</label>
+									<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Friday">Friday</label>
+									<label class="checkbox-inline"><input name="groupDays" type="checkbox" value="Saturday">Saturday</label>
+								</fieldset>
+								<label for="courseStartTime">From: </label> 
+								<input id="courseStartTime" type="time" class="form-control">
+								<label for="courseEndTime">To: </label> 
+								<input id="courseEndTime" type="time" class="form-control">
+								<label for="courseStart">Start Date: </label> 
+								<input id="courseStart" type="date" class="form-control"> 
+								<label for="courseEnd">End Date: </label> 
+								<input id="courseEnd" type="date" class="form-control"> 
+								<label for="courseDesc">Description: </label> 
+								<textarea id="courseDesc" rows="5" class="form-control"> </textarea>
+								<label for="CourseSyllabus">Syllabus: </label> 
+								<input id="courseSyllabus" type="file" class="form-control-file" disabled>
+								<input id="courseFormButton" class="btn btn-lg btn-primary btn-block" type="submit">
+							</form>
+						</div>
+					</div>
+					
 		    	</div>
 	        </div>
 	    </div>
 	</div>
   
 
-
 	<footer id="footer">
 		<div class="container">
-			<section>
-				
-
-				
-			
-				
-			</section>
-			<p class="copy">
-				Copyright 2017 Cuny#Works. Designed by <a
-					href="http://www.vandelaydesign.com/" title="Designed by status418"
-					target="_blank">status418</a>. All rights reserved.
+			<p class="copy"> 
+				Copyright 2017 Cuny#Works. Designed by 
+				<a href="http://www.vandelaydesign.com/" title="Designed by status418" target="_blank">status418</a>. 
+				All rights reserved.
 			</p>
 		</div>
 		<!-- / container -->
 	</footer>
 	<!-- / footer -->
-
-	<script
-		src="http://localhost:9999/cunyworks/assets/js/jquery-1.11.1.min.js"></script>
-	<script src="http://localhost:9999/cunyworks/assets/js/plugins.js"></script>
-	<script src="http://localhost:9999/cunyworks/assets/js/main.js"></script>
-	<script
-		src="http://localhost:9999/cunyworks/assets/bootstrap/js/bootstrap.min.js"></script>
-	
-	
 	
 <div id="myModal" class="modal fade" aria-labelledby="myModalLabel" aria-hidden="true" tabindex="-1" role="dialog">
     <div class="modal-dialog">
@@ -214,88 +171,61 @@
             </div>
             <div class="modal-body" id="myModalBody">
 
-      <form id="myForm" method="post" style="text-transform: capitalize;">
-      <div class="form-group ">
-      <label class="control-label " for="courseId">
-       Course Id
-      </label>
-      <input class="form-control" id="courseId" name="courseId" type="number" readonly="readonly"/>
-     </div>
-
-     <div class="form-group ">
-      <label class="control-label " for="course">
-       Course
-      </label>
-      <input class="form-control" id="course" name="course" type="text"/>
-     </div>
-     <div class="form-group ">
-      <label class="control-label " for="room">
-       Room
-      </label>
-      <input class="form-control" id="room" name="room" type="text"/>
-     </div>
-     <div class="form-group ">
-      <label class="control-label " for="subject">
-       Subject
-      </label>
-      <input class="form-control" id="subject" name="subject" type="text" readonly="readonly"/>
-     </div>
-     <div class="form-group ">
-      <label class="control-label " for="startDate">
-       Start Date
-      </label>
-      <input class="form-control" id="startDate" name="startDate" placeholder="MM/DD/YYYY" type="date"/>
-     </div>
-     <div class="form-group ">
-      <label class="control-label " for="endDate">
-       End Date
-      </label>
-      <input class="form-control" id="endDate" name="endDate" placeholder="MM/DD/YYYY" type="date"/>
-     </div>
-     <div class="form-group ">
-      <label class="control-label " for="description">
-       Description
-      </label>
-      <input class="form-control" id="description" name="description" type="text"/>
-     </div>
-     <label class="control-label " for="enrollmentCapacity">
-       Enrollment Capacity
-      </label>
-      <input class="form-control" id="capacity" name="capacity" type="number"/>
-     </div>
-     <div class="form-group">
-      <div>
-       <button id="update" class="btn btn-primary " name="submit">
-        Update
-       </button>
-       <div class="alert alert-success" role="alert"
-							style="display: none;">Updated successfully!</div>
-						<div class="alert alert-danger" role="alert"
-							style="display: none;">Error updating</div>
-      </div>
+				<form id="myForm" method="post" style="text-transform: capitalize;">
+					<div class="form-group ">
+						<label class="control-label " for="courseId">Course Id</label>
+						<input class="form-control" id="courseId" name="courseId" type="number" readonly="readonly"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="course">Course</label>
+						<input class="form-control" id="course" name="course" type="text"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="room">Room</label>
+						<input class="form-control" id="room" name="room" type="text"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="subject">Subject</label>
+						<input class="form-control" id="subject" name="subject" type="text" readonly="readonly"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="startDate">Start Date</label>
+						<input class="form-control" id="startDate" name="startDate" placeholder="MM/DD/YYYY" type="date"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="endDate">End Date</label>
+						<input class="form-control" id="endDate" name="endDate" placeholder="MM/DD/YYYY" type="date"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="description">Description</label>
+						<input class="form-control" id="description" name="description" type="text"/>
+					</div>
+					<div>
+						<label class="control-label" for="enrollmentCapacity">Enrollment Capacity</label>
+						<input class="form-control" id="capacity" name="capacity" type="number"/>
+					</div>
+					<div class="form-group">
+						<div>
+							<button id="update" class="btn btn-primary " name="submit">Update</button>
+							<div class="alert alert-success" role="alert" style="display: none;">Updated successfully!</div>
+							<div class="alert alert-danger" role="alert" style="display: none;">Error updating</div>
+						</div>
+					</div>
+				</form>
+				
+			</div> <!-- Close Div myModalBody -->
+		</div>
+	</div>
 </div>
-    </form>
-            </div>
-            
-        </div>
-    </div>
-</div>
-	
-	<!--  -->
 
 
+	<!-- Scripts / JS / Jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="http://localhost:9999/cunyworks/assets/js/jquery-1.11.1.min.js"></script>
 	<script src="http://localhost:9999/cunyworks/assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="http://localhost:9999/cunyworks/assets/js/hossain.js"></script>
-		<script src="http://localhost:9999/cunyworks/assets/js/jquery.validate.js"></script>
-		<script src="http://localhost:9999/cunyworks/assets/js/additional-methods.js"></script>
-		<script src="http://localhost:9999/cunyworks/assets/js/teacher.js"></script>
-	
-
-
+	<script src="http://localhost:9999/cunyworks/assets/js/jquery.validate.js"></script>
+	<script src="http://localhost:9999/cunyworks/assets/js/additional-methods.js"></script>
+	<script src="http://localhost:9999/cunyworks/assets/js/teacher.js"></script>
 </body>
-
-
-
 </html>

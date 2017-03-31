@@ -18,7 +18,7 @@ import com.status418.cunyworks.beans.TeacherBean;
 import com.status418.cunyworks.data.FacadeImpl;
 
 @Controller
-@RequestMapping(value = "/")
+@RequestMapping(value = "teacher")
 public class TeacherController {
 
 	@Autowired
@@ -27,7 +27,7 @@ public class TeacherController {
 	public void setFacadeImpl(FacadeImpl facadeImpl) {
 		this.facadeImpl = facadeImpl;
 	}
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = {"/", ""}, method = {RequestMethod.GET, RequestMethod.POST})
 	public String home() {
 		return "teacher.html";
 	}
@@ -76,9 +76,12 @@ public class TeacherController {
 	@RequestMapping(value = "insert", method = RequestMethod.POST, headers = "Accept=application/json")
 	@ResponseBody
 	public ResponseEntity<String> addNewCourse(@RequestBody CourseBean course) {
-		System.out.println(course);
+		TeacherBean teacher = facadeImpl.getTeacherById(1);
+		course.setTeacher(teacher);
+		teacher.addCourse(course);
 		course.getSubject().addCourse(course);
 		facadeImpl.saveOrUpdate(course);
+		facadeImpl.merge(teacher);
 		return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
 	}
 
