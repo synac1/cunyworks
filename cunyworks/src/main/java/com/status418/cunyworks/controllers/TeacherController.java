@@ -61,10 +61,9 @@ public class TeacherController {
 		// SimpleDateFormat("yyyy-MM-dd").format(course.getStartDate()));
 		System.out.println(cbean);
 		System.out.println(course.getSubject());
-
 		facadeImpl.merge(cbean);
+		
 		Set<CourseBean> courses = teacher.getCourses();
-
 		courses.add(cbean);
 		teacher.setCourses(courses);
 		facadeImpl.merge(teacher);
@@ -76,9 +75,12 @@ public class TeacherController {
 	@ResponseBody
 	public ResponseEntity<String> addNewCourse(@RequestBody CourseBean course) {
 		TeacherBean teacher = facadeImpl.getTeacherById(1);
-		course.setTeacher(teacher);
-		teacher.addCourse(course);
+		System.out.println(course);
 		course.getSubject().addCourse(course);
+		facadeImpl.saveOrUpdate(course);
+		
+		course.setTeacher(teacher);
+		//teacher.addCourse(course);
 		facadeImpl.merge(teacher);
 		return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
 	}

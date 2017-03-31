@@ -69,7 +69,7 @@ $(document).ready(
 				$("#courseFormDiv").hide();
 				$("#subSelect").html("");
 				$("#courseForm").trigger("reset"); // resets form
-				$("#courseAddModal").modal("hide");
+				$("#courseAddModal").hide();
 			}
 
 			function getCourseBeanFromForm() {
