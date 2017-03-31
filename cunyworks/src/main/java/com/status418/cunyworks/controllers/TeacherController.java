@@ -1,6 +1,6 @@
 package com.status418.cunyworks.controllers;
 
-import java.util.Date;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,24 +47,27 @@ public class TeacherController {
 		TeacherBean teacher = userService.getCurrentTeacher();
 
 		CourseBean cbean = facadeImpl.getCourseById(course.getCourseId());
+		Set<CourseBean> courses = teacher.getCourses();
+		Iterator<CourseBean> it = courses.iterator();
+		while(it.hasNext()){
+			CourseBean cB = it.next();
+			if(cB.getCourseId() == cbean.getCourseId()){
+				it.remove();
+			}
+		}
+
 		cbean.setName(course.getName());
 		cbean.setRoom(course.getRoom());
 		cbean.setTeacher(teacher);
-		cbean.setStartDate(course.getStartDate().toString());
-
 		cbean.copyEndDate(course.getEndDate());
 		cbean.copyStartDate(course.getStartDate());
 		cbean.setDescription(course.getDescription());
 		cbean.setEnrollmentCapacity(course.getEnrollmentCapacity());
-		System.out.println(cbean);
-		System.out.println(course.getSubject());
 		facadeImpl.merge(cbean);
 		
-		Set<CourseBean> courses = teacher.getCourses();
 		courses.add(cbean);
 		teacher.setCourses(courses);
 		facadeImpl.merge(teacher);
-
 		return new ResponseEntity<String>("Success!", HttpStatus.OK);
 	}
 
@@ -72,9 +75,11 @@ public class TeacherController {
 	@ResponseBody
 	public ResponseEntity<String> addNewCourse(@RequestBody CourseBean course) {
 		System.out.println(course);
+		
 		TeacherBean teacher = userService.getCurrentTeacher();
 		course.getSubject().addCourse(course);
 		facadeImpl.saveOrUpdate(course);
+		
 		course.setTeacher(teacher);
 		teacher.addCourse(course);
 		facadeImpl.merge(teacher);

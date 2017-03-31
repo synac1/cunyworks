@@ -53,7 +53,7 @@
 
 				<ul>
 					<li><a href="#dropcourse">Drop Course</a></li>
-					<li><a href="login">Login</a></li>
+					<li><a href="login" >Login</a></li>
 				</ul>
 			</nav>
 			<!-- / navigation -->
@@ -65,82 +65,79 @@
 	<div class="divider"></div>
 
 
-	<section id="home" class="studentCourses">
-		<div id="showsc" class="showsc">Courses you are enrolled</div>
-		<div id="StudentCourse">
-			<table id="scourseTable" class="table table-inverse"
-				style="display: none">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Course Name</th>
-						<th>Enrollment Capacity</th>
-						<th>Room</th>
-						<th>Schedule Time</th>
-						<th>Start Date</th>
-						<th>End Date</th>
+	<section id="home"  class="studentCourses">
+	<div id="showsc" class="showsc">Courses you are enrolled</div>
+	<div id="StudentCourse">
+	<table id="scourseTable" class="table table-inverse" style="display: none">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Course Name</th>
+				<th>Enrollment Capacity</th>
+				<th>Room</th>
+				<th>Schedule Time</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				
+			</tr>
+		</thead>
+		<tbody>
 
-					</tr>
-				</thead>
-				<tbody>
 
-
-				</tbody>
-			</table>
-		</div>
+		</tbody>
+	</table>
+	</div>
 	</section>
-	<div class="divider"></div>
+<div class="divider"></div>
 
-	<section id="enrollment" class="enrollCourses">
-		<div id="showac" class="showsc">Click on course to enroll</div>
-		<div id="StudentCourse">
-			<table id="allcourseTable" class="table table-inverse"
-				style="display: none">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Course Name</th>
-						<th>Enrollment Capacity</th>
-						<th>Room</th>
-						<th>Schedule Time</th>
-						<th>Start Date</th>
-						<th>End Date</th>
-						<!-- <th>Syllabus</th> -->
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
+<section id ="enrollment" class="enrollCourses">
+	<div id="showac" class="showsc">Click on course to enroll</div>
+	<div id="StudentCourse">
+	<table id="allcourseTable" class="table table-inverse" style="display: none">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Course Name</th>
+				<th>Enrollment Capacity</th>
+				<th>Room</th>
+				<th>Schedule Time</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<!-- <th>Syllabus</th> -->
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
 
 
-				</tbody>
-			</table>
-		</div>
+		</tbody>
+	</table>
+	</div>
 	</section>
-	<div class="divider"></div>
+<div class="divider"></div>
 
-	<section id="dropcourse" class="dropCourses">
-		<div id="showdc" class="showsc">Click on course to drop</div>
-		<div id="StudentCourse">
-			<table id="dcourseTable" class="table table-inverse"
-				style="display: none">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Course Name</th>
-						<th>Enrollment Capacity</th>
-						<th>Room</th>
-						<th>Schedule Time</th>
-						<th>Start Date</th>
-						<th>End Date</th>
+<section id="dropcourse" class="dropCourses">
+	<div id="showdc" class="showsc">Click on course to drop</div>
+	<div id="StudentCourse">
+	<table id="dcourseTable" class="table table-inverse" style="display: none">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Course Name</th>
+				<th>Enrollment Capacity</th>
+				<th>Room</th>
+				<th>Schedule Time</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				
+			</tr>
+		</thead>
+		<tbody>
 
-					</tr>
-				</thead>
-				<tbody>
 
-
-				</tbody>
-			</table>
-		</div>
+		</tbody>
+	</table>
+	</div>
 	</section>
 	<section class="events">
 
@@ -165,11 +162,13 @@
 					<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
 					<h4 class="modal-title">Enroll in courses</h4>
 				</div>
-
+			
 				<div class="modal-body" id="orderDetails">
 					<div class="fancybox">
 
+
 						<div class="center">
+
 
 							<fieldset class="subject">
 								<input id="nameOfClass" type="text" readonly>
@@ -177,7 +176,7 @@
 
 					
 							<fieldset class="question">
-								<textarea id="descOfClass" readonly> </textarea>
+								<textarea   id="descOfClass" readonly> </textarea>
 							</fieldset>
 						</div>
 						<input type="hidden" id="idOfClass">
@@ -185,8 +184,8 @@
 							<button id="add" class="btn blue" type="submit">Enroll</button>
 							<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
 						</div>
-
-					</div>
+	
+				</div>
 				</div>
 				<div class="modal-footer">
 				
@@ -203,27 +202,44 @@
 					<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
 					<h4 class="modal-title">Drop Courses</h4>
 				</div>
-
+			
 				<div class="modal-body" id="orderDetails">
 					<div class="fancybox">
+					
+						<div class="lead">
 
-						<div class="lead"><h5>Are you sure you want drop this course?</h5></div>
+							Are you sure you want drop this course?
 
+						</div>
+						
 						<input type="hidden" id="idOfClass">
 						<div class="btn-holder">
+<<<<<<< HEAD
 							<button id="drop" class="btn btn-danger" type="submit">YES</button>
+=======
+							<button id="drop" class="btn blue" type="submit">Drop</button>
+>>>>>>> branch 'master' of https://github.com/synac1/cunyworks.git
 						</div>
+<<<<<<< HEAD
 						<div class="btn-holder">
 						<button type="button" class="btn blue" data-dismiss="modal">NO</button>
 						</div>
 
 					</div>
+=======
+	
+				</div>
+>>>>>>> branch 'master' of https://github.com/synac1/cunyworks.git
 				</div>
 				<div class="modal-footer">
+<<<<<<< HEAD
 					<div class="alert alert-success" role="alert">
 					
 					</div>
 					
+=======
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+>>>>>>> branch 'master' of https://github.com/synac1/cunyworks.git
 				</div>
 			</div>
 		</div>
@@ -248,16 +264,16 @@
 	$(function() {
 		fetchstudent();
 		fetchstuff();
-
 		$("#showsc").on("click", function() {
-			$("#scourseTable").toggle();
+			$( "#scourseTable" ).toggle();
 		});
-		$("#showac").on("click", function() {
-			$("#allcourseTable").toggle();
+			$("#showac").on("click", function() {
+			$( "#allcourseTable" ).toggle();
 		});
-		$("#showdc").on("click", function() {
-			$("#dcourseTable").toggle();
+			$("#showdc").on("click", function() {
+			$( "#dcourseTable" ).toggle();
 		});
+		
 
 		$("#add").click(function() {
 			var courseId = $("#idOfClass").val();
@@ -271,15 +287,13 @@
 					courseN : courseId
 				}),
 				success : function(response) {
-					fetchstuff();
-					fetchstudent();
 					alert(response);
-
+					fetchstudent();
 				}
 			});
 
 		});
-
+		
 		$("#drop").click(function() {
 			var courseId = $("#idOfClass").val();
 			var studentId = 1;
@@ -292,10 +306,9 @@
 					courseN : courseId
 				}),
 				success : function(response) {
-					fetchstudent();
-					fetchstuff();
 					alert(response);
-
+					fetchstudent();
+		
 				}
 			});
 
@@ -310,7 +323,7 @@
 					tablewipe();
 					tableload(response);
 					fetchstudent();
-
+					
 				}
 			});
 		}
@@ -326,11 +339,12 @@
 				}
 			});
 		}
+		
 
 		function tablewipe() {
 			$("#allcourseTable tbody").empty();
 		}
-
+		
 		function tablewipeold() {
 			$("#scourseTable tbody").empty();
 			$("#dcourseTable tbody").empty();
@@ -361,40 +375,72 @@
 								+ "<td>"
 								+ temp.endDate
 								+ "</td>"
-								/* 	+ "<td><a href='#'>"
-									+ temp.syllabus
-									+ "</a></td>" */
+							/* 	+ "<td><a href='#'>"
+								+ temp.syllabus
+								+ "</a></td>" */
 								+ "<td style='visibility: hidden;'>"
-								+ temp.description + "</td>" + "</tr>");
+								+ temp.description
+								+ "</td>"
+								+ "</tr>");
 
 			});
 		}
 		function tableloadhome(response) {
 			$.each(response, function(index, temp) {
 				$("#scourseTable tbody").append(
-						'<tr>' + '<td scope="row">' + temp.courseId + '</td>'
-								+ "<td id='cname'>" + temp.subject.name
-								+ "</td>" + "<td>" + temp.enrollmentCapacity
-								+ "</td>" + "<td>" + temp.room + "</td>"
-								+ "<td>" + temp.scheduleTime + "</td>" + "<td>"
-								+ temp.startDate + "</td>" + "<td>"
-								+ temp.endDate + "</td>"
+						'<tr>'
+								+ '<td scope="row">'
+								+ temp.courseId
+								+ '</td>'
+								+ "<td id='cname'>"
+								+ temp.subject.name
+								+ "</td>"
+								+ "<td>"
+								+ temp.enrollmentCapacity
+								+ "</td>"
+								+ "<td>"
+								+ temp.room
+								+ "</td>"
+								+ "<td>"
+								+ temp.scheduleTime
+								+ "</td>"
+								+ "<td>"
+								+ temp.startDate
+								+ "</td>"
+								+ "<td>"
+								+ temp.endDate
+								+ "</td>"
 
 								+ "</tr>");
 
 			});
 		}
-		function tableloaddrop(response) {
+function tableloaddrop(response) {
 			$.each(response, function(index, temp) {
 				$("#dcourseTable tbody").append(
 						'<tr data-toggle="modal" data-target="#dropModal" data-id='+temp.courseId+'>'
-								+ '<td scope="row">' + temp.courseId + '</td>'
-								+ "<td id='cname'>" + temp.subject.name
-								+ "</td>" + "<td>" + temp.enrollmentCapacity
-								+ "</td>" + "<td>" + temp.room + "</td>"
-								+ "<td>" + temp.scheduleTime + "</td>" + "<td>"
-								+ temp.startDate + "</td>" + "<td>"
-								+ temp.endDate + "</td>" + "</tr>");
+								+ '<td scope="row">'
+								+ temp.courseId
+								+ '</td>'
+								+ "<td id='cname'>"
+								+ temp.subject.name
+								+ "</td>"
+								+ "<td>"
+								+ temp.enrollmentCapacity
+								+ "</td>"
+								+ "<td>"
+								+ temp.room
+								+ "</td>"
+								+ "<td>"
+								+ temp.scheduleTime
+								+ "</td>"
+								+ "<td>"
+								+ temp.startDate
+								+ "</td>"
+								+ "<td>"
+								+ temp.endDate
+								+ "</td>"
+								+ "</tr>");
 
 			});
 		}
@@ -410,21 +456,22 @@
 							'td:nth-child(2)').text();
 					var getDescFromRow = $(event.relatedTarget).find(
 							'td:nth-child(8)').text();
-					$("#idOfClass").val(getIdFromRow);
+					$("#idOfClass").val(getIdFromRow);		
 					$("#nameOfClass").val(getNameFromRow);
-					$("#descOfClass").val(getDescFromRow);
-
+					$("#descOfClass").val(getDescFromRow);	
+			
 				});
-		$('#dropModal').on(
+			$('#dropModal').on(
 				'show.bs.modal',
 				function(event) {
 					//var getIdFromRow = $(event.relatedTarget).attr('data-id');
 					// if you wnat to take the text of the first cell 
 					var getIdFromRow = $(event.relatedTarget).find(
 							'td:first-child').text();
-
-					$("#idOfClass").val(getIdFromRow);
-
+					
+					$("#idOfClass").val(getIdFromRow);		
+				
+			
 				});
 
 	});
