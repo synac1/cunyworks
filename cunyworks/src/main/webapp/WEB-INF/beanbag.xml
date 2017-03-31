@@ -19,6 +19,6 @@
 		<property name="prefix" value="/pages/" />
 	</bean>
 
-	<!-- <import resource="classpath:dao-beans.xml" />  -->
+	<import resource="classpath:dao-beans.xml" />  
 
 </beans>

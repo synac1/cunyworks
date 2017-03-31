@@ -82,9 +82,10 @@ $(document).ready(function() {
 					allCourses = response;
 					console.log(response);
 					tablewipe();
+					tableload(response);
+
 					populate("#myForm",response);
 
-					tableload(response);
 					
 					//loadForm(response);
 				}
