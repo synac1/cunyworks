@@ -3,7 +3,7 @@ $(document).ready(function() {
 		refresh();//initally loads
 		
 		
-				function CourseBean(courseId,name,room,startDate,endDate,enrollmentCapacity) {
+				function CourseBean(courseId,name,room,startDate,endDate,description,enrollmentCapacity) {
 					this.courseId = courseId;
 
 					this.name = name;
@@ -16,11 +16,12 @@ $(document).ready(function() {
 					//this.syllabus = syllabus;
 					//this.created = created;
 					//this.teacher = teacher;
+					this.description = description;
 					this.enrollmentCapacity = enrollmentCapacity;
 				}
 
 				
-			//var allCourses;
+			var allCourses;
 		$("#update").click(function() {
 
 		
@@ -34,8 +35,9 @@ $(document).ready(function() {
 
 			var startDate = $("#startDate").val();
 			var endDate = $("#endDate").val();
+			var description = $("#description").val();
 			var enrollmentCapacity = $("#capacity").val();
-			var courseBean = new CourseBean(courseId,name,room,startDate,endDate,enrollmentCapacity);
+			var courseBean = new CourseBean(courseId,name,room,startDate,endDate,description,enrollmentCapacity);
 
 			//allCourses[0].startDate = ;;;;
 			
@@ -47,13 +49,15 @@ $(document).ready(function() {
 					contentType : "application/json",
 				
 				success : function(response) {
+					
 					$(".alert-success").text(response);
 					$(".alert-success").fadeIn();
 					window.setTimeout(function(response) {
 						$(".alert-success").fadeOut();
 						$("#update").prop("disabled", false);
 					}, 3000);
-					$("#myModal").trigger("reset"); //reset form fields
+					$('#myForm').get(0).reset();
+ //reset form fields
 					refresh();
 				},
 				error: function() {
@@ -61,6 +65,8 @@ $(document).ready(function() {
 					window.setTimeout(function(response) {
 						$(".alert-danger").fadeOut();
 						$("#update").prop("disabled", false);
+						$('#myForm').get(0).reset();
+
 					}, 3000);
 				}
 			});
@@ -73,7 +79,7 @@ $(document).ready(function() {
 					"Accept" : "application/json"
 				},
 				success : function(response) {
-					
+					allCourses = response;
 					console.log(response);
 					tablewipe();
 					populate("#myForm",response);
@@ -93,43 +99,71 @@ $(document).ready(function() {
 		function tablewipe() {
 			$(".table tbody").empty();
 		}
-		function tableload(response) {
-		
+//		function tableload(response) {
+//		
+//			$.each(response, function(index, temp) {
+//
+//				$(".table tbody").append("<tr>");
+//				$(".table tbody").append("<td>" + temp.courseId + "</td>");
+//				$(".table tbody").append("<td>" + temp.name + "</td>");
+//				$(".table tbody").append("<td>" + temp.subject.name + "</td>");
+//				
+//				$(".table tbody").append("<td>" + temp.startDate + "</td>");
+//				$(".table tbody").append("<td>" + temp.endDate + "</td>");
+//								$(".table tbody").append("<td>" + temp.room + "</td>");
+//								$(".table tbody").append("<td>" + temp.scheduleTime + "</td>");
+//				
+//				$(".table tbody").append("<td>" + temp.enrollmentCapacity + "</td>");
+//				$(".table tbody").append("<td>" + '<a href="#myModal" class="btn btn-lg btn-primary" data-toggle="modal">Modify</a>' + "</td>");
+//				
+//			
+//
+//				
+//				$(".table tbody").append("</tr>");
+//
+//				
+//
+//				
+//			});
+//			
+//			
+//		}
+		var i = 0;
+		function tableload(response) {		
+			
+			
 			$.each(response, function(index, temp) {
 
-				$(".table tbody").append("<tr>");
-				$(".table tbody").append("<td>" + temp.courseId + "</td>");
-				$(".table tbody").append("<td>" + temp.name + "</td>");
-				$(".table tbody").append("<td>" + temp.subject.name + "</td>");
+				var newRow = "<tr>" + "<td>" + temp.courseId + "</td>" + "<td>" + temp.name + "</td>" + "<td>" + temp.subject.name + "</td>" +
+				"<td>" + temp.startDate + "</td>" + "<td>" + temp.endDate + "</td>" + "<td>" + temp.description + "</td>"+ "<td>" + temp.room + "</td>" + "<td>" + temp.scheduleTime + "</td>" +
+				"<td>" + temp.enrollmentCapacity + "</td>" + "<td>" + '<button href="#myModal" id=\"' + i +  '\" class="btn btn-lg btn-primary" data-toggle="modal">Modify</button>' + "</td>" + 
+				"</tr>";
+				$(".table tbody").append(newRow);
 				
-				$(".table tbody").append("<td>" + temp.startDate + "</td>");
-				$(".table tbody").append("<td>" + temp.endDate + "</td>");
-								$(".table tbody").append("<td>" + temp.room + "</td>");
-								$(".table tbody").append("<td>" + temp.scheduleTime + "</td>");
-				
-				$(".table tbody").append("<td>" + temp.enrollmentCapacity + "</td>");
-				$(".table tbody").append("<td>" + '<a href="#myModal" class="btn btn-lg btn-primary" data-toggle="modal">Modify</a>' + "</td>");
-				
-			
-
-				
-				$(".table tbody").append("</tr>");
-
-				
-
+				i++;
 				
 			});
 			
 			
-		}
-//		function loadDate(){
-//			
-//			$('#myTable > tbody  > tr').each(populate("myModal",response));
+//			var table = document.getElementById('#myTable');
 //
-//		}
-		var rowNum = $('#myTable tbody').children().length;
+//			var rowLength = table.rows.length;
+//
+//			for(var i=0; i<rowLength; i++){
+//				populate("#myForm",response);
+				
+//			}
+			 
+						
+						
+		}
+		
+		
+		
+	
 
 		function populate(frm,response){
+
 
 		$.each(response,function(key,value){
 			//$("#formName").addAttribute("id").val=key //
@@ -141,6 +175,8 @@ $(document).ready(function() {
 		   	$('#startDate',frm ).val(value.startDate);
 		   	$('#endDate',frm ).val(value.endDate);
 		   	$('#room',frm ).val(value.room);
+		   	$('#description',frm ).val(value.description);
+
 		   	$('#capacity',frm ).val(value.enrollmentCapacity);
 		   	
 		   	

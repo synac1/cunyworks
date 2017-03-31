@@ -15,6 +15,17 @@
 
 <link rel="stylesheet" media="all"
 	href="http://localhost:9999/cunyworks/assets/css/style.css" type="text/css">
+	
+<style type="text/css">	
+.modal-dialog{
+   position: relative;
+   display: table;
+   overflow-y: auto;    
+   overflow-x: auto;
+   width: auto;
+   min-width: 50%;   
+}
+</style>
 <!-- end of css -->
 </head>
 <body>
@@ -51,7 +62,7 @@
 			<div class="main-content">
 
 
-				<table class="table table-inverse" style="text-transform: capitalize;">
+				<table id="myTable" class="table table-inverse" style="text-transform: capitalize;">
 					<p>Courses</p>
 					<thead>
 						<tr>
@@ -61,6 +72,8 @@
 							
 							<th>Start Date</th>
 							<th>End Date</th>
+							<th>Description</th>
+							
 							<th>Room</th>
 							<th>Schedule Time</th>
 							
@@ -135,8 +148,8 @@
             </div>
             <div class="modal-body" id="myModalBody">
 
-                <form id="myForm" method="post" style="text-transform: capitalize;">
-                <div class="form-group ">
+      <form id="myForm" method="post" style="text-transform: capitalize;">
+      <div class="form-group ">
       <label class="control-label " for="courseId">
        Course Id
       </label>
@@ -173,6 +186,12 @@
       </label>
       <input class="form-control" id="endDate" name="endDate" placeholder="MM/DD/YYYY" type="date"/>
      </div>
+     <div class="form-group ">
+      <label class="control-label " for="description">
+       Description
+      </label>
+      <input class="form-control" id="description" name="description" type="text"/>
+     </div>
      <label class="control-label " for="enrollmentCapacity">
        Enrollment Capacity
       </label>
@@ -188,7 +207,7 @@
 						<div class="alert alert-danger" role="alert"
 							style="display: none;">Error updating</div>
       </div>
-
+</div>
     </form>
             </div>
             

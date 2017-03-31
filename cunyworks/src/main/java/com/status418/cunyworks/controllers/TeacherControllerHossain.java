@@ -62,6 +62,7 @@ public class TeacherControllerHossain {
 
 		cbean.copyEndDate(course.getEndDate());
 		cbean.copyStartDate(course.getStartDate());
+		cbean.setDescription(course.getDescription());
 		cbean.setEnrollmentCapacity(course.getEnrollmentCapacity());
 		//cbean.setStartDate(new SimpleDateFormat("yyyy-MM-dd").format(course.getStartDate()));
 		System.out.println(cbean);
