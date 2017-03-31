@@ -43,17 +43,17 @@
 
 	<header id="header">
 		<div class="container">
-			<a href="Yani.html" id="logo-1" title="CunyWorks">CUNY#Works</a>
+			<a href="#" id="logo-1" title="CunyWorks">CUNY#Works</a>
 			<div class="menu-trigger"></div>
 			<nav id="menu">
 				<ul>
-					<li><a href="events.html">Courses</a></li>
-					<li><a href="gallery.html">Students</a></li>
+					<li><a href="#home">Home</a></li>
+					<li><a href="#enrollment">Enrollment</a></li>
 				</ul>
 
 				<ul>
-					<li><a href="gallery.html">Teachers</a></li>
-					<li><a href="#" class="get-contact">Contact</a></li>
+					<li><a href="#dropcourse">Drop Course</a></li>
+					<li><a href="login" >Login</a></li>
 				</ul>
 			</nav>
 			<!-- / navigation -->
@@ -64,7 +64,36 @@
 	<!-- / header -->
 	<div class="divider"></div>
 
-	<table id="courseTable" class="table table-inverse">
+
+	<section id="home"  class="studentCourses">
+	<div id="showsc" class="showsc">Courses you are enrolled</div>
+	<div id="StudentCourse">
+	<table id="scourseTable" class="table table-inverse" style="display: none">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Course Name</th>
+				<th>Enrollment Capacity</th>
+				<th>Room</th>
+				<th>Schedule Time</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+
+
+		</tbody>
+	</table>
+	</div>
+	</section>
+<div class="divider"></div>
+
+<section id ="enrollment" class="enrollCourses">
+	<div id="showac" class="showsc">Click on course to enroll</div>
+	<div id="StudentCourse">
+	<table id="allcourseTable" class="table table-inverse" style="display: none">
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -83,10 +112,33 @@
 
 		</tbody>
 	</table>
+	</div>
+	</section>
+<div class="divider"></div>
 
-	<section class="posts"></section>
+<section id="dropcourse" class="dropCourses">
+	<div id="showdc" class="showsc">Click on course to drop</div>
+	<div id="StudentCourse">
+	<table id="dcourseTable" class="table table-inverse" style="display: none">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Course Name</th>
+				<th>Enrollment Capacity</th>
+				<th>Room</th>
+				<th>Schedule Time</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				
+			</tr>
+		</thead>
+		<tbody>
 
 
+		</tbody>
+	</table>
+	</div>
+	</section>
 	<section class="events">
 
 		<!-- / container -->
@@ -141,6 +193,38 @@
 	</div>
 
 
+	<div id="dropModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+					<h4 class="modal-title">Drop Courses</h4>
+				</div>
+			
+				<div class="modal-body" id="orderDetails">
+					<div class="fancybox">
+					
+						<div class="lead">
+
+							Are you sure you want drop this course?
+
+						</div>
+						
+						<input type="hidden" id="idOfClass">
+						<div class="btn-holder">
+							<button id="drop" class="btn blue" type="submit">Drop</button>
+						</div>
+	
+				</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 
 
 
@@ -157,16 +241,42 @@
 </body>
 <script type="text/javascript">
 	$(function() {
-
+		fetchstudent();
 		fetchstuff();
-		
+		$("#showsc").on("click", function() {
+			$( "#scourseTable" ).toggle();
+		});
+			$("#showac").on("click", function() {
+			$( "#allcourseTable" ).toggle();
+		});
+			$("#showdc").on("click", function() {
+			$( "#dcourseTable" ).toggle();
+		});
 		
 
 		$("#add").click(function() {
 			var courseId = $("#idOfClass").val();
 			var studentId = 1;
 
-			$.ajax("http://localhost:9999/cunyworks/student/new", {
+			$.ajax("http://localhost:9999/cunyworks/new", {
+				method : "POST",
+				contentType : "application/json",
+				data : JSON.stringify({
+					studentN : studentId,
+					courseN : courseId
+				}),
+				success : function(response) {
+					alert(response);
+				}
+			});
+
+		});
+		
+		$("#drop").click(function() {
+			var courseId = $("#idOfClass").val();
+			var studentId = 1;
+
+			$.ajax("http://localhost:9999/cunyworks/drop_course", {
 				method : "POST",
 				contentType : "application/json",
 				data : JSON.stringify({
@@ -181,24 +291,43 @@
 		});
 
 		function fetchstuff() {
-			$.ajax("http://localhost:9999/cunyworks/student/new_courses", {
+			$.ajax("http://localhost:9999/cunyworks/new_courses", {
 				method : "GET",
 				dataType : "json",
 				success : function(response) {
 					console.log(response);
 					tablewipe();
 					tableload(response);
+					
 				}
 			});
 		}
+		function fetchstudent() {
+			$.ajax("http://localhost:9999/cunyworks/courses", {
+				method : "GET",
+				dataType : "json",
+				success : function(response) {
+					console.log(response);
+					tablewipeold();
+					tableloadhome(response);
+					tableloaddrop(response);
+				}
+			});
+		}
+		
 
 		function tablewipe() {
-			$("#courseTable tbody").empty();
+			$("#allcourseTable tbody").empty();
+		}
+		
+		function tablewipeold() {
+			$("#scourseTable tbody").empty();
+			$("#dcourseTable tbody").empty();
 		}
 
 		function tableload(response) {
 			$.each(response, function(index, temp) {
-				$("#courseTable tbody").append(
+				$("#allcourseTable tbody").append(
 						'<tr data-toggle="modal" data-target="#myModal" data-id='+temp.courseId+' >'
 								+ '<td scope="row">'
 								+ temp.courseId
@@ -231,6 +360,65 @@
 
 			});
 		}
+		function tableloadhome(response) {
+			$.each(response, function(index, temp) {
+				$("#scourseTable tbody").append(
+						'<tr>'
+								+ '<td scope="row">'
+								+ temp.courseId
+								+ '</td>'
+								+ "<td id='cname'>"
+								+ temp.subject.name
+								+ "</td>"
+								+ "<td>"
+								+ temp.enrollmentCapacity
+								+ "</td>"
+								+ "<td>"
+								+ temp.room
+								+ "</td>"
+								+ "<td>"
+								+ temp.scheduleTime
+								+ "</td>"
+								+ "<td>"
+								+ temp.startDate
+								+ "</td>"
+								+ "<td>"
+								+ temp.endDate
+								+ "</td>"
+
+								+ "</tr>");
+
+			});
+		}
+function tableloaddrop(response) {
+			$.each(response, function(index, temp) {
+				$("#dcourseTable tbody").append(
+						'<tr data-toggle="modal" data-target="#dropModal" data-id='+temp.courseId+'>'
+								+ '<td scope="row">'
+								+ temp.courseId
+								+ '</td>'
+								+ "<td id='cname'>"
+								+ temp.subject.name
+								+ "</td>"
+								+ "<td>"
+								+ temp.enrollmentCapacity
+								+ "</td>"
+								+ "<td>"
+								+ temp.room
+								+ "</td>"
+								+ "<td>"
+								+ temp.scheduleTime
+								+ "</td>"
+								+ "<td>"
+								+ temp.startDate
+								+ "</td>"
+								+ "<td>"
+								+ temp.endDate
+								+ "</td>"
+								+ "</tr>");
+
+			});
+		}
 
 		$('#myModal').on(
 				'show.bs.modal',
@@ -246,6 +434,18 @@
 					$("#idOfClass").val(getIdFromRow);		
 					$("#nameOfClass").val(getNameFromRow);
 					$("#descOfClass").val(getDescFromRow);	
+			
+				});
+			$('#dropModal').on(
+				'show.bs.modal',
+				function(event) {
+					//var getIdFromRow = $(event.relatedTarget).attr('data-id');
+					// if you wnat to take the text of the first cell 
+					var getIdFromRow = $(event.relatedTarget).find(
+							'td:first-child').text();
+					
+					$("#idOfClass").val(getIdFromRow);		
+				
 			
 				});
 
