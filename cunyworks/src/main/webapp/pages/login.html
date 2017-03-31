@@ -5,32 +5,17 @@
 <title>School Login</title>
 </head>
 <body>
-
-	<div id="login">
-		<div class="container" style="margin-top: 15%;">
-			<form class="form-signin" method="post"
-				action="${pageContext.request.contextPath}/pages/login">
-				<h2 class="form-signin-heading"> Sign In:</h2>
-				<label for="emails" class="sr-only">Email Address</label> <input
-					type="text" id=userName class="form-control"
-					placeholder="email" name="email" maxlength="50" required
-					autofocus> <label for="inputPassword" class="sr-only">Password</label>
-				<input type="password" id="inputPassword" class="form-control"
-					placeholder="Password" name="password" maxlength="60"
-					style="margin-top: 10px;" required>
-				<div style="color: red; font-weight: bold;">
-					<c:if test="${not empty error }">
-						<c:out value="${error }"></c:out>
-					</c:if>
-				</div>
-				<div style="margin-top: 15px;">
-					<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
-						In</button>
-				</div>
-			</form>
-		</div>
-
-
-		
+	<div class="container">
+		<form class="form-signin" method="post" action="login">
+			<h2>Sign In:</h2>
+			<label for="emails">Email Address</label> 
+			<input type="text" id="username" name="username" class="form-control" placeholder="email" required autofocus> 
+			<label for="password">Password</label>
+			<input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+			<div style="margin-top: 15px;">
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+			</div>
+		</form>
+	</div>
 </body>
 </html>

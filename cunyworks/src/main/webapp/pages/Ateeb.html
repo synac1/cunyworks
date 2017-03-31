@@ -8,9 +8,7 @@
 <link rel="stylesheet" media="all"
 	href="http://localhost:9999/cunyworks/assets/bootstrap/css/bootstrap.min.css"
 	type="text/css">
-<link rel="stylesheet" media="all"
-	href="http://localhost:9999/cunyworks/assets/css/style.css" type="text/css">
-
+	
 <style type="text/css">
 .hidden { 
 	display: none;
@@ -19,10 +17,31 @@
 #subSelect {
 	text-transform: capitalize;
 }
+
+.modal-dialog{
+    position: relative;
+    display: table;
+    overflow-y: auto;    
+    overflow-x: auto;
+    width: auto;
+    min-width: 300px;   
+}
 </style>
 
 </head>
 <body>
+
+	<a href="#courseAddModal" class="btn btn-primary" data-toggle="modal">Modify/Add</a>
+	<div id="courseAddModal" class="modal fade" aria-labelledby="myModalLabel" aria-hidden="true" tabindex="-1" role="dialog">
+    	<div class="modal-dialog">
+        	<div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	                <h4 class="modal-title">Course Information</h4>
+	            </div>
+            	<div class="modal-body" id="myModalBody">
+
+
 
 	<div class="container">
 		<button class="btn btn-lg btn-primary btn-block" id="addCourseButton">Add New Course</button>
@@ -60,12 +79,14 @@
 				<input id="courseSyllabus" type="file" class="form-control-file" disabled>
 				<input id="courseFormButton" class="btn btn-lg btn-primary btn-block" type="submit">
 			</form>
-
 		</div>
 	</div>
 
 
-
+		    	</div>
+	        </div>
+	    </div>
+	</div>
 
 
 

@@ -1,6 +1,5 @@
 package com.status418.cunyworks.controllers;
 
-import java.text.SimpleDateFormat;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.status418.cunyworks.beans.CourseBean;
+import com.status418.cunyworks.beans.SubjectBean;
 import com.status418.cunyworks.beans.TeacherBean;
 import com.status418.cunyworks.data.FacadeImpl;
 
 @Controller
-@RequestMapping(value = "teacher0")
-public class TeacherControllerHossain {
+@RequestMapping(value = "teacher")
+public class TeacherController {
 
 	@Autowired
 	private FacadeImpl facadeImpl;
@@ -27,16 +27,10 @@ public class TeacherControllerHossain {
 	public void setFacadeImpl(FacadeImpl facadeImpl) {
 		this.facadeImpl = facadeImpl;
 	}
-
-	@RequestMapping(value = "home", method = RequestMethod.GET)
+	@RequestMapping(value = {"/", ""}, method = {RequestMethod.GET, RequestMethod.POST})
 	public String home() {
-		return "Hossain.html";
+		return "teacher.html";
 	}
-
-//	@RequestMapping(value = "getmodal", method = RequestMethod.GET)
-//	public String getModal() {
-//		return "hossainmodal.html";
-//	}
 
 	@RequestMapping(value = "allCourses", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
@@ -62,8 +56,10 @@ public class TeacherControllerHossain {
 
 		cbean.copyEndDate(course.getEndDate());
 		cbean.copyStartDate(course.getStartDate());
+		cbean.setDescription(course.getDescription());
 		cbean.setEnrollmentCapacity(course.getEnrollmentCapacity());
-		//cbean.setStartDate(new SimpleDateFormat("yyyy-MM-dd").format(course.getStartDate()));
+		// cbean.setStartDate(new
+		// SimpleDateFormat("yyyy-MM-dd").format(course.getStartDate()));
 		System.out.println(cbean);
 		System.out.println(course.getSubject());
 
@@ -77,12 +73,23 @@ public class TeacherControllerHossain {
 		return new ResponseEntity<String>("Success!", HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "teacherId", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "insert", method = RequestMethod.POST, headers = "Accept=application/json")
 	@ResponseBody
-	public ResponseEntity<TeacherBean> findTeacherbyId(int teacherId) {
+	public ResponseEntity<String> addNewCourse(@RequestBody CourseBean course) {
 		TeacherBean teacher = facadeImpl.getTeacherById(1);
-		System.out.println(teacher);
-		return new ResponseEntity<TeacherBean>(teacher, HttpStatus.OK);
+		course.setTeacher(teacher);
+		teacher.addCourse(course);
+		course.getSubject().addCourse(course);
+		facadeImpl.saveOrUpdate(course);
+		facadeImpl.merge(teacher);
+		return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
+	}
+
+	@RequestMapping(value = "subjects", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<Set<SubjectBean>> getAllSubjects() {
+		Set<SubjectBean> subjects = facadeImpl.getAllSubjects();
+		return new ResponseEntity<Set<SubjectBean>>(subjects, HttpStatus.OK);
 	}
 
 }
