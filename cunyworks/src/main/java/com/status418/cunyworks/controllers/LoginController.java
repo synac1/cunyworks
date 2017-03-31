@@ -48,10 +48,7 @@ public class LoginController {
 		}
 
 		System.out.println("Invalid User!");
-		return "login";
-
+		return "redirect:login";
 	}
-
-
 
 }
