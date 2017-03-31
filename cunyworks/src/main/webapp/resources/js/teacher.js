@@ -51,11 +51,7 @@ $(document).ready(
 			var selectedSubject = "";
 			var allSubjects;
 			var currentTeacher;
-
-			function SubjectBean(name) {
-				this.name = name;
-			}
-
+			
 			function CourseBean(enrollmentCapacity, name, room, scheduleTime,
 					startDate, endDate, syllabus, subject, description) {
 				this.enrollmentCapacity = enrollmentCapacity;
@@ -71,9 +67,9 @@ $(document).ready(
 
 			function clearEverything() {
 				$("#courseFormDiv").hide();
-
 				$("#subSelect").html("");
 				$("#courseForm").trigger("reset"); // resets form
+				$("#courseAddModal").modal("hide");
 			}
 
 			function getCourseBeanFromForm() {

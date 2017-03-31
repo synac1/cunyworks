@@ -39,7 +39,6 @@ public class TeacherController {
 		TeacherBean teacher = facadeImpl.getTeacherById(1);
 		System.out.println(teacher);
 		Set<CourseBean> allCourses = teacher.getCourses();
-		// System.out.println(allCourses.iterator().next().getSubject().getName());
 		return new ResponseEntity<Set<CourseBean>>(allCourses, HttpStatus.OK);
 	}
 
@@ -80,7 +79,6 @@ public class TeacherController {
 		course.setTeacher(teacher);
 		teacher.addCourse(course);
 		course.getSubject().addCourse(course);
-		facadeImpl.saveOrUpdate(course);
 		facadeImpl.merge(teacher);
 		return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
 	}
