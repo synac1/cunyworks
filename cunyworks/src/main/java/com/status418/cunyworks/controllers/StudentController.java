@@ -31,7 +31,7 @@ public class StudentController {
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String HomePage(){
-		return "Sean.html";
+		return "student.html";
 		
 	}
 	
