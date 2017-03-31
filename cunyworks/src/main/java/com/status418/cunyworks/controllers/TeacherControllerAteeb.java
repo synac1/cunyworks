@@ -1,10 +1,5 @@
 package com.status418.cunyworks.controllers;
 
-import static com.status418.cunyworks.utils.Constants.TEACHER_COURSE_INSERT_URL;
-import static com.status418.cunyworks.utils.Constants.TEACHER_HOME_PAGE;
-import static com.status418.cunyworks.utils.Constants.TEACHER_HOME_URL;
-import static com.status418.cunyworks.utils.Constants.TEACHER_SUBJECTS_URL;
-
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +27,12 @@ public class TeacherControllerAteeb {
 		this.facadeImpl = facadeImpl;
 	}
 	
-	@RequestMapping(value = TEACHER_HOME_URL, method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
-		return TEACHER_HOME_PAGE;
+		return "Ateeb.html";
 	}
 
-	@RequestMapping(value = TEACHER_COURSE_INSERT_URL, method = RequestMethod.POST, headers = "Accept=application/json")
+	@RequestMapping(value = "insert", method = RequestMethod.POST, headers = "Accept=application/json")
 	@ResponseBody
 	public ResponseEntity<String> addNewCourse(@RequestBody CourseBean course) {
 		System.out.println(course);
@@ -46,7 +41,7 @@ public class TeacherControllerAteeb {
 		return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = TEACHER_SUBJECTS_URL, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "subjects", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Set<SubjectBean>> getAllSubjects() {
 		Set<SubjectBean> subjects = facadeImpl.getAllSubjects();

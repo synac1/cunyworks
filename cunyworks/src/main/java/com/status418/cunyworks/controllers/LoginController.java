@@ -1,5 +1,9 @@
 package com.status418.cunyworks.controllers;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,20 +23,29 @@ public class LoginController {
 		this.facadeImpl = facadeImpl;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String submit(String username, String password) {
+	@RequestMapping(value = "login", method = RequestMethod.GET)
+	public String loginPage() {
+		return "login.html";
+	}
+	
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	public String submit(String username, String password, HttpServletResponse response) throws IOException {
+		System.out.println("User: " + username + ", Pass: " + password);
 		StudentBean s = facadeImpl.getStudentByUsername(username);
 		TeacherBean t = facadeImpl.getTeacherByUsername(username);
 
 		if (s != null && s.getPassword().equals(password)) {
-
+			System.out.println("User is a Student!");
 			return "student";
 		} else if (t != null && t.getPassword().equals(password)) {
-			return "teacher";
-
+			System.out.println("User is a Teacher!");
+			response.sendRedirect("Ateeb.html");
 		} else {
+			System.out.println("Invalid User!");
 			return "login";
 		}
+		
+		return null;
 	}
 
 }

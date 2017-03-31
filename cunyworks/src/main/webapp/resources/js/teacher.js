@@ -50,6 +50,7 @@ $(document).ready(
 			var populated = false;
 			var selectedSubject = "";
 			var allSubjects;
+			var currentTeacher;
 
 			function SubjectBean(name) {
 				this.name = name;
