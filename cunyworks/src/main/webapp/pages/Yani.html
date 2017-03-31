@@ -159,7 +159,8 @@
 	$(function() {
 
 		fetchstuff();
-
+		
+		
 
 		$("#add").click(function() {
 			var courseId = $("#idOfClass").val();
@@ -203,7 +204,7 @@
 								+ temp.courseId
 								+ '</td>'
 								+ "<td id='cname'>"
-								+ temp.name
+								+ temp.subject.name
 								+ "</td>"
 								+ "<td>"
 								+ temp.enrollmentCapacity
@@ -226,8 +227,6 @@
 								+ "<td style='visibility: hidden;'>"
 								+ temp.description
 								+ "</td>"
-							
-
 								+ "</tr>");
 
 			});

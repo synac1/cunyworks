@@ -97,10 +97,14 @@ public class StudentController {
 
 			StudentBean student = facadeImpl.getStudentById(studentId);
 			CourseBean course = facadeImpl.getCourseById(courseId);
-
-			student.getCourses().remove(course);
-			course.getStudents().remove(student);
-
+			
+			//System.out.println(course.getStudents().iterator().);
+			System.out.println(course.getStudents().remove(student));
+			System.out.println(student.getCourses().size());
+			System.out.println(student.getCourses().remove(course));
+			System.out.println(student.getCourses().size());
+			
+		
 			facadeImpl.merge(course);
 
 			System.out.println(student.getCourses().size());
