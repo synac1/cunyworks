@@ -136,6 +136,7 @@ $(document).ready(
 					success : function(response) {
 						console.log(response);
 						clearEverything();
+						
 					},
 					error : function(response) {
 						console.log(response);
