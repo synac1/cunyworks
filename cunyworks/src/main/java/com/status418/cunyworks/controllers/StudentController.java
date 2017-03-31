@@ -17,24 +17,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.status418.cunyworks.beans.CourseBean;
 import com.status418.cunyworks.beans.StudentBean;
 import com.status418.cunyworks.data.FacadeImpl;
+import com.status418.cunyworks.services.UserService;
 
 @Controller
-//@RequestMapping(value ="/student")
+// @RequestMapping(value ="/student")
 public class StudentController {
 
 	@Autowired
 	private FacadeImpl facadeImpl;
+	@Autowired
+	private UserService userService;
 
-	public void setFacadeImpl(FacadeImpl facadeImpl) {
-		this.facadeImpl = facadeImpl;
-	}
-	
-	@RequestMapping(value="/student", method=RequestMethod.GET)
-	public String HomePage(){
+	@RequestMapping(value = "/student", method = RequestMethod.GET)
+	public String HomePage() {
 		return "student.html";
-		
+
 	}
-	
+
 	@RequestMapping(value = "/enroll", method = RequestMethod.GET)
 	public String HomePage1() {
 		return "Yani.html";
@@ -48,10 +47,11 @@ public class StudentController {
 		System.out.println(courses);
 		return new ResponseEntity<Set<CourseBean>>(courses, HttpStatus.OK);
 	}
+
 	@RequestMapping(value = "courses", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Set<CourseBean>> getCourses() {
-		Set<CourseBean> courses = facadeImpl.getStudentById(1).getCourses();
+		Set<CourseBean> courses = userService.getCurrentStudent().getCourses();
 		System.out.println(courses);
 		return new ResponseEntity<Set<CourseBean>>(courses, HttpStatus.OK);
 	}
@@ -97,14 +97,13 @@ public class StudentController {
 
 			StudentBean student = facadeImpl.getStudentById(studentId);
 			CourseBean course = facadeImpl.getCourseById(courseId);
-			
-			//System.out.println(course.getStudents().iterator().);
+
+			// System.out.println(course.getStudents().iterator().);
 			System.out.println(course.getStudents().remove(student));
 			System.out.println(student.getCourses().size());
 			System.out.println(student.getCourses().remove(course));
 			System.out.println(student.getCourses().size());
-			
-		
+
 			facadeImpl.merge(course);
 
 			System.out.println(student.getCourses().size());
@@ -115,10 +114,5 @@ public class StudentController {
 
 		return new ResponseEntity<String>("Success!", HttpStatus.OK);
 	}
-	
-	
-	
-	
-	
-	
+
 }

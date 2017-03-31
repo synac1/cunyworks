@@ -24,14 +24,6 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 
-	public void setFacadeImpl(FacadeImpl facadeImpl) {
-		this.facadeImpl = facadeImpl;
-	}
-
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String loginPage() {
 		return "login.html";

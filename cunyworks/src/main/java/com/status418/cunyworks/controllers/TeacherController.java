@@ -16,6 +16,7 @@ import com.status418.cunyworks.beans.CourseBean;
 import com.status418.cunyworks.beans.SubjectBean;
 import com.status418.cunyworks.beans.TeacherBean;
 import com.status418.cunyworks.data.FacadeImpl;
+import com.status418.cunyworks.services.UserService;
 
 @Controller
 @RequestMapping(value = "teacher")
@@ -23,10 +24,9 @@ public class TeacherController {
 
 	@Autowired
 	private FacadeImpl facadeImpl;
+	@Autowired
+	private UserService userService;
 
-	public void setFacadeImpl(FacadeImpl facadeImpl) {
-		this.facadeImpl = facadeImpl;
-	}
 	@RequestMapping(value = {"/", ""}, method = {RequestMethod.GET, RequestMethod.POST})
 	public String home() {
 		return "teacher.html";
@@ -35,8 +35,7 @@ public class TeacherController {
 	@RequestMapping(value = "allCourses", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Set<CourseBean>> getAllCourses() {
-
-		TeacherBean teacher = facadeImpl.getTeacherById(1);
+		TeacherBean teacher = userService.getCurrentTeacher();
 		System.out.println(teacher);
 		Set<CourseBean> allCourses = teacher.getCourses();
 		return new ResponseEntity<Set<CourseBean>>(allCourses, HttpStatus.OK);
@@ -45,7 +44,7 @@ public class TeacherController {
 	@RequestMapping(value = "update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<String> update(@RequestBody CourseBean course) {
-		TeacherBean teacher = facadeImpl.getTeacherById(1);
+		TeacherBean teacher = userService.getCurrentTeacher();
 
 		CourseBean cbean = facadeImpl.getCourseById(course.getCourseId());
 		cbean.setName(course.getName());
@@ -57,8 +56,6 @@ public class TeacherController {
 		cbean.copyStartDate(course.getStartDate());
 		cbean.setDescription(course.getDescription());
 		cbean.setEnrollmentCapacity(course.getEnrollmentCapacity());
-		// cbean.setStartDate(new
-		// SimpleDateFormat("yyyy-MM-dd").format(course.getStartDate()));
 		System.out.println(cbean);
 		System.out.println(course.getSubject());
 		facadeImpl.merge(cbean);
