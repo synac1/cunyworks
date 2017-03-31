@@ -1,5 +1,6 @@
 package com.status418.cunyworks.controllers;
 
+import java.util.Iterator;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,15 +96,37 @@ public class StudentController {
 			int courseId = mapper.convertValue(node.get("courseN"), int.class);
 			System.out.println(studentId + "," + courseId);
 
-			StudentBean student = facadeImpl.getStudentById(studentId);
+			StudentBean student = userService.getCurrentStudent();
 			CourseBean course = facadeImpl.getCourseById(courseId);
+			
+			Set<StudentBean> s=course.getStudents();
+			Set<CourseBean> c=student.getCourses();
+			
+			Iterator<StudentBean> it =s.iterator();
+			Iterator<CourseBean> itc =c.iterator();
+			
+			while(it.hasNext()){
+				StudentBean sb =it.next();
+				System.out.println(sb);
+				if(sb.getStudentId()==student.getStudentId()){
+					it.remove();
+					break;
+				}
+			}
+			course.setStudents(s);
+		
+			while(itc.hasNext()){
+				CourseBean cb =itc.next();
+				System.out.println(cb);
+				if(cb.getCourseId()==courseId){
+					itc.remove();
+					break;
+				}
+			}
+			
+			student.setCourses(c);
 
-			// System.out.println(course.getStudents().iterator().);
-			System.out.println(course.getStudents().remove(student));
-			System.out.println(student.getCourses().size());
-			System.out.println(student.getCourses().remove(course));
-			System.out.println(student.getCourses().size());
-
+			
 			facadeImpl.merge(course);
 
 			System.out.println(student.getCourses().size());

@@ -267,6 +267,7 @@
 				}),
 				success : function(response) {
 					alert(response);
+					fetchstudent();
 				}
 			});
 
@@ -285,6 +286,8 @@
 				}),
 				success : function(response) {
 					alert(response);
+					fetchstudent();
+		
 				}
 			});
 
@@ -298,6 +301,7 @@
 					console.log(response);
 					tablewipe();
 					tableload(response);
+					fetchstudent();
 					
 				}
 			});
