@@ -5,8 +5,9 @@
 <meta charset="utf-8">
 <title>CUNY#WORKS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-<link rel="stylesheet" media="all" href="http://localhost:9999/cunyworks/assets/bootstrap/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" media="all" href="http://localhost:9999/cunyworks/assets/css/style.css" type="text/css">
+<link rel="stylesheet" media="all" href="http://localhost:9999/cunyworks/assets/bootstrap/css/bootstrap.min.css" type="text/css">
+
 <style type="text/css">	
 .hidden { 
 	display: none;
@@ -27,66 +28,58 @@
 </style>
 </head>
 <body>
-
 	<header id="header">
 		<div class="container">
-			<a href="Hossain.html" id="logo-1" title="CunyWorks">Cuny#Works</a>
-			<div class="menu-trigger"></div>
+			<a href="#" id="logo-1" title="CunyWorks">Cuny#Works</a>
 			<nav id="menu">
 				<ul>
 					<li><a href="#">Home</a></li>
-					
 				</ul>
 				<ul>
 					<li><a href="#">CUNY#WORKS</a></li>
 				</ul>
 				<ul>
-					
 					<li><a href="login" class="get-contact">Login</a></li>
 				</ul>
 			</nav>
-			<!-- / navigation -->
 		</div>
-		<!-- / container -->
 	</header>
-	<!-- / header -->
 
 	<div class="divider"></div>
 	<div class="content">
 		<div class="container">
-			<div class="main-content">
-				<h2>Courses:</h2>
-				<table id="myTable" class="table table-inverse" style="text-transform: capitalize;">
-					<thead>
-						<tr>
-							<th>Course Id</th>
-							<th>Course Name</th>
-							<th>Subject</th>
-							<th>Start Date</th>
-							<th>End Date</th>
-							<th>Description</th>
-							<th>Room</th>
-							<th>Schedule Time</th>
-							<th>Enrollment Capacity</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
+			<h2>Current Courses:</h2>
+			<table id="myTable" class="table table-inverse" style="text-transform: capitalize;">
+				<thead>
+					<tr>
+						<th>Course Id</th>
+						<th>Course Name</th>
+						<th>Subject</th>
+						<th>Start Date</th>
+						<th>End Date</th>
+						<th>Description</th>
+						<th>Room</th>
+						<th>Schedule Time</th>
+						<th>Enrollment Capacity</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			<div>
+				<aside id="sidebar">
+					<div class="widget sidemenu">
+						<ul>
+							<li><button id="toggleModalButton" type="button" class="btn btn-primary btn-block">Add New Course</button></li>
+						</ul>
+					</div>
+				</aside>
 			</div>
+		</div>
+	</div>
 
-			<aside id="sidebar"> 
-				<div class="widget sidemenu"> 
-					<ul> 
-						<li><a href="#courseAddModal" class="btn btn-primary" data-toggle="modal">Add</a></li> 
-					</ul> 
-				</div> 
-			</aside> 
- 		</div> 
-	</div> 
-	
-  	<div id="courseAddModal" class="modal fade" aria-labelledby="myModalLabel" aria-hidden="true" tabindex="-1" role="dialog">
+	<div id="courseAddModal" class="modal fade" aria-labelledby="myModalLabel" aria-hidden="true" tabindex="-1" role="dialog">
     	<div class="modal-dialog">
         	<div class="modal-content">
 	            <div class="modal-header">

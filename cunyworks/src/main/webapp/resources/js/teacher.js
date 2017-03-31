@@ -47,10 +47,7 @@ $(document).ready(
 
 			// Variables / Methods
 			var animationSpeed = 1200;
-			var populated = false;
-			var selectedSubject = "";
 			var allSubjects;
-			var currentTeacher;
 			
 			function CourseBean(enrollmentCapacity, name, room, scheduleTime,
 					startDate, endDate, syllabus, subject, description) {
@@ -69,7 +66,7 @@ $(document).ready(
 				$("#courseFormDiv").hide();
 				$("#subSelect").html("");
 				$("#courseForm").trigger("reset"); // resets form
-				$("#courseAddModal").hide();
+				$("#courseAddModal").modal("hide");
 			}
 
 			function getCourseBeanFromForm() {
@@ -129,9 +126,7 @@ $(document).ready(
 				console.log(course);
 				$.ajax("http://localhost:9999/cunyworks/teacher/insert", {
 					method : "POST",
-					headers : {
-						"Content-Type" : "application/json"
-					},
+					contentType : "application/json",
 					data : JSON.stringify(course),
 					success : function(response) {
 						console.log(response);
@@ -144,10 +139,11 @@ $(document).ready(
 			}
 			// ///////////////////////////////////////////////////////////////////////////
 			// Event Handlers
+			var populated = false;
 			$("#addCourseButton").click(function() {
 				if (populated) {
+					$("#courseFormDiv").toggle(animationSpeed);
 					populated = false;
-					clearEverything();
 				} else {
 					populateSubSelect();
 					populated = true;
@@ -166,5 +162,10 @@ $(document).ready(
 				addNewCourse(course);
 
 			});
+			
+			$("#toggleModalButton").click(function(e) {
+				clearEverything();
+				$("#courseAddModal").modal("show");
+			})
 
 		});

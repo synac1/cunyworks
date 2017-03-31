@@ -1,5 +1,6 @@
 package com.status418.cunyworks.controllers;
 
+import java.util.Date;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,6 @@ public class TeacherController {
 	@ResponseBody
 	public ResponseEntity<Set<CourseBean>> getAllCourses() {
 		TeacherBean teacher = userService.getCurrentTeacher();
-		System.out.println(teacher);
 		Set<CourseBean> allCourses = teacher.getCourses();
 		return new ResponseEntity<Set<CourseBean>>(allCourses, HttpStatus.OK);
 	}
@@ -68,18 +68,17 @@ public class TeacherController {
 		return new ResponseEntity<String>("Success!", HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "insert", method = RequestMethod.POST, headers = "Accept=application/json")
+	@RequestMapping(value = "insert", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<String> addNewCourse(@RequestBody CourseBean course) {
-		TeacherBean teacher = facadeImpl.getTeacherById(1);
 		System.out.println(course);
+		TeacherBean teacher = userService.getCurrentTeacher();
 		course.getSubject().addCourse(course);
 		facadeImpl.saveOrUpdate(course);
-		
 		course.setTeacher(teacher);
-		//teacher.addCourse(course);
+		teacher.addCourse(course);
 		facadeImpl.merge(teacher);
-		return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
+		return new ResponseEntity<String>("Success!", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "subjects", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
