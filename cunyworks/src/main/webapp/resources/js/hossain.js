@@ -65,7 +65,7 @@ $(document).ready(function() {
 					window.setTimeout(function(response) {
 						$(".alert-danger").fadeOut();
 						$("#update").prop("disabled", false);
-						$('#myForm').get(0).reset();
+					
 
 					}, 3000);
 				}
@@ -145,14 +145,19 @@ $(document).ready(function() {
 				
 			});
 			
-			
+//			
 //			var table = document.getElementById('#myTable');
 //
 //			var rowLength = table.rows.length;
 //
 //			for(var i=0; i<rowLength; i++){
-//				populate("#myForm",response);
-				
+//				$("#myModal").on("click",function(){
+//					populate("#myForm",response);
+//
+//					
+//					
+//				});
+//				
 //			}
 			 
 						
