@@ -74,15 +74,32 @@ public class StudentControllerYanilda {
 		return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "a_drop", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "drop_course", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody // write directly to response body.. no redirection
-	public ResponseEntity<String> anotherdrop(@RequestBody StudentBean student, @RequestBody CourseBean course) {
-		int courseId = course.getCourseId();
-		Set<CourseBean> courses = student.getCourses();
-		courses.remove(course);
-		student.setCourses(courses);
-		facadeImpl.saveOrUpdate(student);
-		return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
+	public ResponseEntity<String> anotherdrop(@RequestBody String str) {
+		ObjectMapper mapper = new ObjectMapper();
+		JsonNode node;
+		try {
+			node = mapper.readTree(str);
+			int studentId = mapper.convertValue(node.get("studentN"), int.class);
+			int courseId = mapper.convertValue(node.get("courseN"), int.class);
+			System.out.println(studentId + "," + courseId);
+
+			StudentBean student = facadeImpl.getStudentById(studentId);
+			CourseBean course = facadeImpl.getCourseById(courseId);
+
+			student.getCourses().remove(course);
+			course.getStudents().remove(student);
+
+			facadeImpl.merge(course);
+
+			System.out.println(student.getCourses().size());
+			System.out.println(str);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return new ResponseEntity<String>("Success!", HttpStatus.OK);
 	}
 
 }
