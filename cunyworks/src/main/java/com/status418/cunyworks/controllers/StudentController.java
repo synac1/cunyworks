@@ -68,7 +68,7 @@ public class StudentController {
 			int courseId = mapper.convertValue(node.get("courseN"), int.class);
 			System.out.println(studentId + "," + courseId);
 
-			StudentBean student = facadeImpl.getStudentById(studentId);
+			StudentBean student = userService.getCurrentStudent();
 			CourseBean course = facadeImpl.getCourseById(courseId);
 
 			student.getCourses().add(course);
@@ -126,7 +126,6 @@ public class StudentController {
 			
 			student.setCourses(c);
 
-			
 			facadeImpl.merge(course);
 
 			System.out.println(student.getCourses().size());
