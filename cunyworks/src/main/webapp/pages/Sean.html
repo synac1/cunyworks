@@ -65,6 +65,7 @@
 					this.created = created;
 				}
 
+
 				function CourseBean(name, room, scheduleTime, startDate,
 						endDate, syllabus, created, subject, teacher,
 						enrollementCapacity) {
@@ -102,22 +103,14 @@
 						$(".table tbody").append("<tr>");
 						$(".table tbody").append("<td>" + temp.name + "</td>");
 						$(".table tbody").append("<td>" + temp.room + "</td>");
-						$(".table tbody").append(
-								"<td>" + temp.scheduledTime + "</td>");
-						$(".table tbody").append(
-								"<td>" + temp.startDate + "</td>");
-						$(".table tbody").append(
-								"<td>" + temp.endDate + "</td>");
-						$(".table tbody").append(
-								"<td>" + temp.syllabus + "</td>");
-						$(".table tbody").append(
-								"<td>" + temp.created + "</td>");
-						$(".table tbody").append(
-								"<td>" + temp.subject + "</td>");
-						$(".table tbody").append(
-								"<td>" + temp.teacher.lastname + "</td>");
-						$(".table tbody").append(
-								"<td>" + temp.enrollmentCapacity + "</td>");
+						$(".table tbody").append("<td>" + temp.scheduledTime + "</td>");
+						$(".table tbody").append("<td>" + temp.startDate + "</td>");
+						$(".table tbody").append("<td>" + temp.endDate + "</td>");
+						$(".table tbody").append("<td>" + temp.syllabus + "</td>");
+						$(".table tbody").append("<td>" + temp.created + "</td>");
+						$(".table tbody").append("<td>" + temp.subject.name + "</td>");
+						$(".table tbody").append("<td>" + temp.teacher.lastname + "</td>");
+						$(".table tbody").append("<td>" + temp.enrollmentCapacity + "</td>");
 						$(".table tbody").append("</tr>");
 					})
 				}
