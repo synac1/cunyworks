@@ -12,17 +12,29 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	crossorigin="anonymous"></script>
- 
+
 <!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 <link rel="stylesheet" media="all"
 	href="http://localhost:9999/cunyworks/assets/bootstrap/css/bootstrap.min.css">
-   <link href="http://localhost:9999/cunyworks/assets/css/style.css"  rel="stylesheet">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<link href="http://localhost:9999/cunyworks/assets/css/style.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+	integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+	integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+	crossorigin="anonymous"></script>
 
 
 
@@ -31,14 +43,14 @@
 
 	<header id="header">
 		<div class="container">
-				<a href="Yani.html" id="logo-1" title="CunyWorks">CUNY#Works</a>
+			<a href="Yani.html" id="logo-1" title="CunyWorks">CUNY#Works</a>
 			<div class="menu-trigger"></div>
 			<nav id="menu">
 				<ul>
 					<li><a href="events.html">Courses</a></li>
 					<li><a href="gallery.html">Students</a></li>
 				</ul>
-				
+
 				<ul>
 					<li><a href="gallery.html">Teachers</a></li>
 					<li><a href="#" class="get-contact">Contact</a></li>
@@ -50,44 +62,40 @@
 
 	</header>
 	<!-- / header -->
-<div class="divider"></div>
+	<div class="divider"></div>
 
-<table class="table table-inverse">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Course Name</th>
-      <th>Enrollment Capacity</th>
-      <th>Room</th>
-      <th>Schedule Time</th>
-       <th>Start Date</th>
-       <th>End Date</th>
-       <th>Syllabus</th>
-       <th></th>
-    </tr>
-  </thead>
-  <tbody>
+	<table id="courseTable" class="table table-inverse">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Course Name</th>
+				<th>Enrollment Capacity</th>
+				<th>Room</th>
+				<th>Schedule Time</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Syllabus</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
 
-   
-  </tbody>
-</table>
 
-	<section class="posts">
-		
-	</section>
+		</tbody>
+	</table>
+
+	<section class="posts"></section>
 
 
 	<section class="events">
 
 		<!-- / container -->
 	</section>
-	
+
 	<footer id="footer">
 		<div class="container">
-			<section>
-				Build by Status418
-			</section>
-		
+			<section>Build by Status418</section>
+
 		</div>
 		<!-- / container -->
 	</footer>
@@ -97,11 +105,11 @@
 		<h2>Enroll in class</h2>
 		<form action="#">
 			<div class="left">
-			
+
 				<fieldset class="subject">
 					<input type="text" value="Math" readonly>
 				</fieldset>
-				
+
 			</div>
 			<div class="right">
 				<fieldset class="question">
@@ -109,145 +117,129 @@
 				</fieldset>
 			</div>
 			<div class="btn-holder">
-				<button  id="add" class="btn blue" type="submit">Enroll</button>
+				<button id="add" class="btn blue" type="submit">Enroll</button>
 			</div>
 		</form>
 	</div>
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script>window.jQuery || document.write("<script src='http://localhost:9999/cunyworks/resources/js/jquery-1.11.1.min.js'>\x3C/script>")</script>
+
+
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Modal Header</h4>
+				</div>
+				<div class="modal-body" id="orderDetails"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script>
+		window.jQuery
+				|| document
+						.write("<script src='http://localhost:9999/cunyworks/resources/js/jquery-1.11.1.min.js'>\x3C/script>")
+	</script>
 	<script src="http://localhost:9999/cunyworks/assets/js/plugins.js"></script>
 	<script src="http://localhost:9999/cunyworks/assets/js/main.js"></script>
-	<script src="http://localhost:9999/cunyworks/assets/bootstrap/js/bootstrap.min.js"></script>
+	<script
+		src="http://localhost:9999/cunyworks/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 <script type="text/javascript">
-
-	
-				
-$(function(){
+	$(function() {
 
 		fetchstuff();
 		
-			function StudentBean(studentId, email, password, firstName,
-						lastName, phone, address, birthday, courses) {
+		
+		  $('#courseTable tr').click(function (event) {
+          alert($(this).attr('id')); //trying to alert id of the clicked row          
 
-					this.studentId = studentId;
-					this.email = email;
-					this.password = password;
-					this.firstName = firstName;
-					this.lastName = lastName;
-					this.phone = phone;
-					this.address = address;
-					this.birthday = birthday;
-					//this.created = created;
-					this.courses = courses;
+         });
+
+		$("#add").click(function() {
+			var courseId = 1;
+			var studentId = 1;
+
+			$.ajax("http://localhost:9999/cunyworks/student/new", {
+				method : "POST",
+				contentType : "application/json",
+				data : JSON.stringify({
+					studentN : studentId,
+					courseN : courseId
+				}),
+				success : function(response) {
+					alert(response);
 				}
-   //function CourseBean(courseId, name, room, scheduleTime, startDate,
-	//					endDate, syllabus, created, subject, teacher,
-		//				enrollementCapacity) {
-          //          this.courseId= courseId;
-			//		this.name = name;
-				//	this.room = room;
-			//		this.scheduleTime = scheduleTime;
-			//		this.startDate = startDate;
-			//		this.endDate = endDate;
-			//		this.syllabus = syllabus;
-			//		this.created = created;
-			//		this.subject = subject;
-			//		this.teacher = teacher;
-			//		this.enrollmentCapacity = enrollmentCapacity;
-				//}
-	function CourseBean( courseId, name, room, startDate, endDate) {
+			});
 
-		this.courseId = courseId;
-		this.name = name;
-		this.room = room;
-		this.startDate = startDate;
-		this.endDate = endDate;
-	}		
-	
-		$("#add").click(function(){	
-		var courseId   = 1;
-		var name   = "Course 1" ;
-		var room = "A1";
-		//var scheduleTime= $("#make").val();
-		var startDate = "2017-01-17";
-		var endDate = "2017-07-17";
-		//var syllabus   = $("#vin").val();
-		//var created   = $("#vin").val();
-		//var subject =  $("#vin").val();
-		//var teacher   = $("#vin").val();
-		//var enrollmentCapacity =  $("#vin").val();
-		
-		var studentId=1;
-		var email = "1@student.com";
-		var password ="student";
-		var firstName = "S1First";
-		var lastName = "S1Last";
-		var phone = 123456789;
-		var address = "student 1 address";
-		var birthday = "1990-12-31";
-		var courses= "{}" ;
-		var course = new CourseBean(courseId, name,  endDate, startDate);
-		var student  =new StudentBean(studentId, email, password, firstName,
-						lastName, phone, address, birthday, courses);
-						
-		console.log({"student":JSON.stringify(student),"course":JSON.stringify(course)})				
-		$.ajax("http://localhost:9999/cunyworks/student/new", 
-		{
-			method: "POST", 
-			contentType:"application/json",
-			data: JSON.stringify({studentN: studentId, courseN: courseId}),
-			success: function(response){
-			alert(response);}
 		});
-		
-		});
-		
-		
-function fetchstuff(){
-		$.ajax("http://localhost:9999/cunyworks/student/new_courses",
-		{
-			method: "GET",
-			dataType: "json",
-			success: function(response){
-				console.log(response);
-				tablewipe();
-				tableload(response);
-			}
-		});
-	}
-	
+
+		function fetchstuff() {
+			$.ajax("http://localhost:9999/cunyworks/student/new_courses", {
+				method : "GET",
+				dataType : "json",
+				success : function(response) {
+					console.log(response);
+					tablewipe();
+					tableload(response);
+				}
+			});
+		}
+
+		function tablewipe() {
+			$("#courseTable tbody").empty();
+		}
+
+		function tableload(response) {
+			$
+					.each(
+							response,
+							function(index, temp) {
+								$("#courseTable tbody")
+										.append(
+												'<tr data-toggle="modal" data-target="#myModal" data-id='+temp.courseId+' >'
+												+'<td scope="row">' + temp.courseId
+												+ '</td>'
+												+"<td>" + temp.name + "</td>"
+												+"<td>" + temp.enrollmentCapacity
+												+ "</td>"
+												+"<td>" + temp.room + "</td>"
+												+"<td>" + temp.scheduleTime + "</td>"
+												+"<td>" + temp.startDate + "</td>"
+												+"<td>" + temp.endDate + "</td>"
+												+"<td><a href='#'>" + temp.syllabus
+												+ "</a></td>"
+											
+												+"</tr>"
+												);
+							
+							
+
+							});
+		}
 
 
-	function tablewipe(){
-		$(".table tbody").empty();
-	}
-	
-	function tableload(response){
-		$.each(response, function(index, temp) {
-			$(".table tbody").append("<tr>");
-			$(".table tbody").append('<th scope="row">' + temp.courseId+'</th>');
-			$(".table tbody").append("<td>" + temp.name+"</td>");
-			$(".table tbody").append("<td>" + temp.enrollmentCapacity+"</td>");
-			$(".table tbody").append("<td>" + temp.room+"</td>");
-			$(".table tbody").append("<td>" + temp.scheduleTime+"</td>");
-			$(".table tbody").append("<td>" + temp.startDate+"</td>");
-			$(".table tbody").append("<td>" + temp.endDate+"</td>");
-			$(".table tbody").append("<td><a href='#'>" + temp.syllabus+"</a></td>");
-			$(".table tbody").append("<td><a  href='#fancy' class='btn blue get-contact'> Enroll</a></td>");
-			$(".table tbody").append("</tr>"); 	
-	
-		});
-	}
+		$('#myModal').on(
+				'show.bs.modal',
+				function(event) {
+					//var getIdFromRow = $(event.relatedTarget).attr('data-id');
+					// if you wnat to take the text of the first cell 
+					var getIdFromRow = $(event.relatedTarget).find('td:first-child').text();
+					
+					$(this).find('#orderDetails').html(
+							$('<b> The id of the course: ' + getIdFromRow  
+									+  '</b>'))
+				});
 
-
-
-	
-});
-
-		
-
-
+	});
 </script>
 </html>
 
