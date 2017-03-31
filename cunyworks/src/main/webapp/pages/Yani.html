@@ -101,26 +101,6 @@
 	</footer>
 	<!-- / footer -->
 
-	<div id="fancy">
-		<h2>Enroll in class</h2>
-		<form action="#">
-			<div class="left">
-
-				<fieldset class="subject">
-					<input type="text" value="Math" readonly>
-				</fieldset>
-
-			</div>
-			<div class="right">
-				<fieldset class="question">
-					<textarea readonly> Complex and abstract high level language. Expect the unexpected</textarea>
-				</fieldset>
-			</div>
-			<div class="btn-holder">
-				<button id="add" class="btn blue" type="submit">Enroll</button>
-			</div>
-		</form>
-	</div>
 
 
 	<div id="myModal" class="modal fade" role="dialog">
@@ -128,9 +108,31 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Modal Header</h4>
+					<h4 class="modal-title">Enroll in courses</h4>
 				</div>
-				<div class="modal-body" id="orderDetails"></div>
+			
+				<div class="modal-body" id="orderDetails">
+					<div >
+					
+						<div class="left">
+
+							<fieldset class="subject">
+								<input id="nameOfClass" type="text" readonly>
+							</fieldset>
+
+						</div>
+						<div class="right">
+							<fieldset class="question">
+								<textarea   id="descOfClass" readonly> </textarea>
+							</fieldset>
+						</div>
+						<input type="hidden" id="idOfClass">
+						<div class="btn-holder">
+							<button id="add" class="btn blue" type="submit">Enroll</button>
+						</div>
+	
+				</div>
+				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
@@ -157,15 +159,10 @@
 	$(function() {
 
 		fetchstuff();
-		
-		
-		  $('#courseTable tr').click(function (event) {
-          alert($(this).attr('id')); //trying to alert id of the clicked row          
 
-         });
 
 		$("#add").click(function() {
-			var courseId = 1;
+			var courseId = $("#idOfClass").val();
 			var studentId = 1;
 
 			$.ajax("http://localhost:9999/cunyworks/student/new", {
@@ -199,44 +196,58 @@
 		}
 
 		function tableload(response) {
-			$
-					.each(
-							response,
-							function(index, temp) {
-								$("#courseTable tbody")
-										.append(
-												'<tr data-toggle="modal" data-target="#myModal" data-id='+temp.courseId+' >'
-												+'<td scope="row">' + temp.courseId
-												+ '</td>'
-												+"<td>" + temp.name + "</td>"
-												+"<td>" + temp.enrollmentCapacity
-												+ "</td>"
-												+"<td>" + temp.room + "</td>"
-												+"<td>" + temp.scheduleTime + "</td>"
-												+"<td>" + temp.startDate + "</td>"
-												+"<td>" + temp.endDate + "</td>"
-												+"<td><a href='#'>" + temp.syllabus
-												+ "</a></td>"
-											
-												+"</tr>"
-												);
-							
+			$.each(response, function(index, temp) {
+				$("#courseTable tbody").append(
+						'<tr data-toggle="modal" data-target="#myModal" data-id='+temp.courseId+' >'
+								+ '<td scope="row">'
+								+ temp.courseId
+								+ '</td>'
+								+ "<td id='cname'>"
+								+ temp.name
+								+ "</td>"
+								+ "<td>"
+								+ temp.enrollmentCapacity
+								+ "</td>"
+								+ "<td>"
+								+ temp.room
+								+ "</td>"
+								+ "<td>"
+								+ temp.scheduleTime
+								+ "</td>"
+								+ "<td>"
+								+ temp.startDate
+								+ "</td>"
+								+ "<td>"
+								+ temp.endDate
+								+ "</td>"
+								+ "<td><a href='#'>"
+								+ temp.syllabus
+								+ "</a></td>"
+								+ "<td style='visibility: hidden;'>"
+								+ temp.description
+								+ "</td>"
 							
 
-							});
+								+ "</tr>");
+
+			});
 		}
-
 
 		$('#myModal').on(
 				'show.bs.modal',
 				function(event) {
 					//var getIdFromRow = $(event.relatedTarget).attr('data-id');
 					// if you wnat to take the text of the first cell 
-					var getIdFromRow = $(event.relatedTarget).find('td:first-child').text();
-					
-					$(this).find('#orderDetails').html(
-							$('<b> The id of the course: ' + getIdFromRow  
-									+  '</b>'))
+					var getIdFromRow = $(event.relatedTarget).find(
+							'td:first-child').text();
+					var getNameFromRow = $(event.relatedTarget).find(
+							'td:nth-child(2)').text();
+					var getDescFromRow = $(event.relatedTarget).find(
+							'td:nth-child(8)').text();
+					$("#idOfClass").val(getIdFromRow);		
+					$("#nameOfClass").val(getNameFromRow);
+					$("#descOfClass").val(getDescFromRow);	
+			
 				});
 
 	});
