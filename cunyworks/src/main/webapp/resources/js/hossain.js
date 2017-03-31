@@ -42,7 +42,7 @@ $(document).ready(function() {
 			//allCourses[0].startDate = ;;;;
 			
 			console.log(course);
-			$.ajax("http://localhost:9999/cunyworks/teacher0/update", {
+			$.ajax("http://localhost:9999/cunyworks/teacher/update", {
 				method : "POST",
 				data : JSON.stringify(courseBean),
 				
@@ -73,7 +73,7 @@ $(document).ready(function() {
 			return false; // prevent REFRESH
 		});
 		function refresh() {
-			$.ajax("http://localhost:9999/cunyworks/teacher0/allCourses", {
+			$.ajax("http://localhost:9999/cunyworks/teacher/allCourses", {
 				method : "GET",
 				headers : {
 					"Accept" : "application/json"
